@@ -151,7 +151,7 @@ async def _check_content_access(
     if len(parts) >= 4 and parts[0] == 'orgs' and parts[2] in (
         'logos', 'thumbnails', 'previews', 'landing', 'auth_backgrounds',
         'favicons', 'og_images', 'branding',
-        'square_logos',
+        'square_logos', 'ai_images',
     ):
         return True
     if len(parts) >= 5 and parts[0] == 'orgs' and parts[2] == 'courses':
