@@ -245,8 +245,10 @@ async def update_webhook_endpoint(
                 status_code=status.HTTP_400_BAD_REQUEST,
                 detail="Zapier-managed webhooks cannot have their events edited. Edit the Zap in Zapier.",
             )
-        _validate_events(webhook_object.events)
-        endpoint.events = webhook_object.events
+        retired_events = set(endpoint.events) - set(WEBHOOK_EVENTS.keys())
+        events = [event for event in webhook_object.events if event not in retired_events]
+        _validate_events(events)
+        endpoint.events = events
     if webhook_object.url is not None:
         if is_zapier_managed:
             raise HTTPException(

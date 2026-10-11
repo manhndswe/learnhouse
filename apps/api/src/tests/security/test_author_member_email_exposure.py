@@ -1,11 +1,8 @@
 """Regression tests: author/member lists must not leak private user fields.
 
-Course/podcast authors, course contributors, board members and usergroup
-members are all readable by people who are not editors of the resource
-(anonymous readers on public courses and boards, learners on usergroups).
-Emails and other private user fields must only reach callers who can edit.
+Course authors, course contributors, board members and usergroup members are
+readable by people who are not editors. Private fields must only reach editors.
 """
-
 from datetime import datetime
 
 import pytest

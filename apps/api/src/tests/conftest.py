@@ -137,7 +137,6 @@ ADMIN_RIGHTS = Rights(
     dashboard=DashboardPermission(action_access=True),
     communities=_full_permission(),
     discussions=_full_permission_with_own(),
-    podcasts=_full_permission_with_own(),
     boards=_full_permission_with_own(),
     playgrounds=_full_permission_with_own(),
 )
@@ -155,7 +154,6 @@ USER_RIGHTS = Rights(
     dashboard=DashboardPermission(action_access=False),
     communities=_readonly_permission(),
     discussions=_readonly_permission_with_own(),
-    podcasts=_readonly_permission_with_own(),
     boards=_readonly_permission_with_own(),
     playgrounds=_readonly_permission_with_own(),
 )

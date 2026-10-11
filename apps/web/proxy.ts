@@ -223,7 +223,6 @@ export const config = {
     '/sitemap.xml',
     '/robots.txt',
     '/payments/stripe/connect/oauth',
-    '/podcast/:path*/feed',
   ],
 }
 
@@ -489,15 +488,8 @@ export default async function proxy(req: NextRequest) {
   }
 
   // -------------------------------------------------------------------------
-  // 9. Per-org metadata endpoints (sitemap, robots, podcast feed)
+  // 9. Per-org metadata endpoints (sitemap, robots)
   // -------------------------------------------------------------------------
-  if (pathname.match(/^\/podcast\/([^/]+)\/feed$/)) {
-    const resolved = await resolveTenant(req, instance)
-    const feedUrl = new URL(`/api${pathname}`, req.url)
-    const response = NextResponse.rewrite(feedUrl)
-    response.headers.set('X-Feed-Orgslug', resolved.slug)
-    return response
-  }
   if (pathname.startsWith('/sitemap.xml')) {
     const resolved = await resolveTenant(req, instance)
     const sitemapUrl = new URL(`/api/sitemap`, req.url)

@@ -46,7 +46,6 @@ from src.services.orgs.orgs import (
     update_org_logo,
     update_org_payments_config,
     update_org_playgrounds_config,
-    update_org_podcasts_config,
     update_org_preview,
     update_org_seo_config,
     update_org_signup_mechanism,
@@ -468,7 +467,6 @@ class TestOrgCreationAndListingWave3:
             (update_org_communities_config, (True,)),
             (update_org_folders_config, (True,)),
             (update_org_courses_config, (True,)),
-            (update_org_podcasts_config, (True,)),
             (update_org_boards_config, (True,)),
             (update_org_playgrounds_config, (True,)),
             (update_org_color_config, ("#123456",)),
@@ -885,13 +883,6 @@ class TestOrgConfigBranchesWave3:
                 admin_user,
                 db,
             )
-            await update_org_podcasts_config(
-                mock_request,
-                True,
-                org.id,
-                admin_user,
-                db,
-            )
             await update_org_playgrounds_config(
                 mock_request,
                 False,
@@ -917,7 +908,6 @@ class TestOrgConfigBranchesWave3:
         assert stored.config["features"]["communities"]["enabled"] is False
         assert stored.config["features"]["payments"]["enabled"] is True
         assert stored.config["features"]["courses"]["enabled"] is False
-        assert stored.config["features"]["podcasts"]["enabled"] is True
         assert stored.config["features"]["playgrounds"]["enabled"] is False
         assert mock_webhooks.await_count >= 2
 

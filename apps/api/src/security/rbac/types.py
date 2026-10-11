@@ -59,7 +59,7 @@ class ResourceConfig(BaseModel):
     model_name: Optional[str] = None
     uuid_field: Optional[str] = None
 
-    # Parent resource configuration (for child resources like chapters, episodes)
+    # Parent resource configuration (for child resources like chapters, activities)
     # If set, access is delegated to the parent resource
     parent_resource_type: Optional[str] = None
     parent_id_field: Optional[str] = None  # e.g., "course_id" for chapters

@@ -38,12 +38,6 @@ export function resourceHref(
         ? getUriWithOrg(orgslug, dash ? `/dash/boards/${id}/general` : `/board/${id}`)
         : null
     }
-    case 'podcasts': {
-      const id = (resource.podcast_uuid || '').replace('podcast_', '')
-      return id
-        ? getUriWithOrg(orgslug, dash ? `/dash/podcasts/podcast/${id}/general` : `/podcast/${id}`)
-        : null
-    }
     case 'playgrounds': {
       // Playgrounds use the full prefixed uuid and have no separate dash route.
       return resource.playground_uuid

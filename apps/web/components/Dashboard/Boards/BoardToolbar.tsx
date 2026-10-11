@@ -20,7 +20,6 @@ import {
   ArrowCounterClockwise,
   ArrowClockwise,
   CheckSquare,
-  Headphones,
 } from '@phosphor-icons/react'
 import { DividerVerticalIcon } from '@radix-ui/react-icons'
 import * as Popover from '@radix-ui/react-popover'
@@ -28,7 +27,7 @@ import { cn } from '@/lib/utils'
 import type { Editor } from '@tiptap/core'
 import ToolTip from '@components/Objects/StyledElements/Tooltip/Tooltip'
 
-type ToolMode = 'select' | 'pan' | 'draw' | 'card' | 'youtube' | 'playground' | 'activity' | 'embed' | 'webpage' | 'sticker' | 'frame' | 'note' | 'todo' | 'podcast'
+type ToolMode = 'select' | 'pan' | 'draw' | 'card' | 'youtube' | 'playground' | 'activity' | 'embed' | 'webpage' | 'sticker' | 'frame' | 'note' | 'todo'
 
 interface BoardToolbarProps {
   toolMode: ToolMode
@@ -65,7 +64,6 @@ const tools = [
   { mode: 'activity' as const, icon: BookOpen, label: 'boards.toolbar.activity', colorClass: 'editor-tool-btn-info' },
   { mode: 'embed' as const, icon: Code, label: 'boards.toolbar.embed', colorClass: 'editor-tool-btn-interactive' },
   { mode: 'webpage' as const, icon: Globe, label: 'boards.toolbar.webpage', colorClass: 'editor-tool-btn-info' },
-  { mode: 'podcast' as const, icon: Headphones, label: 'boards.toolbar.podcast', colorClass: 'editor-tool-btn-tip' },
 ]
 
 export default function BoardToolbar({

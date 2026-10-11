@@ -12,7 +12,6 @@ const REVALIDATABLE_TAGS = new Set([
   'courses',
   'folders',
   'organizations',
-  'podcasts',
 ])
 
 export async function GET(request: NextRequest) {

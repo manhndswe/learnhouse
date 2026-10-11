@@ -10,7 +10,6 @@ import {
   Search as SearchIcon,
   MessagesSquare,
   MessageCircle,
-  Mic,
   ChevronLeft,
   ChevronRight,
 } from 'lucide-react'
@@ -25,7 +24,6 @@ import {
   getUserAvatarMediaDirectory,
   getCommunityThumbnailMediaDirectory,
   getPlaygroundThumbnailMediaDirectory,
-  getPodcastThumbnailMediaDirectory,
 } from '@services/media/media'
 import { getUriWithOrg } from '@services/config/config'
 import { removeCoursePrefix } from '@components/Objects/Thumbnails/CourseThumbnail'
@@ -123,13 +121,6 @@ interface ApiPlayground {
   org_uuid?: string
 }
 
-interface ApiPodcast {
-  name: string
-  description?: string
-  thumbnail_image?: string
-  podcast_uuid: string
-}
-
 interface SearchResults {
   courses: ApiCourse[]
   folders: ApiFolder[]
@@ -137,14 +128,12 @@ interface SearchResults {
   communities: ApiCommunity[]
   discussions: ApiDiscussion[]
   playgrounds: ApiPlayground[]
-  podcasts: ApiPodcast[]
   total_courses: number
   total_folders: number
   total_users: number
   total_communities: number
   total_discussions: number
   total_playgrounds: number
-  total_podcasts: number
 }
 
 const EMPTY_RESULTS: SearchResults = {
@@ -154,14 +143,12 @@ const EMPTY_RESULTS: SearchResults = {
   communities: [],
   discussions: [],
   playgrounds: [],
-  podcasts: [],
   total_courses: 0,
   total_folders: 0,
   total_users: 0,
   total_communities: 0,
   total_discussions: 0,
   total_playgrounds: 0,
-  total_podcasts: 0,
 }
 
 type ResourceKey =
@@ -171,7 +158,6 @@ type ResourceKey =
   | 'communities'
   | 'discussions'
   | 'playgrounds'
-  | 'podcasts'
 
 type TabKey = 'all' | ResourceKey
 
@@ -318,24 +304,6 @@ const sections: SectionDescriptor<any>[] = [
     ),
   },
   {
-    key: 'podcasts',
-    icon: Mic,
-    items: (r) => r.podcasts,
-    total: (r) => r.total_podcasts,
-    itemKey: (p: ApiPodcast) => p.podcast_uuid,
-    renderCard: (podcast: ApiPodcast, ctx) => (
-      <ResourceCard
-        href={getUriWithOrg(ctx.orgSlug, `/podcast/${podcast.podcast_uuid.replace('podcast_', '')}`)}
-        imageUrl={podcast.thumbnail_image
-          ? getPodcastThumbnailMediaDirectory(ctx.orgUuid, podcast.podcast_uuid, podcast.thumbnail_image)
-          : undefined}
-        fallbackIcon={Mic}
-        title={podcast.name}
-        subtitle={podcast.description}
-      />
-    ),
-  },
-  {
     key: 'users',
     icon: UsersIcon,
     items: (r) => r.users,
@@ -382,7 +350,8 @@ function SearchPage() {
 
   const urlQuery = searchParams.get('q') ?? ''
   const urlPage = Math.max(1, parseInt(searchParams.get('page') ?? '1', 10) || 1)
-  const urlType = (searchParams.get('type') as TabKey) || 'all'
+  const requestedType = searchParams.get('type')
+  const urlType: TabKey = sections.find((section) => section.key === requestedType)?.key ?? 'all'
 
   const [inputValue, setInputValue] = useState(urlQuery)
   const [results, setResults] = useState<SearchResults>(EMPTY_RESULTS)

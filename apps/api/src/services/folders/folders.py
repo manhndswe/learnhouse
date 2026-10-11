@@ -137,7 +137,6 @@ def _sort_items(
 def _resource_registry():
     """prefix -> (resource_type label, model, uuid_field). Lazy to avoid cycles."""
     from src.db.courses.courses import Course
-    from src.db.podcasts.podcasts import Podcast
     from src.db.communities.communities import Community
     from src.db.boards import Board
     from src.db.playgrounds import Playground
@@ -145,7 +144,6 @@ def _resource_registry():
 
     return {
         "course_": ("courses", Course, "course_uuid"),
-        "podcast_": ("podcasts", Podcast, "podcast_uuid"),
         "community_": ("communities", Community, "community_uuid"),
         "board_": ("boards", Board, "board_uuid"),
         "playground_": ("playgrounds", Playground, "playground_uuid"),
@@ -191,7 +189,7 @@ async def _can_read(request, current_user, db_session: AsyncSession, resource_uu
 
 
 # Resource types whose rows carry draft / usergroup restrictions of their own.
-_GATED_RESOURCE_TYPES = ("courses", "podcasts")
+_GATED_RESOURCE_TYPES = ("courses",)
 
 
 async def _hidden_gated_uuids(
@@ -200,9 +198,9 @@ async def _hidden_gated_uuids(
     include_private: bool,
     viewer_id: Optional[int],
 ) -> set[str]:
-    """UUIDs of courses/podcasts in ``gated`` the viewer may not see.
+    """UUIDs of courses in ``gated`` the viewer may not see.
 
-    Mirrors the course/podcast listings: anonymous and non-member viewers get
+    Mirrors the course listings: anonymous and non-member viewers get
     public + published only; members also see published org-wide items (not
     linked to a UserGroup), plus items linked to a UserGroup they belong to or
     that they actively author (drafts included); org admins see everything.
@@ -275,7 +273,7 @@ async def _resolve_items(
     sibling folders are ordered by; otherwise a folder's content would render
     in a different order than the dashboard shows.
 
-    Courses and podcasts the viewer can't read (drafts, usergroup-restricted)
+    Courses the viewer can't read (drafts, usergroup-restricted)
     are left out, so a folder can't leak their metadata; see
     ``_hidden_gated_uuids`` for ``viewer_id``. Boards, communities and media
     are checked through RBAC for the ``current_user`` when one is given.

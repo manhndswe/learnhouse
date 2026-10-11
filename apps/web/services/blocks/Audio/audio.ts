@@ -4,14 +4,11 @@ import {
   RequestBodyWithAuthHeader,
 } from '@services/utils/ts/requests'
 
-export type GenerateAudioSpeaker = { name: string; voice: string }
-
 export type GenerateAudioParams = {
   activity_uuid: string
-  mode: 'tts' | 'podcast'
+  mode?: 'tts'
   text: string
   voice?: string
-  speakers?: GenerateAudioSpeaker[]
   style?: string
   language?: string
 }
@@ -32,7 +29,12 @@ export async function generateAudioBlock(
 ) {
   const result = await fetch(
     `${getAPIUrl()}ai/audio/generate`,
-    RequestBodyWithAuthHeader('POST', params, null, access_token)
+    RequestBodyWithAuthHeader(
+      'POST',
+      { ...params, mode: params.mode ?? 'tts' },
+      null,
+      access_token
+    )
   )
 
   const data = await result.json()
@@ -46,25 +48,27 @@ export async function generateAudioBlock(
 
 export type GenerateScriptParams = {
   activity_uuid: string
-  // 'podcast' → two-speaker dialogue; 'speak' → single-speaker detailed monologue.
-  mode: 'podcast' | 'speak'
+  mode?: 'speak'
   text: string
-  speakers?: GenerateAudioSpeaker[]
   style?: string
   language?: string
   // Approximate spoken length in minutes.
   minutes?: number
 }
 
-// Turn a topic/brief into a spoken script (podcast dialogue or a detailed
-// monologue for "speak" mode). Returns { transcript }.
+// Turn a topic/brief into a detailed spoken monologue. Returns { transcript }.
 export async function generateScript(
   params: GenerateScriptParams,
   access_token: string
 ): Promise<{ transcript: string }> {
   const result = await fetch(
     `${getAPIUrl()}ai/audio/script`,
-    RequestBodyWithAuthHeader('POST', params, null, access_token)
+    RequestBodyWithAuthHeader(
+      'POST',
+      { ...params, mode: params.mode ?? 'speak' },
+      null,
+      access_token
+    )
   )
 
   const data = await result.json()

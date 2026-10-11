@@ -30,8 +30,6 @@ class DemoEntityKind:
     DISCUSSION_COMMENT = "discussion_comment"
     BOARD = "board"
     PLAYGROUND = "playground"
-    PODCAST = "podcast"
-    PODCAST_EPISODE = "podcast_episode"
     API_TOKEN = "api_token"
     WEBHOOK = "webhook"
     PAYMENTS_GROUP = "payments_group"

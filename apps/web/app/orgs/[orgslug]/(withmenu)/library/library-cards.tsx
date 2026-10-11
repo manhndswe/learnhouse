@@ -17,7 +17,6 @@ import { mediaKind } from '@/lib/media/mediaKind'
 import {
   FolderSimple,
   GraduationCap,
-  MicrophoneStage,
   ChatsCircle,
   SquaresFour,
   Cube,
@@ -32,12 +31,11 @@ import {
   type IconProps,
 } from '@phosphor-icons/react'
 
-type ResourceType = 'courses' | 'podcasts' | 'communities' | 'boards' | 'playgrounds' | 'media'
+type ResourceType = 'courses' | 'communities' | 'boards' | 'playgrounds' | 'media'
 
 const TYPE_TONE: Record<string, string> = {
   courses: 'bg-blue-50 text-blue-500',
   media: 'bg-amber-50 text-amber-500',
-  podcasts: 'bg-rose-50 text-rose-500',
   communities: 'bg-emerald-50 text-emerald-500',
   boards: 'bg-indigo-50 text-indigo-500',
   playgrounds: 'bg-fuchsia-50 text-fuchsia-500',
@@ -58,7 +56,6 @@ function typeIcon(type: string, resource: any): React.ComponentType<IconProps> {
   switch (type) {
     case 'courses': return GraduationCap
     case 'media': return mediaIcon(resource)
-    case 'podcasts': return MicrophoneStage
     case 'communities': return ChatsCircle
     case 'boards': return SquaresFour
     case 'playgrounds': return Cube
@@ -112,6 +109,8 @@ export function LibraryItemCard({ item, orgslug }: { item: any; orgslug: string 
   const [previewOpen, setPreviewOpen] = React.useState(false)
   const type = item.resource_type as ResourceType
   const resource = item.resource || {}
+
+  if (!Object.hasOwn(TYPE_TONE, type)) return null
 
   // Courses keep their full rich thumbnail card.
   if (type === 'courses' && resource?.course_uuid) {

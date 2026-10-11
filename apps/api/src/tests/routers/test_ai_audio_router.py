@@ -11,16 +11,25 @@ from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 from fastapi import HTTPException
+from pydantic import ValidationError
 
 from src.routers.ai import audio as aud
 from src.services.ai.llm import AINotConfiguredError
 from src.services.ai.schemas.audio import (
     GenerateAudioRequest,
-    GenerateAudioSpeaker,
     GenerateScriptRequest,
 )
 
 pytestmark = pytest.mark.asyncio
+
+
+@pytest.mark.parametrize("schema,mode", [(GenerateAudioRequest, "tts"), (GenerateScriptRequest, "speak")])
+async def test_request_accepts_only_supported_mode(schema, mode):
+    request = schema(activity_uuid="act_1", text="Explain photosynthesis")
+    assert request.mode == mode
+    assert "speakers" not in schema.model_fields
+    with pytest.raises(ValidationError):
+        schema(activity_uuid="act_1", text="Explain photosynthesis", mode="podcast")
 
 
 def _result(value):
@@ -111,28 +120,7 @@ async def test_happy_path_tts():
     assert resp is block
     gs.assert_awaited_once()
     assert gs.await_args.kwargs["voice"] == "Puck"
-    assert gs.await_args.kwargs["speakers"] is None
     cab.assert_awaited_once()
-
-
-async def test_happy_path_podcast_builds_speakers():
-    block = SimpleNamespace(block_uuid="block_2")
-    body = _body(
-        mode="podcast",
-        speakers=[
-            GenerateAudioSpeaker(name="Host", voice="Kore"),
-            GenerateAudioSpeaker(name="Guest", voice="Puck"),
-        ],
-    )
-    with patch.object(aud, "is_org_member", new=AsyncMock(return_value=True)), \
-         patch.object(aud, "enforce_ai_rate_limit"), \
-         patch.object(aud, "reserve_ai_credit", new=AsyncMock()), \
-         patch.object(aud, "generate_speech", new=AsyncMock(return_value=b"RIFFxxxxWAVE")) as gs, \
-         patch.object(aud, "create_audio_block", new=AsyncMock(return_value=block)):
-        await aud.api_generate_audio(MagicMock(), body, _user(), _db_returning(_activity()))
-    speakers = gs.await_args.kwargs["speakers"]
-    assert [s.name for s in speakers] == ["Host", "Guest"]
-    assert [s.voice for s in speakers] == ["Kore", "Puck"]
 
 
 async def test_not_configured_refunds_and_403():
@@ -197,7 +185,7 @@ async def test_store_generic_error_refunds_and_500():
     refund.assert_called_once()
 
 
-# --- /audio/script (podcast script generation) ---------------------------
+# --- /audio/script (monologue generation) ---------------------------
 
 async def test_script_empty_text_400():
     with pytest.raises(HTTPException) as e:
@@ -220,24 +208,6 @@ async def test_script_non_member_403_no_spend():
     reserve.assert_not_called()
 
 
-async def test_script_happy_path_podcast():
-    with patch.object(aud, "is_org_member", new=AsyncMock(return_value=True)), \
-         patch.object(aud, "enforce_ai_rate_limit"), \
-         patch.object(aud, "reserve_ai_credit", new=AsyncMock()), \
-         patch.object(aud, "generate_spoken_script", new=AsyncMock(return_value="Host: hi\nGuest: hey")) as gps:
-        resp = await aud.api_generate_script(MagicMock(),
-            _script_body(mode="podcast", minutes=5, speakers=[
-                GenerateAudioSpeaker(name="Host", voice="Kore"),
-                GenerateAudioSpeaker(name="Guest", voice="Puck"),
-            ]),
-            _user(), _db_returning(_activity()),
-        )
-    assert resp.transcript.startswith("Host:")
-    assert gps.await_args.kwargs["kind"] == "podcast"
-    assert gps.await_args.kwargs["speaker_names"] == ["Host", "Guest"]
-    assert gps.await_args.kwargs["minutes"] == 5
-
-
 async def test_script_happy_path_speak_monologue():
     with patch.object(aud, "is_org_member", new=AsyncMock(return_value=True)), \
          patch.object(aud, "enforce_ai_rate_limit"), \
@@ -247,7 +217,6 @@ async def test_script_happy_path_speak_monologue():
             _script_body(mode="speak", minutes=3), _user(), _db_returning(_activity())
         )
     assert resp.transcript.startswith("Photosynthesis")
-    assert gps.await_args.kwargs["kind"] == "monologue"
     assert gps.await_args.kwargs["minutes"] == 3
 
 

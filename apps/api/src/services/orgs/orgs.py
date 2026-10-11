@@ -485,7 +485,6 @@ def _acting_user_id(current_user) -> int:
     return resolve_acting_user_id(current_user)
 
 
-
 async def update_org(
     request: Request,
     org_object: OrganizationUpdate,
@@ -1370,19 +1369,6 @@ async def update_org_courses_config(
     return await _update_feature_toggle(
         request, "courses", courses_enabled, org_id, current_user, db_session,
         v1_default={"enabled": True, "limit": 100},
-    )
-
-
-async def update_org_podcasts_config(
-    request: Request,
-    podcasts_enabled: bool,
-    org_id: int,
-    current_user: PublicUser | AnonymousUser,
-    db_session: AsyncSession,
-):
-    return await _update_feature_toggle(
-        request, "podcasts", podcasts_enabled, org_id, current_user, db_session,
-        v1_default={"enabled": False, "limit": 10},
     )
 
 

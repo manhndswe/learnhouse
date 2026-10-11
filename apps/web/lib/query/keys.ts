@@ -70,12 +70,6 @@ export const queryKeys = {
     detail: (uuid: string) => ['board', uuid] as const,
     members: (uuid: string) => ['board', uuid, 'members'] as const,
   },
-  podcasts: {
-    list: (orgSlug: string) => ['podcasts', orgSlug] as const,
-    detail: (uuid: string) => ['podcast', uuid] as const,
-    meta: (uuid: string) => ['podcast', uuid, 'meta'] as const,
-    episodes: (uuid: string) => ['podcast', uuid, 'episodes'] as const,
-  },
   ai: {
     ragSessions: (orgSlug: string) => ['ai', 'rag', 'sessions', orgSlug] as const,
   },

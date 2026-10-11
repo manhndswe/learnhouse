@@ -10,7 +10,7 @@ import { getCourseThumbnailMediaDirectory } from '@services/media/media'
 import { getOfferCheckoutSession } from '@services/payments/offers'
 import {
   ArrowLeft, RefreshCcw, SquareCheck, Sparkles, BookOpen,
-  Mic, Puzzle, AlertCircle, Loader2, ShoppingBag
+  Puzzle, AlertCircle, Loader2, ShoppingBag
 } from 'lucide-react'
 import { useLHSession } from '@components/Contexts/LHSessionContext'
 import { useLHAnalytics, useTrackView, AnalyticsEvent } from '@services/analytics'
@@ -37,7 +37,6 @@ interface OfferDetailClientProps {
 function resourceIcon(type: string, size = 14) {
   switch (type) {
     case 'course': return <BookOpen size={size} className="text-indigo-500" />
-    case 'podcast': return <Mic size={size} className="text-pink-400" />
     default: return <Puzzle size={size} className="text-gray-400" />
   }
 }
@@ -50,7 +49,6 @@ function getResourceUrl(orgslug: string, resource: Resource): string | null {
   const id = stripTypePrefix(resource.resource_uuid)
   switch (resource.resource_type) {
     case 'course': return getUriWithOrg(orgslug, `/course/${id}`)
-    case 'podcast': return getUriWithOrg(orgslug, `/podcast/${id}`)
     case 'playground': return getUriWithOrg(orgslug, `/playground/${id}`)
     default: return null
   }
@@ -105,12 +103,15 @@ export default function OfferDetailClient({ orgslug, orgId, offerUuid, offer, ac
   const router = useRouter()
   const [loading, setLoading] = useState(false)
   const { track } = useLHAnalytics('learner')
+  const resources: Resource[] = (offer?.included_resources ?? []).filter((resource: Resource) =>
+    ['course', 'community', 'board', 'playground', 'media'].includes(resource.resource_type),
+  )
 
   useTrackView(
     AnalyticsEvent.OfferViewed,
     {
       offer_type: offer?.offer_type,
-      included_resources_count: offer?.included_resources?.length ?? 0,
+      included_resources_count: resources.length,
       is_authenticated: !!token,
     },
     !!offer,
@@ -135,7 +136,6 @@ export default function OfferDetailClient({ orgslug, orgId, offerUuid, offer, ac
   const benefits: string[] = offer.benefits
     ? offer.benefits.split(',').map((b: string) => b.trim()).filter(Boolean)
     : []
-  const resources: Resource[] = offer.included_resources ?? []
 
   const handleCheckout = async () => {
     if (!token) {

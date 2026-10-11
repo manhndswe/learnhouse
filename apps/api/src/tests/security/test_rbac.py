@@ -142,15 +142,6 @@ class TestRBAC:
                 action_delete=False,
                 action_delete_own=False,
             ),
-            podcasts=PermissionsWithOwn(
-                action_create=False,
-                action_read=True,
-                action_read_own=False,
-                action_update=False,
-                action_update_own=False,
-                action_delete=False,
-                action_delete_own=False,
-            ),
         )
         role.role_type = RoleTypeEnum.TYPE_GLOBAL
         role.role_uuid = "role_test"
@@ -163,7 +154,7 @@ class TestRBAC:
         """Test public course authorization success"""
         with patch('src.security.rbac.rbac.check_element_type', new_callable=AsyncMock) as mock_check_type:
             mock_check_type.return_value = "courses"
-            
+
             # Mock database query
             mock_db_session.execute.return_value.scalars.return_value.first.return_value = mock_course
 
@@ -173,7 +164,7 @@ class TestRBAC:
                 action="read",
                 db_session=mock_db_session
             )
-            
+
             assert result is True
 
     @pytest.mark.asyncio
@@ -181,10 +172,10 @@ class TestRBAC:
         """Test public course authorization failure when course is not public"""
         with patch('src.security.rbac.rbac.check_element_type', new_callable=AsyncMock) as mock_check_type:
             mock_check_type.return_value = "courses"
-            
+
             # Mock database query to return None (course not found or not public)
             mock_db_session.execute.return_value.scalars.return_value.first.return_value = None
-            
+
             with pytest.raises(HTTPException) as exc_info:
                 await authorization_verify_if_element_is_public(
                     request=mock_request,
@@ -192,7 +183,7 @@ class TestRBAC:
                     action="read",
                     db_session=mock_db_session
                 )
-            
+
             assert exc_info.value.status_code == 403
             assert "You don't have the right to perform this action" in exc_info.value.detail
 
@@ -211,7 +202,7 @@ class TestRBAC:
                 action="read",
                 db_session=mock_db_session
             )
-            
+
             assert result is True
 
     @pytest.mark.asyncio
@@ -219,7 +210,7 @@ class TestRBAC:
         """Test public element authorization with unsupported element type"""
         with patch('src.security.rbac.rbac.check_element_type', new_callable=AsyncMock) as mock_check_type:
             mock_check_type.return_value = "users"  # Unsupported element type
-            
+
             with pytest.raises(HTTPException) as exc_info:
                 await authorization_verify_if_element_is_public(
                     request=mock_request,
@@ -227,7 +218,7 @@ class TestRBAC:
                     action="read",
                     db_session=mock_db_session
                 )
-            
+
             assert exc_info.value.status_code == 403
             assert "You don't have the right to perform this action" in exc_info.value.detail
 
@@ -241,7 +232,7 @@ class TestRBAC:
             element_uuid="course_123",
             db_session=mock_db_session
         )
-        
+
         assert result is True
 
     @pytest.mark.asyncio
@@ -258,7 +249,7 @@ class TestRBAC:
                 element_uuid="course_123",
                 db_session=mock_db_session
             )
-            
+
             assert result is True
 
     @pytest.mark.asyncio
@@ -293,7 +284,7 @@ class TestRBAC:
                 element_uuid="course_123",
                 db_session=mock_db_session
             )
-            
+
             assert result is False
 
     @pytest.mark.asyncio
@@ -439,7 +430,7 @@ class TestRBAC:
         """Test anonymous user verification"""
         with pytest.raises(HTTPException) as exc_info:
             await authorization_verify_if_user_is_anon(user_id=0)
-        
+
         assert exc_info.value.status_code == 403
         assert "You should be logged in to perform this action" in exc_info.value.detail
 
@@ -447,4 +438,4 @@ class TestRBAC:
     async def test_authorization_verify_if_user_is_anon_authenticated_user(self):
         """Test authenticated user verification"""
         # Should not raise any exception
-        await authorization_verify_if_user_is_anon(user_id=1) 
+        await authorization_verify_if_user_is_anon(user_id=1)
