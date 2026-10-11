@@ -21,7 +21,7 @@ from src.db.courses.courses import Course
 from src.db.courses.activities import Activity
 from src.db.users import AnonymousUser, PublicUser, APITokenUser
 from src.core.events.database import get_db_session
-from src.routers.content_files import PRIVATE_CACHE_CONTROL, _verify_episode_access
+from src.routers.content_files import PRIVATE_CACHE_CONTROL
 from src.security.auth import get_current_user
 from src.services.courses.activities.access import verify_activity_reader_access
 from src.services.courses.transfer.storage_utils import (
@@ -140,22 +140,6 @@ async def _verify_course_activity_access(
     # Course read, published state, paywall and locks: the same gate the
     # activity read applies, or the files are a way around it.
     await verify_activity_reader_access(request, activity, course, current_user, db_session)
-
-
-async def _verify_podcast_episode_access(
-    request: Request,
-    org_uuid: str,
-    podcast_uuid: str,
-    episode_uuid: str,
-    current_user: PublicUser | AnonymousUser | APITokenUser,
-    db_session: AsyncSession,
-) -> None:
-    """Same gate as the episode's /content files: podcast in ``org_uuid``,
-    episode in podcast, podcast READ, and an unpublished podcast or episode
-    only for someone who can edit the podcast."""
-    await _verify_episode_access(
-        org_uuid, podcast_uuid, episode_uuid, current_user, db_session, request
-    )
 
 
 @router.get(
@@ -883,175 +867,6 @@ async def head_block_video(
 
     if not exists:
         raise HTTPException(status_code=404, detail="Video not found")
-
-    return Response(
-        status_code=200,
-        headers={
-            "Accept-Ranges": "bytes",
-            "Content-Length": str(file_size),
-            "Content-Type": mime_type,
-            "Cache-Control": PRIVATE_CACHE_CONTROL,
-        },
-    )
-
-
-@router.get(
-    "/audio/{org_uuid}/{podcast_uuid}/{episode_uuid}/{filename:path}",
-    summary="Stream a podcast episode audio",
-    description="Streams a podcast episode audio file with HTTP Range request support. Validates user read access to the podcast via RBAC before serving the file.",
-    responses={
-        200: {"description": "Full audio streamed successfully"},
-        206: {"description": "Partial audio content returned for a Range request"},
-        403: {"description": "User is not permitted to read this podcast"},
-        404: {"description": "Podcast, episode, or audio file not found"},
-    },
-)
-async def stream_podcast_audio(
-    request: Request,
-    org_uuid: str = Path(..., description="Organization UUID"),
-    podcast_uuid: str = Path(..., description="Podcast UUID"),
-    episode_uuid: str = Path(..., description="Episode UUID"),
-    filename: str = Path(..., description="Audio filename"),
-    current_user: PublicUser | AnonymousUser | APITokenUser = Depends(get_current_user),
-    db_session: AsyncSession = Depends(get_db_session),
-):
-    """
-    Stream an audio file for a podcast episode with proper Range request support.
-
-    This endpoint supports:
-    - HTTP Range requests for seeking in audio files
-    - Efficient chunked streaming
-    - Proper Content-Type headers
-    - Cache-Control headers for browser caching
-
-    SECURITY: Validates user has read access to the podcast via RBAC.
-    """
-    # SECURITY: Verify user has access to this podcast/episode
-    await _verify_podcast_episode_access(request, org_uuid, podcast_uuid, episode_uuid, current_user, db_session)
-
-    # Construct and validate the file path
-    file_path = validate_video_path(
-        CONTENT_DIR,
-        "orgs",
-        org_uuid,
-        "podcasts",
-        podcast_uuid,
-        "episodes",
-        episode_uuid,
-        "audio",
-        filename,
-    )
-
-    if not file_path:
-        raise HTTPException(status_code=404, detail="Audio not found")
-
-    # Confirm the object exists first (offloaded head_object) so a missing file
-    # returns 404 consistently for GET and HEAD instead of redirecting to a dead
-    # presigned URL. The 302 is cached, so this runs ~once per viewing session.
-    file_size, mime_type, exists = await asyncio.to_thread(get_file_info, file_path)
-
-    if not exists:
-        raise HTTPException(status_code=404, detail="Audio not found")
-
-    # S3/R2: redirect to object storage so the browser streams directly. RBAC
-    # was already enforced above, so the short-lived presigned URL is safe.
-    redirect = _redirect_to_storage(file_path)
-    if redirect:
-        return redirect
-
-    # Parse Range header if present
-    range_header = request.headers.get("range")
-    if range_header and is_range_unsatisfiable(range_header, file_size):
-        # RFC 7233: unsatisfiable range (empty file / start past EOF) → 416.
-        return Response(
-            status_code=416,
-            headers={"Content-Range": f"bytes */{file_size}", "Accept-Ranges": "bytes"},
-        )
-    start, end = parse_range_header(range_header, file_size)
-
-    # Calculate content length for this range
-    content_length = end - start + 1
-
-    # Common headers for audio streaming
-    headers = {
-        "Accept-Ranges": "bytes",
-        "Content-Type": mime_type,
-        "Cache-Control": PRIVATE_CACHE_CONTROL,
-        "X-Content-Type-Options": "nosniff",
-    }
-
-    if range_header:
-        # Partial content response (206)
-        headers["Content-Range"] = f"bytes {start}-{end}/{file_size}"
-        headers["Content-Length"] = str(content_length)
-
-        return StreamingResponse(
-            stream_video_file(file_path, start, end, CHUNK_SIZE),
-            status_code=206,
-            headers=headers,
-            media_type=mime_type,
-        )
-    else:
-        # Full content response (200)
-        headers["Content-Length"] = str(file_size)
-
-        return StreamingResponse(
-            stream_video_file(file_path, 0, file_size - 1, CHUNK_SIZE),
-            status_code=200,
-            headers=headers,
-            media_type=mime_type,
-        )
-
-
-@router.head(
-    "/audio/{org_uuid}/{podcast_uuid}/{episode_uuid}/{filename:path}",
-    summary="Get podcast audio metadata",
-    description="Returns metadata for a podcast episode audio file without the body. Used by audio players to probe file size and Range support before playback.",
-    responses={
-        200: {"description": "Audio metadata returned via response headers"},
-        403: {"description": "User is not permitted to read this podcast"},
-        404: {"description": "Podcast, episode, or audio file not found"},
-    },
-)
-async def head_podcast_audio(
-    request: Request,
-    org_uuid: str = Path(..., description="Organization UUID"),
-    podcast_uuid: str = Path(..., description="Podcast UUID"),
-    episode_uuid: str = Path(..., description="Episode UUID"),
-    filename: str = Path(..., description="Audio filename"),
-    current_user: PublicUser | AnonymousUser | APITokenUser = Depends(get_current_user),
-    db_session: AsyncSession = Depends(get_db_session),
-):
-    """
-    HEAD request for podcast audio - returns metadata without body.
-
-    This is used by audio players to determine file size and supported ranges
-    before starting playback.
-
-    SECURITY: Validates user has read access to the podcast via RBAC.
-    """
-    # SECURITY: Verify user has access to this podcast/episode
-    await _verify_podcast_episode_access(request, org_uuid, podcast_uuid, episode_uuid, current_user, db_session)
-
-    file_path = validate_video_path(
-        CONTENT_DIR,
-        "orgs",
-        org_uuid,
-        "podcasts",
-        podcast_uuid,
-        "episodes",
-        episode_uuid,
-        "audio",
-        filename,
-    )
-
-    if not file_path:
-        raise HTTPException(status_code=404, detail="Audio not found")
-
-    file_size, mime_type, exists = get_file_info(file_path)
-
-    if not exists:
-        raise HTTPException(status_code=404, detail="Audio not found")
 
     return Response(
         status_code=200,

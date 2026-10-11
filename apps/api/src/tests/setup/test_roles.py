@@ -52,7 +52,6 @@ class TestRightsModel:
             "dashboard": self.get_valid_dashboard_permission(),
             "communities": self.get_valid_permission(),
             "discussions": self.get_valid_permission_with_own(),
-            "podcasts": self.get_valid_permission_with_own(),
             "boards": self.get_valid_permission_with_own(),
             "playgrounds": self.get_valid_permission_with_own(),
         }
@@ -73,7 +72,6 @@ class TestRightsModel:
         assert rights.dashboard is not None
         assert rights.communities is not None
         assert rights.discussions is not None
-        assert rights.podcasts is not None
 
     def test_rights_model_missing_communities(self):
         """Test that Rights model fails validation when communities is missing"""
@@ -101,18 +99,6 @@ class TestRightsModel:
         assert errors[0]["loc"] == ("discussions",)
         assert errors[0]["type"] == "missing"
 
-    def test_rights_model_missing_podcasts(self):
-        """Test that Rights model fails validation when podcasts is missing"""
-        fields = self.get_all_required_rights_fields()
-        del fields["podcasts"]
-
-        with pytest.raises(ValidationError) as exc_info:
-            Rights(**fields)
-
-        errors = exc_info.value.errors()
-        assert len(errors) == 1
-        assert errors[0]["loc"] == ("podcasts",)
-        assert errors[0]["type"] == "missing"
 
     def test_rights_model_missing_multiple_fields(self):
         """Test that Rights model fails with multiple missing fields"""
@@ -191,9 +177,8 @@ class TestRightsModel:
         assert "courses" in dumped
         assert "communities" in dumped
         assert "discussions" in dumped
-        assert "podcasts" in dumped
         assert "assignments" in dumped
-        assert len(dumped) == 16  # All 16 fields
+        assert len(dumped) == 15
 
 
 class TestPermissionModels:
@@ -258,7 +243,6 @@ class TestDefaultRolesValidation:
         "dashboard",
         "communities",
         "discussions",
-        "podcasts",
         "boards",
         "playgrounds",
     ]
@@ -355,15 +339,6 @@ class TestDefaultRolesValidation:
                 action_delete=True,
                 action_delete_own=True,
             ),
-            podcasts=PermissionsWithOwn(
-                action_create=True,
-                action_read=True,
-                action_read_own=True,
-                action_update=True,
-                action_update_own=True,
-                action_delete=True,
-                action_delete_own=True,
-            ),
         )
 
         # Verify all fields are present and accessible
@@ -450,15 +425,6 @@ class TestDefaultRolesValidation:
                 action_delete=False,
                 action_delete_own=True,
             ),
-            podcasts=PermissionsWithOwn(
-                action_create=False,
-                action_read=True,
-                action_read_own=True,
-                action_update=False,
-                action_update_own=False,
-                action_delete=False,
-                action_delete_own=False,
-            ),
         )
 
         # Verify all fields are present
@@ -543,15 +509,6 @@ class TestDefaultRolesValidation:
                 action_delete=True,
                 action_delete_own=True,
             ),
-            podcasts=PermissionsWithOwn(
-                action_create=True,
-                action_read=True,
-                action_read_own=True,
-                action_update=True,
-                action_update_own=True,
-                action_delete=True,
-                action_delete_own=True,
-            ),
         )
 
         # Simulate what setup.py does
@@ -586,7 +543,6 @@ class TestRightsFieldConsistency:
             "dashboard",
             "communities",
             "discussions",
-            "podcasts",
             "boards",
             "playgrounds",
         }

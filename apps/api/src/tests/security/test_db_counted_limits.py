@@ -1,9 +1,5 @@
-"""Tests that count-limited features are enforced against actual DB rows.
+"""Count-limited features are enforced against live database rows."""
 
-Regression guard: usergroups/podcasts/assignments were enforced via a mutable
-Redis counter that could drift or be lost, silently disabling the limit (e.g. a
-free org exceeding its 5-assignment cap). They are now counted from live rows.
-"""
 from types import SimpleNamespace
 from unittest.mock import AsyncMock, patch
 
@@ -18,18 +14,18 @@ from src.security.features_utils.usage import (
 
 
 def test_db_counted_features_include_the_drift_prone_ones():
-    for f in ("usergroups", "podcasts", "assignments", "members", "courses", "admin_seats"):
+    for f in ("usergroups", "assignments", "members", "courses", "admin_seats"):
         assert f in DB_COUNTED_FEATURES
 
 
 @pytest.mark.asyncio
 async def test_get_actual_usage_routes_row_counted_features():
-    # The usergroups/podcasts/assignments helpers count live rows via scalar_one.
+    # The usergroups/assignments helpers count live rows via scalar_one.
     from src.security.features_utils.usage import _get_actual_usage
 
     db = AsyncMock()
     db.execute = AsyncMock(return_value=SimpleNamespace(scalar_one=lambda: 7))
-    for feat in ("usergroups", "podcasts", "assignments", "members", "courses"):
+    for feat in ("usergroups", "assignments", "members", "courses"):
         assert await _get_actual_usage(feat, 1, db) == 7
     assert await _get_actual_usage("unknown_feature", 1, db) == 0
 
@@ -74,7 +70,7 @@ async def test_paid_plan_gets_overage():
 
 @pytest.mark.asyncio
 async def test_unlimited_limit_zero_passes():
-    assert await _run_check(feature="podcasts", limit=0, plan="free", actual=999) is True
+    assert await _run_check(feature="usergroups", limit=0, plan="free", actual=999) is True
 
 
 @pytest.mark.asyncio

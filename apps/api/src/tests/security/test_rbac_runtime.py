@@ -142,15 +142,6 @@ def _role_with_object_rights() -> Role:
                 action_delete=False,
                 action_delete_own=False,
             ),
-            podcasts=PermissionsWithOwn(
-                action_create=False,
-                action_read=False,
-                action_read_own=False,
-                action_update=False,
-                action_update_own=False,
-                action_delete=False,
-                action_delete_own=False,
-            ),
         ),
         org_id=None,
         role_uuid="role_object",
@@ -229,7 +220,7 @@ class TestRBACRuntime:
         }
 
     @pytest.mark.asyncio
-    async def test_authorization_verify_if_element_is_public_covers_podcast_and_folder_failures(self):
+    async def test_authorization_verify_if_element_is_public_covers_folder_failures(self):
         with patch("src.security.rbac.rbac.check_element_type", new_callable=AsyncMock) as mock_check_type:
             mock_check_type.return_value = "folders"
             session = _session_with_results(_result(first=None))
@@ -244,33 +235,6 @@ class TestRBACRuntime:
 
             assert exc_info.value.status_code == 403
 
-        with patch("src.security.rbac.rbac.check_element_type", new_callable=AsyncMock) as mock_check_type:
-            mock_check_type.return_value = "podcasts"
-            session = _session_with_results(_result(first=SimpleNamespace(id=1)))
-
-            assert (
-                await authorization_verify_if_element_is_public(
-                    request=_request(),
-                    element_uuid="podcast_1",
-                    action="read",
-                    db_session=session,
-                )
-                is True
-            )
-
-        with patch("src.security.rbac.rbac.check_element_type", new_callable=AsyncMock) as mock_check_type:
-            mock_check_type.return_value = "podcasts"
-            session = _session_with_results(_result(first=None))
-
-            with pytest.raises(HTTPException) as exc_info:
-                await authorization_verify_if_element_is_public(
-                    request=_request(),
-                    element_uuid="podcast_1",
-                    action="read",
-                    db_session=session,
-                )
-
-            assert exc_info.value.status_code == 403
 
     @pytest.mark.asyncio
     async def test_authorization_verify_if_user_is_author_covers_invalid_action_and_status(self):

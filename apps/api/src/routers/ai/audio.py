@@ -1,4 +1,4 @@
-"""AI audio / podcast generation endpoint (Google Gemini TTS).
+"""AI audio generation endpoint (Google Gemini TTS).
 
 Backs the "Generate" tab of the editor Audio block. Follows the same
 guard/credit ordering as the other AI routers: resolve org → org membership →
@@ -27,7 +27,6 @@ from src.security.org_auth import is_org_member, enforce_org_mfa
 from src.security.rbac import check_resource_access, AccessAction
 from src.services.ai.audio.generator import (
     OUTPUT_EXT,
-    Speaker,
     generate_speech,
     generate_spoken_script,
 )
@@ -47,7 +46,7 @@ router = APIRouter()
 # Audio generation is more expensive than a text turn but cheaper than an image.
 AUDIO_CREDIT_COST = 3
 
-# Writing a podcast script is a single cheap text turn.
+# Writing a spoken script is a single cheap text turn.
 SCRIPT_CREDIT_COST = 1
 
 
@@ -79,7 +78,7 @@ async def _resolve_org_id_for_activity(request: Request, activity_uuid: str, cur
     response_model=BlockRead,
     summary="Generate an audio block with AI (Gemini TTS)",
     description=(
-        "Generate speech (single voice) or a podcast (up to two speakers) from "
+        "Generate speech (single voice) from "
         "text and attach it to an activity as an audio block. Consumes AI credits."
     ),
     responses={
@@ -107,15 +106,10 @@ async def api_generate_audio(
     enforce_ai_rate_limit(current_user.id, org_id)
     await reserve_ai_credit(org_id, db_session, amount=AUDIO_CREDIT_COST)
 
-    speakers = None
-    if body.mode == "podcast" and body.speakers:
-        speakers = [Speaker(name=s.name, voice=s.voice) for s in body.speakers if s.name.strip()]
-
     try:
         wav_bytes = await generate_speech(
             body.text,
             voice=body.voice,
-            speakers=speakers,
             style=body.style,
             language=body.language,
         )
@@ -158,10 +152,10 @@ async def api_generate_audio(
 @router.post(
     "/audio/script",
     response_model=GenerateScriptResponse,
-    summary="Generate a spoken script with AI (podcast dialogue or monologue)",
+    summary="Generate a spoken script with AI (monologue)",
     description=(
         "Turn a topic, question, or source material into a spoken script: a "
-        "two-speaker discussion ('podcast') or a detailed single-speaker explanation "
+        "detailed single-speaker explanation "
         "('speak'), of an approximate length. Consumes AI credits."
     ),
     responses={
@@ -186,13 +180,9 @@ async def api_generate_script(
     enforce_ai_rate_limit(current_user.id, org_id)
     await reserve_ai_credit(org_id, db_session, amount=SCRIPT_CREDIT_COST)
 
-    kind = "monologue" if body.mode == "speak" else "podcast"
-    names = [s.name for s in (body.speakers or []) if s.name.strip()] or None
     try:
         transcript = await generate_spoken_script(
             body.text,
-            kind=kind,
-            speaker_names=names,
             language=body.language,
             style=body.style,
             minutes=body.minutes,

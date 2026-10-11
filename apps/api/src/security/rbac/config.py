@@ -21,15 +21,6 @@ RESOURCE_CONFIGS: dict[str, ResourceConfig] = {
         model_name="Course",
         uuid_field="course_uuid",
     ),
-    "podcasts": ResourceConfig(
-        resource_type="podcasts",
-        uuid_prefix="podcast_",
-        has_published_field=True,
-        supports_usergroups=True,
-        supports_authorship=True,
-        model_name="Podcast",
-        uuid_field="podcast_uuid",
-    ),
     "communities": ResourceConfig(
         resource_type="communities",
         uuid_prefix="community_",
@@ -92,17 +83,6 @@ RESOURCE_CONFIGS: dict[str, ResourceConfig] = {
         uuid_field="activity_uuid",
         parent_resource_type="coursechapters",  # Activity -> Chapter -> Course
         parent_id_field="chapter_id",
-    ),
-    "episodes": ResourceConfig(
-        resource_type="episodes",
-        uuid_prefix="episode_",
-        has_published_field=False,  # Inherits from podcast
-        supports_usergroups=False,  # Access via podcast
-        supports_authorship=False,  # Authorship on podcast level
-        model_name="PodcastEpisode",
-        uuid_field="episode_uuid",
-        parent_resource_type="podcasts",
-        parent_id_field="podcast_id",
     ),
     "discussions": ResourceConfig(
         resource_type="discussions",

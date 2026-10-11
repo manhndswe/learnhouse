@@ -36,7 +36,6 @@ LearnHouse is an open-source platform for creating and delivering modern educati
   - [Analytics](https://docs.learnhouse.app/platform/analytics): Usage analytics
   - [Certifications](https://docs.learnhouse.app/platform/certifications): Course certifications
   - [Search](https://docs.learnhouse.app/platform/search): Full-text search
-  - [Podcasts](https://docs.learnhouse.app/platform/podcasts): Podcast support
   - [Code Execution](https://docs.learnhouse.app/platform/code-execution): Sandboxed code execution
 
 - [Self Hosting](https://docs.learnhouse.app/self-hosting): Deploy on your own infrastructure

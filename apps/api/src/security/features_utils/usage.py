@@ -6,7 +6,6 @@ from src.db.user_organizations import UserOrganization
 from src.db.courses.courses import Course
 from src.db.roles import Role, RoleTypeEnum
 from src.db.usergroups import UserGroup
-from src.db.podcasts.podcasts import Podcast
 from src.db.courses.assignments import Assignment
 from sqlalchemy import or_
 from src.core.deployment_mode import get_deployment_mode
@@ -33,7 +32,6 @@ FeatureSet: TypeAlias = Literal[
     "courses",
     "members",
     "payments",
-    "podcasts",
     "usergroups",
 ]
 
@@ -42,17 +40,17 @@ PLAN_BASED_FEATURES = {"courses", "members", "admin_seats"}
 
 # Features that use Redis for usage tracking (non-billing, rate limiting)
 REDIS_TRACKED_FEATURES = {"ai", "analytics", "api", "assignments", "collaboration",
-                          "payments", "podcasts", "usergroups"}
+                          "payments", "usergroups"}
 
 # Count-limited features whose usage is enforced by counting ACTUAL DB rows
 # rather than a mutable Redis counter. Counting rows makes enforcement
 # self-healing: the Redis usage counter could drift or be lost (it is an
 # ephemeral cache), which silently disabled these limits, e.g. a free org
-# could exceed its 5-assignment cap once the counter was gone. usergroups,
-# podcasts and assignments are all org-scoped DB entities, so their live count
-# is authoritative. (usergroups/podcasts are also disabled on the free plan, so
+# could exceed its 5-assignment cap once the counter was gone. Usergroups and
+# assignments are org-scoped DB entities, so their live count
+# is authoritative. (Usergroups are also disabled on the free plan, so
 # they are additionally gated by the enabled check.)
-DB_COUNTED_FEATURES = PLAN_BASED_FEATURES | {"usergroups", "podcasts", "assignments"}
+DB_COUNTED_FEATURES = PLAN_BASED_FEATURES | {"usergroups", "assignments"}
 
 
 def _is_non_saas() -> bool:
@@ -141,12 +139,6 @@ async def _get_actual_usergroup_count(org_id: int, db_session: AsyncSession) -> 
     return (await db_session.execute(statement)).scalar_one()
 
 
-async def _get_actual_podcast_count(org_id: int, db_session: AsyncSession) -> int:
-    """Get actual podcast count from the database."""
-    statement = select(func.count()).where(Podcast.org_id == org_id)
-    return (await db_session.execute(statement)).scalar_one()
-
-
 async def _get_actual_assignment_count(org_id: int, db_session: AsyncSession) -> int:
     """Get actual assignment count from the database."""
     statement = select(func.count()).where(Assignment.org_id == org_id)
@@ -163,8 +155,6 @@ async def _get_actual_usage(feature: str, org_id: int, db_session: AsyncSession)
         return await _get_actual_admin_seat_count(org_id, db_session)
     elif feature == "usergroups":
         return await _get_actual_usergroup_count(org_id, db_session)
-    elif feature == "podcasts":
-        return await _get_actual_podcast_count(org_id, db_session)
     elif feature == "assignments":
         return await _get_actual_assignment_count(org_id, db_session)
     return 0

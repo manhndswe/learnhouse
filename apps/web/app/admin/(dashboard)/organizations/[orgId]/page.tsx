@@ -1216,7 +1216,6 @@ type AdminToggles = {
   members: MembersToggle
   payments: FeatureToggle
   playgrounds: FeatureToggle
-  podcasts: FeatureToggle
 }
 
 const DEFAULT_ADMIN_TOGGLES: AdminToggles = {
@@ -1230,7 +1229,6 @@ const DEFAULT_ADMIN_TOGGLES: AdminToggles = {
   members: { disabled: false, signup_mode: 'open' },
   payments: { disabled: false },
   playgrounds: { disabled: false },
-  podcasts: { disabled: false },
 }
 
 const FEATURE_ORDER: { key: keyof AdminToggles; label: string; description: string }[] = [
@@ -1244,7 +1242,6 @@ const FEATURE_ORDER: { key: keyof AdminToggles; label: string; description: stri
   { key: 'members', label: 'Members', description: 'Member directory and roles' },
   { key: 'payments', label: 'Payments', description: 'Paid courses and checkout' },
   { key: 'playgrounds', label: 'Playgrounds', description: 'Interactive code/exec environments' },
-  { key: 'podcasts', label: 'Podcasts', description: 'Audio episodes inside courses' },
 ]
 
 function ToggleSwitch({

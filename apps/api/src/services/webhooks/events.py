@@ -256,16 +256,6 @@ WEBHOOK_EVENTS: dict[str, dict] = {
             "name": "string",
         },
     },
-    "podcast_episode_created": {
-        "category": "Content Management",
-        "description": "Triggered when a new podcast episode is added",
-        "data_schema": {
-            "episode_uuid": "string",
-            "podcast_uuid": "string",
-            "title": "string",
-            "episode_number": "integer",
-        },
-    },
     # ── Collaboration ────────────────────────────────────────────────
     "board_created": {
         "category": "Collaboration",

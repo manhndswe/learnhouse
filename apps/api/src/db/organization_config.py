@@ -75,11 +75,6 @@ class APIOrgConfig(BaseModel):
     limit: int = 10
 
 
-class PodcastsOrgConfig(BaseModel):
-    enabled: bool = False
-    limit: int = 10
-
-
 class BoardsOrgConfig(BaseModel):
     enabled: bool = False
     limit: int = 10
@@ -104,7 +99,6 @@ class OrgFeatureConfig(BaseModel):
     analytics: AnalyticsOrgConfig = AnalyticsOrgConfig()
     collaboration: CollaborationOrgConfig = CollaborationOrgConfig()
     api: APIOrgConfig = APIOrgConfig()
-    podcasts: PodcastsOrgConfig = PodcastsOrgConfig()
     boards: BoardsOrgConfig = BoardsOrgConfig()
     playgrounds: PlaygroundsOrgConfig = PlaygroundsOrgConfig()
 
@@ -178,7 +172,6 @@ class AdminToggles(BaseModel):
     members: MembersAdminToggle = MembersAdminToggle()
     payments: FeatureAdminToggle = FeatureAdminToggle()
     playgrounds: FeatureAdminToggle = FeatureAdminToggle()
-    podcasts: FeatureAdminToggle = FeatureAdminToggle()
 
 
 # ============================================================================
@@ -242,7 +235,7 @@ class SeoOrgConfig(BaseModel):
 
 
 class MenuLinkItem(BaseModel):
-    # Built-in types: courses | library | podcasts | communities | playgrounds | store
+    # Built-in types: courses | library | communities | playgrounds | store
     # plus "custom" for an admin-defined external/internal link.
     type: str
     enabled: bool = True

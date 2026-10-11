@@ -7,7 +7,6 @@ import {
   BookOpen,
   Lightning,
   Users,
-  Microphone,
   ChalkboardSimple,
   ChatsCircle,
   Files,
@@ -62,15 +61,6 @@ const FEATURES = [
     gradient: 'from-rose-50/40 to-rose-50/10',
     iconColor: 'text-rose-500',
     pattern: `repeating-linear-gradient(0deg, transparent, transparent 8px, rgba(244,63,94,0.05) 8px, rgba(244,63,94,0.05) 9px), repeating-linear-gradient(90deg, transparent, transparent 8px, rgba(244,63,94,0.05) 8px, rgba(244,63,94,0.05) 9px)`,
-  },
-  {
-    icon: Microphone,
-    labelKey: 'onboarding.welcome.features.voice',
-    descKey: 'onboarding.welcome.features.voice_desc',
-    gradient: 'from-purple-50/40 to-purple-50/10',
-    iconColor: 'text-purple-500',
-    pattern: `radial-gradient(circle, rgba(168,85,247,0.06) 1.5px, transparent 1.5px)`,
-    patternSize: '12px 12px',
   },
   {
     icon: Certificate,

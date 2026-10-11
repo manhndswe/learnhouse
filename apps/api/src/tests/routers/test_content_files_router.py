@@ -10,8 +10,6 @@ from httpx import ASGITransport, AsyncClient
 from src.core.events.database import get_db_session
 from src.db.courses.courses import Course
 from src.tests.fixtures.rows import activity_row
-from src.db.podcasts.podcasts import Podcast
-from src.db.podcasts.episodes import PodcastEpisode
 from src.db.users import APITokenUser, AnonymousUser, PublicUser
 from src.routers import content_files
 from src.routers.content_files import router as content_files_router
@@ -116,7 +114,7 @@ class TestContentFilesRouter:
             mp.setattr(urllib.parse, "unquote", fake_unquote)
             assert content_files._validate_content_path("safe.txt") is None
 
-    async def test_check_content_access_course_and_podcast_branches(
+    async def test_check_content_access_course_branches(
         self, db, org, admin_user
     ):
         private_course = Course(
@@ -143,40 +141,10 @@ class TestContentFilesRouter:
             creation_date="2024-01-01",
             update_date="2024-01-01",
         )
-        private_podcast = Podcast(
-            id=41,
-            name="Private Podcast",
-            description="Desc",
-            public=False,
-            published=True,
-            org_id=org.id,
-            podcast_uuid="podcast_private_access",
-            creation_date="2024-01-01",
-            update_date="2024-01-01",
-        )
-        public_podcast = Podcast(
-            id=42,
-            name="Public Podcast",
-            description="Desc",
-            public=True,
-            published=True,
-            org_id=org.id,
-            podcast_uuid="podcast_public_access",
-            creation_date="2024-01-01",
-            update_date="2024-01-01",
-        )
         db.add(private_course)
         db.add(public_course)
-        db.add(private_podcast)
-        db.add(public_podcast)
         db.add(activity_row(31, org.id, 31, "act_private"))
         db.add(activity_row(32, org.id, 32, "act_public"))
-        for ep_id, podcast_id in ((41, 41), (42, 42)):
-            db.add(PodcastEpisode(
-                id=ep_id, podcast_id=podcast_id, org_id=org.id, title="Ep",
-                published=True, episode_uuid="a",
-                creation_date="2024-01-01", update_date="2024-01-01",
-            ))
         await db.commit()
 
         outsider = PublicUser(
@@ -250,55 +218,6 @@ class TestContentFilesRouter:
             db,
         )
 
-        with pytest.raises(Exception) as not_found_podcast:
-            await content_files._check_content_access(
-                f"orgs/{org.org_uuid}/podcasts/missing/episodes/a/audio.mp3",
-                admin_user,
-                db,
-            )
-        assert not_found_podcast.value.status_code == 404
-
-        await content_files._check_content_access(
-            f"orgs/{org.org_uuid}/podcasts/{public_podcast.podcast_uuid}/episodes/a/audio.mp3",
-            AnonymousUser(),
-            db,
-        )
-
-        with pytest.raises(Exception) as anon_private_podcast:
-            await content_files._check_content_access(
-                f"orgs/{org.org_uuid}/podcasts/{private_podcast.podcast_uuid}/episodes/a/audio.mp3",
-                AnonymousUser(),
-                db,
-            )
-        assert anon_private_podcast.value.status_code == 401
-
-        with pytest.raises(Exception) as wrong_org_podcast_token:
-            await content_files._check_content_access(
-                f"orgs/{org.org_uuid}/podcasts/{private_podcast.podcast_uuid}/episodes/a/audio.mp3",
-                APITokenUser(org_id=org.id + 1),
-                db,
-            )
-        assert wrong_org_podcast_token.value.status_code == 403
-
-        await content_files._check_content_access(
-            f"orgs/{org.org_uuid}/podcasts/{private_podcast.podcast_uuid}/episodes/a/audio.mp3",
-            APITokenUser(org_id=org.id, rights={"podcasts": {"action_read": True}}),
-            db,
-        )
-
-        with pytest.raises(Exception) as no_membership_podcast:
-            await content_files._check_content_access(
-                f"orgs/{org.org_uuid}/podcasts/{private_podcast.podcast_uuid}/episodes/a/audio.mp3",
-                outsider,
-                db,
-            )
-        assert no_membership_podcast.value.status_code == 403
-
-        await content_files._check_content_access(
-            f"orgs/{org.org_uuid}/podcasts/{private_podcast.podcast_uuid}/episodes/a/audio.mp3",
-            admin_user,
-            db,
-        )
 
         with pytest.raises(Exception) as unknown_path_anon:
             await content_files._check_content_access("misc/file.txt", AnonymousUser(), db)

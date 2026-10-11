@@ -88,10 +88,6 @@
           "title": "Štandardná funkcia",
           "description": "Komunity sú prémiová funkcia dostupná len pre organizácie na pláne Standard alebo vyššom. Navýšte si plán a odomknite diskusné komunity pre vašich členov."
         },
-        "podcasts": {
-          "title": "Štandardná funkcia",
-          "description": "Podcasty sú prémiová funkcia dostupná len pre organizácie na pláne Standard alebo vyššom. Navýšte si plán, aby ste mohli vytvárať a zdieľať podcasty s vašimi členmi."
-        },
         "audit_logs": {
           "title": "Enterprise funkcia",
           "description": "Auditné záznamy sú prémiová funkcia dostupná len pre organizácie na pláne Enterprise. Navýšte si plán, čím získate úplný prehľad o aktivitách vašej organizácie."
@@ -149,7 +145,6 @@
         "names": {
           "courses": "Kurzy",
           "communities": "Komunity",
-          "podcasts": "Podcasty",
           "payments": "Platby",
           "trail": "Sledovanie pokroku",
           "boards": "Tabule",
@@ -953,8 +948,7 @@
       "medium": "Stredné",
       "thick": "Hrubé",
       "undo": "Späť",
-      "redo": "Znova",
-      "podcast": "Podcast"
+      "redo": "Znova"
     },
     "zoom": {
       "zoom_in": "Priblížiť",
@@ -1060,125 +1054,6 @@
       "page_of": "Strana {{current}} z {{total}}",
       "results": "{{count}} výsledok pre \"{{query}}\"",
       "results_plural": "{{count}} výsledkov pre \"{{query}}\""
-    }
-  },
-  "podcasts": {
-    "podcasts": "Podcasty",
-    "browse_description": "Počúvajte podcasty tejto organizácie",
-    "new_podcast": "Nový podcast",
-    "search_placeholder": "Hľadať podcasty...",
-    "no_podcasts": "Zatiaľ žiadne podcasty",
-    "no_podcasts_description": "Momentálne nie sú dostupné žiadne podcasty",
-    "create_podcasts_placeholder": "Vytvorte podcasty pre zdieľanie audio obsahu s vaším publikom",
-    "no_search_results": "Žiadne podcasty nenájdené",
-    "try_different_search": "Skúste vyhľadať iné slovo",
-    "search_results": "Nájdených {{count}} podcastov pre \"{{query}}\"",
-    "podcast_name": "Názov podcastu",
-    "podcast_name_required": "Názov podcastu je povinný",
-    "podcast_thumbnail": "Náhľad podcastu",
-    "podcast_tags": "Štítky",
-    "podcast_visibility": "Viditeľnosť",
-    "create_podcast": "Vytvoriť podcast",
-    "create_new_podcast": "Vytvoriť nový podcast pre vašu organizáciu",
-    "create_podcast_btn": "Vytvoriť podcast",
-    "creating_podcast": "Vytvára sa podcast...",
-    "podcast_created_success": "Podcast bol úspešne vytvorený",
-    "failed_to_create_podcast": "Nepodarilo sa vytvoriť podcast",
-    "episodes": "Epizódy",
-    "no_episodes": "Zatiaľ žiadne epizódy",
-    "hosted_by": "Moderuje",
-    "tags": "Štítky",
-    "manage_podcast": "Spravovať podcast",
-    "published": "Publikované",
-    "unpublished": "Nepublikované",
-    "public": "Verejný",
-    "private": "Súkromný",
-    "listen_now": "Počúvať teraz",
-    "delete_podcast": "Odstrániť podcast",
-    "delete_podcast_title": "Odstrániť podcast?",
-    "delete_podcast_confirm": "Ste si istí, že chcete odstrániť tento podcast? Táto akcia sa nedá vrátiť a všetky epizódy budú odstránené.",
-    "deleting_podcast": "Odstraňuje sa podcast...",
-    "podcast_deleted_success": "Podcast bol úspešne odstránený",
-    "podcast_deleted_error": "Nepodarilo sa odstrániť podcast",
-    "edit_content": "Upraviť obsah",
-    "form": {
-      "name_required": "Názov podcastu je povinný",
-      "name_min_length": "Názov musí mať aspoň 3 znaky",
-      "name_max_length": "Názov musí mať najviac 100 znakov",
-      "description_max_length": "Popis musí mať najviac 500 znakov"
-    },
-    "modals": {
-      "create": {
-        "title": "Vytvoriť nový podcast",
-        "description": "Vyplňte podrobnosti pre vytvorenie nového podcastu",
-        "form": {
-          "name_label": "Názov podcastu",
-          "name_placeholder": "Zadajte názov podcastu",
-          "description_label": "Popis",
-          "description_placeholder": "Zadajte popis podcastu",
-          "public_label": "Zverejniť tento podcast"
-        },
-        "cancel": "Zrušiť",
-        "submit": "Vytvoriť podcast"
-      }
-    },
-    "dashboard": {
-      "tabs": {
-        "general": "Všeobecné",
-        "episodes": "Epizódy"
-      },
-      "view_podcast": "Zobraziť podcast",
-      "saving": "Ukladá sa...",
-      "saved": "Zmeny uložené",
-      "save_error": "Nepodarilo sa uložiť zmeny",
-      "save_changes": "Uložiť zmeny",
-      "form": {
-        "thumbnail": "Náhľad",
-        "upload_thumbnail": "Nahrať náhľad",
-        "thumbnail_hint": "Odporúčaná veľkosť: 1400x1400px. JPG alebo PNG.",
-        "about": "O podcaste",
-        "about_placeholder": "Povedzte poslucháčom viac o tomto podcaste...",
-        "about_max_length": "O podcaste musí mať najviac 2000 znakov",
-        "tags_placeholder": "hudba, vzdelávanie, technológie",
-        "tags_hint": "Oddeľte štítky čiarkami",
-        "visibility": "Nastavenia viditeľnosti",
-        "public_hint": "Ktokoľvek môže nájsť a počúvať tento podcast",
-        "published_hint": "Zobraziť tento podcast na stránke organizácie"
-      },
-      "episodes": {
-        "new_episode": "Nová epizóda",
-        "new_episode_description": "Pridať novú epizódu k tomuto podcastu",
-        "no_episodes_description": "Začnite pridaním prvej epizódy",
-        "create_first": "Vytvoriť prvú epizódu",
-        "creating": "Vytvára sa epizóda...",
-        "created": "Epizóda vytvorená",
-        "create_error": "Nepodarilo sa vytvoriť epizódu",
-        "create": "Vytvoriť epizódu",
-        "deleting": "Odstraňuje sa epizóda...",
-        "deleted": "Epizóda odstránená",
-        "delete_error": "Nepodarilo sa odstrániť epizódu",
-        "delete": "Odstrániť",
-        "delete_title": "Odstrániť epizódu?",
-        "delete_confirm": "Ste si istí, že chcete odstrániť túto epizódu? Táto akcia sa nedá vrátiť.",
-        "updating": "Aktualizuje sa epizóda...",
-        "updated": "Epizóda aktualizovaná",
-        "update_error": "Nepodarilo sa aktualizovať epizódu",
-        "edit": "Upraviť",
-        "edit_episode": "Upraviť epizódu",
-        "edit_episode_description": "Aktualizovať podrobnosti epizódy",
-        "save": "Uložiť zmeny",
-        "publish": "Publikovať",
-        "unpublish": "Zrušiť publikovanie",
-        "no_audio": "Žiadny audio súbor",
-        "title_label": "Názov",
-        "title_placeholder": "Zadajte názov epizódy",
-        "description_label": "Popis",
-        "description_placeholder": "Zadajte popis epizódy",
-        "audio_label": "Audio súbor",
-        "upload_audio": "Nahrať audio súbor",
-        "replace_audio": "Nahradiť audio súbor",
-        "audio_hint": "Podporované formáty: MP3, WAV alebo M4A"
-      }
     }
   },
   "activities": {
@@ -1350,8 +1225,7 @@
       "users": "Členovia",
       "communities": "Komunity",
       "discussions": "Diskusie",
-      "playgrounds": "Playgrounds",
-      "podcasts": "Podcasty"
+      "playgrounds": "Playgrounds"
     },
     "course": "Kurz",
     "user": "Člen"
@@ -1702,13 +1576,11 @@
       "settings": "Nastavenia",
       "courses": "Kurzy",
       "communities": "Komunity",
-      "podcasts": "Podcasty",
       "boards": "Tabule",
       "published": "publikované",
       "draft": "koncept",
       "total_users": "Celkový počet používateľov",
       "public": "verejné",
-      "episodes": "epizódy",
       "participants": "účastníci",
       "loading": "Načítava sa...",
       "enable_analytics_description": "Zapnite analytiku pre zobrazenie aktívnych používateľov, registrácií a ďalšieho.",
@@ -2811,10 +2683,6 @@
           "payments": {
             "title": "Platby",
             "description": "Zapnúť spracovanie platieb za kurzy a predplatné"
-          },
-          "podcasts": {
-            "title": "Podcasty",
-            "description": "Zapnúť tvorbu podcastov a audio obsahu pre vašu organizáciu"
           },
           "boards": {
             "title": "Tabule",
@@ -4173,8 +4041,7 @@
         "users": "Používatelia",
         "communities": "Komunity",
         "discussions": "Diskusie",
-        "playgrounds": "Playgrounds",
-        "podcasts": "Podcasty"
+        "playgrounds": "Playgrounds"
       },
       "entries": {
         "home": {
@@ -4192,10 +4059,6 @@
         "communities": {
           "description": "Spravovať komunity",
           "keywords": "fóra, diskusie, členovia"
-        },
-        "podcasts": {
-          "description": "Spravovať podcasty",
-          "keywords": "audio, epizódy"
         },
         "boards": {
           "description": "Spravovať tabule",
@@ -5143,8 +5006,6 @@
         "assess_desc": "Vytvárajte úlohy a sledujte odovzdania od študentov",
         "collaborate": "Spolupracujte vizuálne",
         "collaborate_desc": "Dajte študentom zdieľané tabule na brainstorming a spoluprácu",
-        "voice": "Zdieľajte svoj hlas",
-        "voice_desc": "Spúšťajte podcasty a distribuujte zvukové epizódy študentom",
         "certify": "Certifikujte študentov",
         "certify_desc": "Vydávajte certifikáty, keď študenti dokončia vaše kurzy",
         "impact": "Pochopte svoj dosah",
@@ -5184,8 +5045,6 @@
           "payments_desc": "Predávajte kurzy a ponúkajte predplatné na generovanie príjmov.",
           "communities": "Komunitné diskusie",
           "communities_desc": "Umožnite študentom spojiť sa, klásť otázky a zdieľať nápady.",
-          "podcasts": "Vytvárajte podcasty",
-          "podcasts_desc": "Doručujte zvukový obsah a oslovte študentov na cestách.",
           "playgrounds": "Interaktívne playgrounds",
           "playgrounds_desc": "Umožnite študentom experimentovať a precvičovať s praktickými cvičeniami.",
           "ai": "1 000 AI kreditov",
@@ -5292,7 +5151,6 @@
     "new_folder": "New Folder",
     "tabs": {
       "courses": "Courses",
-      "podcasts": "Podcasts",
       "communities": "Communities",
       "boards": "Boards",
       "playgrounds": "Playgrounds",

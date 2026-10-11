@@ -113,10 +113,6 @@
           "description": "Benutzerdefinierte Domains sind eine Premium-Funktion, die nur für Organisationen mit Standard-Plan oder höher verfügbar ist. Upgrade, um Ihre eigene Domain für ein gebrandetes Erlebnis zu nutzen.",
           "title": "Standard-Funktion"
         },
-        "podcasts": {
-          "description": "Podcasts sind eine Premium-Funktion, die nur für Organisationen mit Standard-Plan oder höher verfügbar ist. Upgrade, um Podcasts zu erstellen und mit Ihren Mitgliedern zu teilen.",
-          "title": "Standard-Funktion"
-        },
         "boards": {
           "title": "Standard Feature",
           "description": "Boards is a premium feature available only to organizations on our Standard plan or higher. Upgrade to unlock collaborative boards for real-time brainstorming and planning."
@@ -148,7 +144,6 @@
         "names": {
           "courses": "Kurse",
           "communities": "Communities",
-          "podcasts": "Podcasts",
           "payments": "Zahlungen",
           "trail": "Fortschrittsverfolgung",
           "boards": "Boards",
@@ -806,125 +801,6 @@
       "start_first": "Starten Sie die erste Diskussion"
     }
   },
-  "podcasts": {
-    "podcasts": "Podcasts",
-    "browse_description": "Hören Sie Podcasts dieser Organisation",
-    "new_podcast": "Neuer Podcast",
-    "search_placeholder": "Podcasts suchen...",
-    "no_podcasts": "Noch keine Podcasts",
-    "no_podcasts_description": "Es sind derzeit keine Podcasts verfügbar",
-    "no_search_results": "Keine Podcasts gefunden",
-    "try_different_search": "Versuchen Sie einen anderen Suchbegriff",
-    "episodes": "Episoden",
-    "no_episodes": "Noch keine Episoden",
-    "hosted_by": "Moderiert von",
-    "tags": "Tags",
-    "manage_podcast": "Podcast verwalten",
-    "published": "Veröffentlicht",
-    "unpublished": "Unveröffentlicht",
-    "public": "Öffentlich",
-    "private": "Privat",
-    "listen_now": "Jetzt anhören",
-    "delete_podcast": "Podcast löschen",
-    "delete_podcast_title": "Podcast löschen?",
-    "delete_podcast_confirm": "Möchten Sie diesen Podcast wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden und alle Episoden werden gelöscht.",
-    "deleting_podcast": "Podcast wird gelöscht...",
-    "podcast_deleted_success": "Podcast erfolgreich gelöscht",
-    "podcast_deleted_error": "Podcast konnte nicht gelöscht werden",
-    "edit_content": "Inhalt bearbeiten",
-    "create_new_podcast": "Neuen Podcast für Ihre Organisation erstellen",
-    "create_podcast": "Podcast erstellen",
-    "create_podcast_btn": "Podcast erstellen",
-    "create_podcasts_placeholder": "Erstellen Sie Podcasts, um Audioinhalte mit Ihrem Publikum zu teilen",
-    "creating_podcast": "Podcast wird erstellt...",
-    "dashboard": {
-      "episodes": {
-        "audio_hint": "MP3-, WAV- oder M4A-Dateien werden unterstützt",
-        "audio_label": "Audiodatei",
-        "create": "Episode erstellen",
-        "create_error": "Episode konnte nicht erstellt werden",
-        "create_first": "Erste Episode erstellen",
-        "created": "Episode erstellt",
-        "creating": "Episode wird erstellt...",
-        "delete": "Löschen",
-        "delete_confirm": "Sind Sie sicher, dass Sie diese Episode löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.",
-        "delete_error": "Episode konnte nicht gelöscht werden",
-        "delete_title": "Episode löschen?",
-        "deleted": "Episode gelöscht",
-        "deleting": "Episode wird gelöscht...",
-        "description_label": "Beschreibung",
-        "description_placeholder": "Episodenbeschreibung eingeben",
-        "edit": "Bearbeiten",
-        "edit_episode": "Episode bearbeiten",
-        "edit_episode_description": "Episodendetails aktualisieren",
-        "new_episode": "Neue Episode",
-        "new_episode_description": "Neue Episode zu diesem Podcast hinzufügen",
-        "no_audio": "Keine Audiodatei",
-        "no_episodes_description": "Beginnen Sie mit dem Hinzufügen Ihrer ersten Episode",
-        "publish": "Veröffentlichen",
-        "replace_audio": "Audiodatei ersetzen",
-        "save": "Änderungen speichern",
-        "title_label": "Titel",
-        "title_placeholder": "Episodentitel eingeben",
-        "unpublish": "Zurückziehen",
-        "update_error": "Episode konnte nicht aktualisiert werden",
-        "updated": "Episode aktualisiert",
-        "updating": "Episode wird aktualisiert...",
-        "upload_audio": "Audiodatei hochladen"
-      },
-      "form": {
-        "about": "Über",
-        "about_max_length": "Über muss 2000 Zeichen oder weniger sein",
-        "about_placeholder": "Erzählen Sie den Hörern mehr über diesen Podcast...",
-        "public_hint": "Jeder kann diesen Podcast finden und anhören",
-        "published_hint": "Diesen Podcast auf Ihrer Organisationsseite sichtbar machen",
-        "tags_hint": "Tags durch Kommas trennen",
-        "tags_placeholder": "musik, bildung, technik",
-        "thumbnail": "Miniaturansicht",
-        "thumbnail_hint": "Empfohlene Größe: 1400x1400px. JPG oder PNG.",
-        "upload_thumbnail": "Miniaturansicht hochladen",
-        "visibility": "Sichtbarkeitseinstellungen"
-      },
-      "save_changes": "Änderungen speichern",
-      "save_error": "Änderungen konnten nicht gespeichert werden",
-      "saved": "Änderungen gespeichert",
-      "saving": "Wird gespeichert...",
-      "tabs": {
-        "episodes": "Episoden",
-        "general": "Allgemein"
-      },
-      "view_podcast": "Podcast anzeigen"
-    },
-    "failed_to_create_podcast": "Podcast konnte nicht erstellt werden",
-    "form": {
-      "description_max_length": "Beschreibung muss 500 Zeichen oder weniger sein",
-      "name_max_length": "Name muss 100 Zeichen oder weniger sein",
-      "name_min_length": "Name muss mindestens 3 Zeichen haben",
-      "name_required": "Podcast-Name ist erforderlich"
-    },
-    "modals": {
-      "create": {
-        "cancel": "Abbrechen",
-        "description": "Details ausfüllen, um einen neuen Podcast zu erstellen",
-        "form": {
-          "description_label": "Beschreibung",
-          "description_placeholder": "Podcast-Beschreibung eingeben",
-          "name_label": "Podcast-Name",
-          "name_placeholder": "Podcast-Namen eingeben",
-          "public_label": "Diesen Podcast öffentlich machen"
-        },
-        "submit": "Podcast erstellen",
-        "title": "Neuen Podcast erstellen"
-      }
-    },
-    "podcast_created_success": "Podcast erfolgreich erstellt",
-    "podcast_name": "Podcast-Name",
-    "podcast_name_required": "Podcast-Name ist erforderlich",
-    "podcast_tags": "Tags",
-    "podcast_thumbnail": "Podcast-Miniaturansicht",
-    "podcast_visibility": "Sichtbarkeit",
-    "search_results": "{{count}} Podcast(s) für \"{{query}}\" gefunden"
-  },
   "activities": {
     "video": "Video",
     "document": "Dokument",
@@ -1093,8 +969,7 @@
       "users": "Mitglieder",
       "communities": "Communities",
       "discussions": "Diskussionen",
-      "playgrounds": "Playgrounds",
-      "podcasts": "Podcasts"
+      "playgrounds": "Playgrounds"
     }
   },
   "ai": {
@@ -1443,13 +1318,11 @@
       "settings": "Einstellungen",
       "courses": "Kurse",
       "communities": "Communities",
-      "podcasts": "Podcasts",
       "boards": "Boards",
       "published": "veröffentlicht",
       "draft": "Entwurf",
       "total_users": "Benutzer gesamt",
       "public": "öffentlich",
-      "episodes": "Episoden",
       "participants": "Teilnehmer",
       "loading": "Laden...",
       "enable_analytics_description": "Aktivieren Sie Analysen, um Live-Benutzer, Anmeldungen und mehr zu sehen.",
@@ -2504,10 +2377,6 @@
           "courses": {
             "description": "Kurse und Fortschrittsverfolgung für Ihre Organisation aktivieren",
             "title": "Kurse"
-          },
-          "podcasts": {
-            "description": "Podcast-Erstellung und Audioinhalte für Ihre Organisation aktivieren",
-            "title": "Podcasts"
           },
           "boards": {
             "title": "Boards",
@@ -3915,8 +3784,7 @@
         "users": "Benutzer",
         "communities": "Communitys",
         "discussions": "Diskussionen",
-        "playgrounds": "Playgrounds",
-        "podcasts": "Podcasts"
+        "playgrounds": "Playgrounds"
       },
       "entries": {
         "home": {
@@ -3934,10 +3802,6 @@
         "communities": {
           "description": "Communitys verwalten",
           "keywords": "foren, diskussionen, mitglieder, beiträge"
-        },
-        "podcasts": {
-          "description": "Podcasts verwalten",
-          "keywords": "audio, episoden, sendungen"
         },
         "boards": {
           "description": "Boards verwalten",
@@ -4875,7 +4739,6 @@
       "thick": "Dick",
       "undo": "Rückgängig",
       "redo": "Wiederholen",
-      "podcast": "Podcast",
       "todo": "Aufgabe"
     },
     "zoom": {
@@ -5111,8 +4974,6 @@
         "assess_desc": "Erstelle Aufgaben und verfolge Einreichungen von Lernenden",
         "collaborate": "Visuell zusammenarbeiten",
         "collaborate_desc": "Gib Lernenden gemeinsame Boards zum Brainstormen und Zusammenarbeiten",
-        "voice": "Teile deine Stimme",
-        "voice_desc": "Starte Podcasts und verteile Audio-Episoden an Lernende",
         "certify": "Lernende zertifizieren",
         "certify_desc": "Stelle Zertifikate aus, wenn Lernende deine Kurse abschließen",
         "impact": "Verstehe deine Wirkung",
@@ -5188,8 +5049,6 @@
           "payments_desc": "Verkaufen Sie Kurse und bieten Sie Abos an.",
           "communities": "Community-Diskussionen",
           "communities_desc": "Lassen Sie Lernende sich vernetzen und Ideen austauschen.",
-          "podcasts": "Podcasts erstellen",
-          "podcasts_desc": "Liefern Sie Audioinhalte und erreichen Sie Lernende unterwegs.",
           "ai": "1.000 AI-Credits",
           "ai_desc": "Beschleunigen Sie die Inhaltserstellung mit KI-Schreibtools.",
           "analytics": "Lernenden-Analysen",
@@ -5296,7 +5155,6 @@
     "new_folder": "New Folder",
     "tabs": {
       "courses": "Courses",
-      "podcasts": "Podcasts",
       "communities": "Communities",
       "boards": "Boards",
       "playgrounds": "Playgrounds",

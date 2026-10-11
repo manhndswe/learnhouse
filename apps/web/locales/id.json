@@ -105,10 +105,6 @@
           "description": "Domain Kustom adalah fitur premium yang hanya tersedia untuk organisasi dengan paket Standard atau lebih tinggi. Upgrade untuk menggunakan domain Anda sendiri demi pengalaman bermerek.",
           "title": "Fitur Standard"
         },
-        "podcasts": {
-          "description": "Podcast adalah fitur premium yang hanya tersedia untuk organisasi dengan paket Standard atau lebih tinggi. Upgrade untuk membuat dan membagikan podcast dengan anggota Anda.",
-          "title": "Fitur Standard"
-        },
         "seo": {
           "description": "Alat optimasi SEO hanya tersedia untuk organisasi dengan paket Standard atau lebih tinggi. Upgrade untuk menyesuaikan tampilan mesin pencari, pratinjau berbagi sosial, dan data terstruktur untuk kursus Anda.",
           "title": "Fitur Standard"
@@ -148,7 +144,6 @@
         "names": {
           "courses": "Kursus",
           "communities": "Komunitas",
-          "podcasts": "Podcast",
           "payments": "Pembayaran",
           "trail": "Pelacakan Kemajuan",
           "boards": "Papan",
@@ -828,125 +823,6 @@
       "start_first": "Mulai diskusi pertama"
     }
   },
-  "podcasts": {
-    "podcasts": "Podcast",
-    "browse_description": "Dengarkan podcast dari organisasi ini",
-    "new_podcast": "Podcast Baru",
-    "search_placeholder": "Cari podcast...",
-    "no_podcasts": "Belum ada podcast",
-    "no_podcasts_description": "Saat ini tidak ada podcast yang tersedia",
-    "no_search_results": "Podcast tidak ditemukan",
-    "try_different_search": "Coba kata kunci pencarian lain",
-    "episodes": "Episode",
-    "no_episodes": "Belum ada episode",
-    "hosted_by": "Dipandu oleh",
-    "tags": "Tag",
-    "manage_podcast": "Kelola Podcast",
-    "published": "Diterbitkan",
-    "unpublished": "Belum diterbitkan",
-    "public": "Publik",
-    "private": "Pribadi",
-    "listen_now": "Dengar Sekarang",
-    "delete_podcast": "Hapus Podcast",
-    "delete_podcast_title": "Hapus Podcast?",
-    "delete_podcast_confirm": "Apakah Anda yakin ingin menghapus podcast ini? Tindakan ini tidak dapat dibatalkan dan semua episode akan dihapus.",
-    "deleting_podcast": "Menghapus podcast...",
-    "podcast_deleted_success": "Podcast berhasil dihapus",
-    "podcast_deleted_error": "Gagal menghapus podcast",
-    "edit_content": "Edit Konten",
-    "create_new_podcast": "Buat podcast baru untuk organisasi Anda",
-    "create_podcast": "Buat Podcast",
-    "create_podcast_btn": "Buat Podcast",
-    "create_podcasts_placeholder": "Buat podcast untuk berbagi konten audio dengan audiens Anda",
-    "creating_podcast": "Membuat podcast...",
-    "dashboard": {
-      "episodes": {
-        "audio_hint": "File MP3, WAV, atau M4A didukung",
-        "audio_label": "File Audio",
-        "create": "Buat Episode",
-        "create_error": "Gagal membuat episode",
-        "create_first": "Buat Episode Pertama",
-        "created": "Episode dibuat",
-        "creating": "Membuat episode...",
-        "delete": "Hapus",
-        "delete_confirm": "Apakah Anda yakin ingin menghapus episode ini? Tindakan ini tidak dapat dibatalkan.",
-        "delete_error": "Gagal menghapus episode",
-        "delete_title": "Hapus Episode?",
-        "deleted": "Episode dihapus",
-        "deleting": "Menghapus episode...",
-        "description_label": "Deskripsi",
-        "description_placeholder": "Masukkan deskripsi episode",
-        "edit": "Edit",
-        "edit_episode": "Edit Episode",
-        "edit_episode_description": "Perbarui detail episode",
-        "new_episode": "Episode Baru",
-        "new_episode_description": "Tambahkan episode baru ke podcast ini",
-        "no_audio": "Tidak ada file audio",
-        "no_episodes_description": "Mulailah dengan menambahkan episode pertama Anda",
-        "publish": "Terbitkan",
-        "replace_audio": "Ganti File Audio",
-        "save": "Simpan Perubahan",
-        "title_label": "Judul",
-        "title_placeholder": "Masukkan judul episode",
-        "unpublish": "Batalkan Terbit",
-        "update_error": "Gagal memperbarui episode",
-        "updated": "Episode diperbarui",
-        "updating": "Memperbarui episode...",
-        "upload_audio": "Unggah File Audio"
-      },
-      "form": {
-        "about": "Tentang",
-        "about_max_length": "Tentang harus maksimal 2000 karakter",
-        "about_placeholder": "Beritahu pendengar lebih banyak tentang podcast ini...",
-        "public_hint": "Siapa pun dapat menemukan dan mendengarkan podcast ini",
-        "published_hint": "Tampilkan podcast ini di halaman organisasi Anda",
-        "tags_hint": "Pisahkan tag dengan koma",
-        "tags_placeholder": "musik, edukasi, teknologi",
-        "thumbnail": "Thumbnail",
-        "thumbnail_hint": "Ukuran yang disarankan: 1400x1400px. JPG atau PNG.",
-        "upload_thumbnail": "Unggah Thumbnail",
-        "visibility": "Pengaturan Visibilitas"
-      },
-      "save_changes": "Simpan Perubahan",
-      "save_error": "Gagal menyimpan perubahan",
-      "saved": "Perubahan disimpan",
-      "saving": "Menyimpan...",
-      "tabs": {
-        "episodes": "Episode",
-        "general": "Umum"
-      },
-      "view_podcast": "Lihat Podcast"
-    },
-    "failed_to_create_podcast": "Gagal membuat podcast",
-    "form": {
-      "description_max_length": "Deskripsi harus maksimal 500 karakter",
-      "name_max_length": "Nama harus maksimal 100 karakter",
-      "name_min_length": "Nama harus minimal 3 karakter",
-      "name_required": "Nama podcast wajib diisi"
-    },
-    "modals": {
-      "create": {
-        "cancel": "Batal",
-        "description": "Isi detail untuk membuat podcast baru",
-        "form": {
-          "description_label": "Deskripsi",
-          "description_placeholder": "Masukkan deskripsi podcast",
-          "name_label": "Nama Podcast",
-          "name_placeholder": "Masukkan nama podcast",
-          "public_label": "Jadikan podcast ini publik"
-        },
-        "submit": "Buat Podcast",
-        "title": "Buat Podcast Baru"
-      }
-    },
-    "podcast_created_success": "Podcast berhasil dibuat",
-    "podcast_name": "Nama Podcast",
-    "podcast_name_required": "Nama podcast wajib diisi",
-    "podcast_tags": "Tag",
-    "podcast_thumbnail": "Thumbnail Podcast",
-    "podcast_visibility": "Visibilitas",
-    "search_results": "Ditemukan {{count}} podcast untuk \"{{query}}\""
-  },
   "activities": {
     "video": "Video",
     "document": "Dokumen",
@@ -1115,8 +991,7 @@
       "users": "Anggota",
       "communities": "Komunitas",
       "discussions": "Diskusi",
-      "playgrounds": "Playground",
-      "podcasts": "Podcast"
+      "playgrounds": "Playground"
     }
   },
   "ai": {
@@ -1465,13 +1340,11 @@
       "settings": "Pengaturan",
       "courses": "Kursus",
       "communities": "Komunitas",
-      "podcasts": "Podcast",
       "boards": "Papan",
       "published": "diterbitkan",
       "draft": "draf",
       "total_users": "Total pengguna",
       "public": "publik",
-      "episodes": "episode",
       "participants": "peserta",
       "loading": "Memuat...",
       "enable_analytics_description": "Aktifkan analitik untuk melihat pengguna langsung, pendaftaran, dan lainnya.",
@@ -2503,10 +2376,6 @@
           "courses": {
             "description": "Aktifkan kursus dan pelacakan kemajuan untuk organisasi Anda",
             "title": "Kursus"
-          },
-          "podcasts": {
-            "description": "Aktifkan pembuatan podcast dan konten audio untuk organisasi Anda",
-            "title": "Podcast"
           },
           "boards": {
             "title": "Boards",
@@ -3937,8 +3806,7 @@
         "users": "Pengguna",
         "communities": "Komunitas",
         "discussions": "Diskusi",
-        "playgrounds": "Playground",
-        "podcasts": "Podcast"
+        "playgrounds": "Playground"
       },
       "entries": {
         "home": {
@@ -3956,10 +3824,6 @@
         "communities": {
           "description": "Kelola komunitas",
           "keywords": "forum, diskusi, anggota, postingan"
-        },
-        "podcasts": {
-          "description": "Kelola podcast",
-          "keywords": "audio, episode, acara"
         },
         "boards": {
           "description": "Kelola papan",
@@ -4891,7 +4755,6 @@
       "thick": "Tebal",
       "undo": "Urungkan",
       "redo": "Ulangi",
-      "podcast": "Podcast",
       "todo": "To-do"
     },
     "zoom": {
@@ -5127,8 +4990,6 @@
         "assess_desc": "Buat tugas dan lacak pengumpulan dari pelajar",
         "collaborate": "Kolaborasi secara visual",
         "collaborate_desc": "Berikan pelajar papan bersama untuk brainstorm dan bekerja sama",
-        "voice": "Bagikan suara Anda",
-        "voice_desc": "Luncurkan podcast dan distribusikan episode audio ke pelajar",
         "certify": "Sertifikasi pelajar",
         "certify_desc": "Terbitkan sertifikat saat pelajar menyelesaikan kursus Anda",
         "impact": "Pahami dampak Anda",
@@ -5210,8 +5071,6 @@
           "payments_desc": "Jual kursus dan tawarkan langganan untuk menghasilkan pendapatan.",
           "communities": "Diskusi komunitas",
           "communities_desc": "Biarkan pelajar terhubung, bertanya, dan berbagi ide.",
-          "podcasts": "Buat podcast",
-          "podcasts_desc": "Sajikan konten audio dan jangkau pelajar di mana saja.",
           "ai": "1.000 kredit AI",
           "ai_desc": "Percepat pembuatan konten dengan alat tulis bertenaga AI.",
           "analytics": "Analitik pelajar",
@@ -5318,7 +5177,6 @@
     "new_folder": "New Folder",
     "tabs": {
       "courses": "Courses",
-      "podcasts": "Podcasts",
       "communities": "Communities",
       "boards": "Boards",
       "playgrounds": "Playgrounds",

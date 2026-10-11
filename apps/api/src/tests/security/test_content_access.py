@@ -1,16 +1,4 @@
-"""
-Unit tests for content access control (local_content.py and content_files.py).
-
-Tests cover:
-- Path traversal prevention
-- Public course content access for anonymous users
-- Private course content requires authentication
-- Public podcast content access
-- Private podcast content requires authentication
-- Org-level content always public
-- User avatars always public
-- Unknown paths require auth (safe default)
-"""
+"""Content path validation and course file access-control tests."""
 
 import pytest
 from unittest.mock import MagicMock, AsyncMock
@@ -70,13 +58,11 @@ class TestCheckContentAccess:
         user.user_uuid = "user_123"
         return user
 
-    def _make_db_session(self, course=None, podcast=None):
+    def _make_db_session(self, course=None):
         session = MagicMock()
         execute_result = MagicMock()
         if course is not None:
             execute_result.scalars.return_value.first.return_value = course
-        elif podcast is not None:
-            execute_result.scalars.return_value.first.return_value = podcast
         else:
             execute_result.scalars.return_value.first.return_value = None
         session.execute = AsyncMock(return_value=execute_result)
@@ -88,11 +74,6 @@ class TestCheckContentAccess:
         course.course_uuid = "course_abc"
         return course
 
-    def _make_podcast(self, public=True):
-        podcast = MagicMock()
-        podcast.public = public
-        podcast.podcast_uuid = "podcast_abc"
-        return podcast
 
     @pytest.mark.asyncio
     async def test_activity_path_is_delegated_to_the_activity_gate(self):
@@ -155,22 +136,6 @@ class TestCheckContentAccess:
             await cf._check_content_access(path, MagicMock(), db)
         gate.assert_awaited_once()
 
-    @pytest.mark.asyncio
-    async def test_podcast_episode_path_is_delegated_to_the_episode_gate(self):
-        """Episode files go through the podcast READ + published gate with the
-        org, podcast and episode segments of the path (covered end-to-end in
-        test_content_authz_round3)."""
-        from unittest.mock import patch
-        import src.routers.local_content as lc
-
-        db = self._make_db_session()
-        with patch.object(lc, "_verify_episode_access", new_callable=AsyncMock) as gate:
-            await lc._check_content_access(
-                "orgs/org1/podcasts/podcast_abc/episodes/ep1/audio.mp3",
-                self._make_anon_user(), db
-            )
-        gate.assert_awaited_once()
-        assert gate.await_args.args[:3] == ("org1", "podcast_abc", "ep1")
 
     @pytest.mark.asyncio
     async def test_activity_path_with_foreign_org_segment_is_404(self):
@@ -279,13 +244,11 @@ class TestS3ContentAccess:
         user.id = 1
         return user
 
-    def _make_db_session(self, course=None, podcast=None):
+    def _make_db_session(self, course=None):
         session = MagicMock()
         execute_result = MagicMock()
         if course is not None:
             execute_result.scalars.return_value.first.return_value = course
-        elif podcast is not None:
-            execute_result.scalars.return_value.first.return_value = podcast
         else:
             execute_result.scalars.return_value.first.return_value = None
         session.execute = AsyncMock(return_value=execute_result)

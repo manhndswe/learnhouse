@@ -103,10 +103,6 @@
           "description": "自定义域名是仅限标准方案及以上组织使用的高级功能。升级以使用您自己的域名获得品牌体验。",
           "title": "标准功能"
         },
-        "podcasts": {
-          "description": "播客是仅限标准方案及以上组织使用的高级功能。升级以创建和分享播客。",
-          "title": "标准功能"
-        },
         "seo": {
           "description": "SEO 优化工具仅限标准方案及以上组织使用。升级以自定义搜索引擎外观、社交分享预览和课程的结构化数据。",
           "title": "标准功能"
@@ -146,7 +142,6 @@
         "names": {
           "courses": "课程",
           "communities": "社区",
-          "podcasts": "播客",
           "payments": "支付",
           "trail": "进度跟踪",
           "boards": "面板",
@@ -816,125 +811,6 @@
       "start_first": "发起第一个讨论"
     }
   },
-  "podcasts": {
-    "podcasts": "播客",
-    "browse_description": "收听此组织的播客",
-    "new_podcast": "新播客",
-    "search_placeholder": "搜索播客...",
-    "no_podcasts": "暂无播客",
-    "no_podcasts_description": "目前没有可用的播客",
-    "no_search_results": "未找到播客",
-    "try_different_search": "尝试其他搜索词",
-    "episodes": "剧集",
-    "no_episodes": "暂无剧集",
-    "hosted_by": "主持人",
-    "tags": "标签",
-    "manage_podcast": "管理播客",
-    "published": "已发布",
-    "unpublished": "未发布",
-    "public": "公开",
-    "private": "私密",
-    "listen_now": "立即收听",
-    "delete_podcast": "删除播客",
-    "delete_podcast_title": "删除播客？",
-    "delete_podcast_confirm": "确定要删除此播客吗？此操作无法撤销，所有剧集将被删除。",
-    "deleting_podcast": "正在删除播客...",
-    "podcast_deleted_success": "播客删除成功",
-    "podcast_deleted_error": "播客删除失败",
-    "edit_content": "编辑内容",
-    "create_new_podcast": "为您的组织创建新播客",
-    "create_podcast": "创建播客",
-    "create_podcast_btn": "创建播客",
-    "create_podcasts_placeholder": "创建播客与您的受众分享音频内容",
-    "creating_podcast": "创建播客中...",
-    "dashboard": {
-      "episodes": {
-        "audio_hint": "支持 MP3、WAV 或 M4A 文件",
-        "audio_label": "音频文件",
-        "create": "创建剧集",
-        "create_error": "创建剧集失败",
-        "create_first": "创建第一个剧集",
-        "created": "剧集已创建",
-        "creating": "创建剧集中...",
-        "delete": "删除",
-        "delete_confirm": "确定要删除此剧集吗？此操作无法撤消。",
-        "delete_error": "删除剧集失败",
-        "delete_title": "删除剧集？",
-        "deleted": "剧集已删除",
-        "deleting": "删除剧集中...",
-        "description_label": "描述",
-        "description_placeholder": "输入剧集描述",
-        "edit": "编辑",
-        "edit_episode": "编辑剧集",
-        "edit_episode_description": "更新剧集详情",
-        "new_episode": "新剧集",
-        "new_episode_description": "为此播客添加新剧集",
-        "no_audio": "无音频文件",
-        "no_episodes_description": "从添加第一个剧集开始",
-        "publish": "发布",
-        "replace_audio": "替换音频文件",
-        "save": "保存更改",
-        "title_label": "标题",
-        "title_placeholder": "输入剧集标题",
-        "unpublish": "取消发布",
-        "update_error": "更新剧集失败",
-        "updated": "剧集已更新",
-        "updating": "更新剧集中...",
-        "upload_audio": "上传音频文件"
-      },
-      "form": {
-        "about": "关于",
-        "about_max_length": "关于最多2000个字符",
-        "about_placeholder": "告诉听众更多关于此播客的信息...",
-        "public_hint": "任何人都可以找到和收听此播客",
-        "published_hint": "在您的组织页面上显示此播客",
-        "tags_hint": "用逗号分隔标签",
-        "tags_placeholder": "音乐, 教育, 科技",
-        "thumbnail": "缩略图",
-        "thumbnail_hint": "建议尺寸：1400x1400px。JPG 或 PNG。",
-        "upload_thumbnail": "上传缩略图",
-        "visibility": "可见性设置"
-      },
-      "save_changes": "保存更改",
-      "save_error": "保存更改失败",
-      "saved": "更改已保存",
-      "saving": "保存中...",
-      "tabs": {
-        "episodes": "剧集",
-        "general": "常规"
-      },
-      "view_podcast": "查看播客"
-    },
-    "failed_to_create_podcast": "创建播客失败",
-    "form": {
-      "description_max_length": "描述最多500个字符",
-      "name_max_length": "名称最多100个字符",
-      "name_min_length": "名称至少3个字符",
-      "name_required": "播客名称为必填"
-    },
-    "modals": {
-      "create": {
-        "cancel": "取消",
-        "description": "填写详细信息以创建新播客",
-        "form": {
-          "description_label": "描述",
-          "description_placeholder": "输入播客描述",
-          "name_label": "播客名称",
-          "name_placeholder": "输入播客名称",
-          "public_label": "将此播客设为公开"
-        },
-        "submit": "创建播客",
-        "title": "创建新播客"
-      }
-    },
-    "podcast_created_success": "播客创建成功",
-    "podcast_name": "播客名称",
-    "podcast_name_required": "播客名称为必填",
-    "podcast_tags": "标签",
-    "podcast_thumbnail": "播客缩略图",
-    "podcast_visibility": "可见性",
-    "search_results": "找到 {{count}} 个与 \"{{query}}\" 相关的播客"
-  },
   "activities": {
     "video": "视频",
     "document": "文档",
@@ -1103,8 +979,7 @@
       "users": "成员",
       "communities": "社区",
       "discussions": "讨论",
-      "playgrounds": "Playgrounds",
-      "podcasts": "播客"
+      "playgrounds": "Playgrounds"
     }
   },
   "ai": {
@@ -1453,13 +1328,11 @@
       "settings": "设置",
       "courses": "课程",
       "communities": "社区",
-      "podcasts": "播客",
       "boards": "看板",
       "published": "已发布",
       "draft": "草稿",
       "total_users": "用户总数",
       "public": "公开",
-      "episodes": "集数",
       "participants": "参与者",
       "loading": "加载中...",
       "enable_analytics_description": "启用分析以查看实时用户、注册情况等。",
@@ -2516,10 +2389,6 @@
           "courses": {
             "description": "为您的组织启用课程和进度跟踪",
             "title": "课程"
-          },
-          "podcasts": {
-            "description": "为您的组织启用播客创建和音频内容",
-            "title": "播客"
           },
           "boards": {
             "title": "Boards",
@@ -3927,8 +3796,7 @@
         "users": "用户",
         "communities": "社区",
         "discussions": "讨论",
-        "playgrounds": "Playgrounds",
-        "podcasts": "播客"
+        "playgrounds": "Playgrounds"
       },
       "entries": {
         "home": {
@@ -3946,10 +3814,6 @@
         "communities": {
           "description": "管理社区",
           "keywords": "论坛, 讨论, 成员, 帖子"
-        },
-        "podcasts": {
-          "description": "管理播客",
-          "keywords": "音频, 集数, 节目"
         },
         "boards": {
           "description": "管理看板",
@@ -4861,8 +4725,6 @@
         "assess_desc": "创建作业并跟踪学习者的提交情况",
         "collaborate": "视觉协作",
         "collaborate_desc": "为学习者提供共享白板，进行头脑风暴和协作",
-        "voice": "分享你的声音",
-        "voice_desc": "发布播客并向学习者分发音频节目",
         "certify": "认证学习者",
         "certify_desc": "学习者完成课程时颁发证书",
         "impact": "了解你的影响",
@@ -5108,7 +4970,6 @@
       "medium": "中等",
       "note": "笔记",
       "pan": "平移",
-      "podcast": "播客",
       "redo": "重做",
       "select": "选择",
       "sticker": "贴纸",
@@ -5200,8 +5061,6 @@
           "payments_desc": "出售课程并提供订阅以创造收入。",
           "communities": "社区讨论",
           "communities_desc": "让学员交流互动、提问和分享想法。",
-          "podcasts": "创建播客",
-          "podcasts_desc": "提供音频内容，随时随地触达学员。",
           "ai": "1,000 AI 积分",
           "ai_desc": "借助 AI 写作工具加速内容创建。",
           "analytics": "学习者分析",
@@ -5308,7 +5167,6 @@
     "new_folder": "New Folder",
     "tabs": {
       "courses": "Courses",
-      "podcasts": "Podcasts",
       "communities": "Communities",
       "boards": "Boards",
       "playgrounds": "Playgrounds",
