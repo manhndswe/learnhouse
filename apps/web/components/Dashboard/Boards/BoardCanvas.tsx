@@ -26,7 +26,6 @@ import { StickerBlockExtension } from './Extensions/StickerBlock'
 import { FrameBoxExtension } from './Extensions/FrameBox'
 import { NoteBlockExtension } from './Extensions/NoteBlock'
 import { TodoBlockExtension } from './Extensions/TodoBlock'
-import { PodcastBlockExtension } from './Extensions/PodcastBlock'
 import RemoteCursors from './RemoteCursors'
 import {
   Square,
@@ -39,7 +38,6 @@ import {
   Note,
   FrameCorners,
   CheckSquare,
-  Headphones,
   PencilSimple,
 } from '@phosphor-icons/react'
 import { Extension } from '@tiptap/core'
@@ -100,7 +98,7 @@ function BoardEditorInner({
   provider: HocuspocusProvider
 }) {
   const { track } = useLHAnalytics('dashboard')
-  const [toolMode, setToolMode] = useState<'select' | 'pan' | 'draw' | 'card' | 'youtube' | 'playground' | 'activity' | 'embed' | 'webpage' | 'sticker' | 'frame' | 'note' | 'todo' | 'podcast'>('select')
+  const [toolMode, setToolMode] = useState<'select' | 'pan' | 'draw' | 'card' | 'youtube' | 'playground' | 'activity' | 'embed' | 'webpage' | 'sticker' | 'frame' | 'note' | 'todo'>('select')
   const [zoom, setZoom] = useState(() =>
     typeof window !== 'undefined' && window.innerWidth <= 768 ? 0.6 : 1
   )
@@ -139,7 +137,6 @@ function BoardEditorInner({
     sticker: { icon: Smiley, label: 'Sticker' },
     frame: { icon: FrameCorners, label: 'Frame' },
     todo: { icon: CheckSquare, label: 'Todo' },
-    podcast: { icon: Headphones, label: 'Podcast' },
   }
   const activePlacement = placementTools[toolMode] ?? null
 
@@ -196,7 +193,6 @@ function BoardEditorInner({
       FrameBoxExtension,
       NoteBlockExtension,
       TodoBlockExtension,
-      PodcastBlockExtension,
     ],
     immediatelyRender: false,
     autofocus: false,
@@ -508,19 +504,6 @@ function BoardEditorInner({
       }).run()
       setToolMode('select')
       track(AnalyticsEvent.BoardBlockAdded, { block_type: 'todo' })
-    } else if (mode === 'podcast' && editor) {
-      const rect = canvasRef.current?.getBoundingClientRect()
-      if (!rect) return
-      toolModeRef.current = 'select'
-      const x = (e.clientX - rect.left - pan.x) / zoom
-      const y = (e.clientY - rect.top - pan.y) / zoom
-      const pos = editor.state.doc.content.size
-      editor.chain().insertContentAt(pos, {
-        type: 'podcastBlock',
-        attrs: { x: Math.round(x), y: Math.round(y), width: 400, height: 280 },
-      }).run()
-      setToolMode('select')
-      track(AnalyticsEvent.BoardBlockAdded, { block_type: 'podcast' })
     } else if (mode === 'frame' && editor) {
       const rect = canvasRef.current?.getBoundingClientRect()
       if (!rect) return

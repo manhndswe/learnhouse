@@ -11,7 +11,6 @@ import {
   LayoutGrid,
   Library,
   Loader2,
-  Podcast,
   Trash2,
   Upload,
   Users,
@@ -34,7 +33,6 @@ const UPLOAD_ACCEPT =
 
 const RESOURCE_ICONS: Partial<Record<ResourceKind, any>> = {
   course: BookCopy,
-  podcast: Podcast,
   community: Users,
   board: LayoutGrid,
   playground: Gamepad2,
@@ -150,7 +148,7 @@ function LibraryBlockComponent(props: NodeViewProps) {
         <ResourcePicker
           orgslug={org?.slug}
           mode="select"
-          tabs={['media', 'courses', 'podcasts', 'communities', 'boards', 'playgrounds']}
+          tabs={['media', 'courses', 'communities', 'boards', 'playgrounds']}
           onSelect={applySelection}
           selectedUuid={resourceUuid || undefined}
         />
@@ -288,7 +286,7 @@ function LibraryBlockComponent(props: NodeViewProps) {
     )
   }
 
-  // Other library resources (course, podcast, community, board, playground).
+  // Other library resources (course, community, board, playground).
   const kind = (resourceType || 'course') as ResourceKind
   const Icon = RESOURCE_ICONS[kind] || Library
   const baseUrl = org?.slug ? buildResourceUrl(kind, resourceUuid, org.slug) : null

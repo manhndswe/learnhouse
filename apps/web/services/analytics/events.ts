@@ -5,7 +5,7 @@
  * learnhouse-analytics: central event registry (single source of truth).
  *
  * Naming convention: `object_action`, snake_case, past-tense verb.
- * - Object first so events cluster by feature in PostHog (course_*, podcast_*, …).
+ * - Object first so events cluster by feature in PostHog (course_*, board_*, …).
  * - Intent vs completion are distinct events (`*_modal_opened` → `*_created`).
  * - Toggles carry their resulting state in a property, never two event names
  *   (`course_published_toggled { published }`, not `course_published`/`_unpublished`).
@@ -86,17 +86,6 @@ export enum AnalyticsEvent {
   DiscussionUpvoted = 'discussion_upvoted',
   CommentUpvoted = 'comment_upvoted',
   DiscussionReactionToggled = 'discussion_reaction_toggled',
-
-  // ── Podcasts ─────────────────────────────────────────────────────────────
-  EpisodePlayed = 'episode_played',
-  PodcastCardOpened = 'podcast_card_opened',
-  PodcastViewed = 'podcast_viewed',
-  PodcastsListViewed = 'podcasts_list_viewed',
-  EpisodeCompleted = 'episode_completed',
-  PodcastCreated = 'podcast_created',
-  EpisodeCreated = 'episode_created',
-  PodcastUpdated = 'podcast_updated',
-  EpisodePublishToggled = 'episode_publish_toggled',
 
   // ── Playgrounds ──────────────────────────────────────────────────────────
   PlaygroundOpened = 'playground_opened',
@@ -263,7 +252,6 @@ const GROUP_PREFIXES: Array<[string, string[]]> = [
   ['activity', ['activity_', 'focus_mode', 'quiz_', 'video_']],
   ['assignment', ['assignment_', 'submission_', 'task_']],
   ['community', ['community_', 'communities_', 'discussion_', 'comment_']],
-  ['podcast', ['podcast_', 'podcasts_', 'episode_', 'player_']],
   ['playground', ['playground_']],
   ['board', ['board_']],
   ['library', ['library_', 'folder_', 'media_', 'resource_', 'usergroup_']],

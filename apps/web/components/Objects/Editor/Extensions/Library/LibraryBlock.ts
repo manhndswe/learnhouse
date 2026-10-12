@@ -8,7 +8,7 @@ const LibraryBlockComponent = dynamic(() => import('./LibraryBlockComponent'), {
 
 /**
  * A reference to something that already lives in the org Library: a media file
- * or embed, or any other library resource (course, podcast, community, board,
+ * or embed, or any other library resource (course, community, board,
  * playground).
  *
  * Unlike the typed upload blocks, this node stores no file of its own: it holds

@@ -128,12 +128,13 @@ export default function LibraryHeader({
 export { sortLibrary } from '@lib/library/sort'
 
 // Shared client-side filtering used by both root and folder views.
-const _RESOURCE_TYPES = ['podcasts', 'communities', 'boards', 'playgrounds']
+const RESOURCE_TYPES = ['courses', 'media', 'communities', 'boards', 'playgrounds']
 export function filterLibrary(folders: any[], items: any[], query: string, filter: FilterKey) {
   const q = query.trim().toLowerCase()
   const showFolders = filter === 'all' || filter === 'folders'
   const visibleFolders = (showFolders ? folders : []).filter((f) => !q || (f.name || '').toLowerCase().includes(q))
   const visibleItems = (filter === 'folders' ? [] : items).filter((i) => {
+    if (!RESOURCE_TYPES.includes(i.resource_type)) return false
     if (filter === 'courses' && i.resource_type !== 'courses') return false
     if (filter === 'media' && i.resource_type !== 'media') return false
     if (q) {

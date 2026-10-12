@@ -7,9 +7,6 @@ import { OrgMenu } from '@components/Objects/Menus/OrgMenu'
 import { useOrg } from '@components/Contexts/OrgContext'
 import { OrgJoinBanner, OrgJoinBannerProvider } from '@components/Objects/Banners/OrgJoinBanner'
 import { OrgMFAPolicyGate } from '@components/Objects/Banners/OrgMFAPolicyGate'
-import { PodcastPlayerProvider } from '@components/Contexts/PodcastPlayerContext'
-import dynamic from 'next/dynamic'
-const PodcastPlayer = dynamic(() => import('@components/Objects/Podcasts/PodcastPlayer'), { ssr: false })
 import Image from 'next/image'
 import Link from 'next/link'
 import { PageViewTracker } from '@components/Analytics/PageViewTracker'
@@ -147,12 +144,9 @@ export default function RootLayout(
     <>
       <SessionGate>
       <OrgJoinBannerProvider>
-        <PodcastPlayerProvider>
-          <LayoutContent orgslug={params?.orgslug}>
-            {children}
-          </LayoutContent>
-          <PodcastPlayer />
-        </PodcastPlayerProvider>
+        <LayoutContent orgslug={params?.orgslug}>
+          {children}
+        </LayoutContent>
       </OrgJoinBannerProvider>
       </SessionGate>
     </>

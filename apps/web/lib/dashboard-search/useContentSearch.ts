@@ -11,7 +11,6 @@ export type ContentResultType =
   | 'community'
   | 'discussion'
   | 'playground'
-  | 'podcast'
 
 export interface ContentResult {
   id: string
@@ -73,15 +72,6 @@ function normalize(data: any): ContentResult[] {
       title: p.name,
       subtitle: p.description ?? undefined,
       href: '/dash/playgrounds',
-    })
-  }
-  for (const p of data.podcasts ?? []) {
-    out.push({
-      id: p.podcast_uuid,
-      type: 'podcast',
-      title: p.name,
-      subtitle: p.description ?? undefined,
-      href: `/dash/podcasts/podcast/${stripPrefix(p.podcast_uuid, 'podcast_')}/general`,
     })
   }
   return out
