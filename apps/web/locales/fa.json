@@ -93,10 +93,6 @@
           "title": "ویژگی استاندارد",
           "description": "انجمن‌ها یک ویژگی ممتاز است که فقط برای سازمان‌های دارای طرح استاندارد یا بالاتر در دسترس است. برای فعال‌سازی انجمن‌های گفتگو برای اعضای خود ارتقا دهید."
         },
-        "podcasts": {
-          "title": "ویژگی استاندارد",
-          "description": "پادکست‌ها یک ویژگی ممتاز است که فقط برای سازمان‌های دارای طرح استاندارد یا بالاتر در دسترس است. برای ایجاد و اشتراک‌گذاری پادکست با اعضای خود ارتقا دهید."
-        },
         "audit_logs": {
           "title": "ویژگی سازمانی",
           "description": "گزارش‌های حسابرسی یک ویژگی ممتاز است که فقط برای سازمان‌های دارای طرح سازمانی در دسترس است. برای دید کامل به فعالیت‌های سازمان خود ارتقا دهید."
@@ -151,7 +147,6 @@
           "courses": "دوره‌ها",
           "collections": "مجموعه‌ها",
           "communities": "انجمن‌ها",
-          "podcasts": "پادکست‌ها",
           "payments": "پرداخت‌ها",
           "trail": "ردیابی پیشرفت",
           "boards": "تخته‌ها",
@@ -954,8 +949,7 @@
       "medium": "متوسط",
       "thick": "ضخیم",
       "undo": "بازگشت",
-      "redo": "جلو",
-      "podcast": "پادکست"
+      "redo": "جلو"
     },
     "zoom": {
       "zoom_in": "بزرگ‌نمایی",
@@ -1061,125 +1055,6 @@
       "page_of": "صفحه {{current}} از {{total}}",
       "results": "{{count}} نتیجه برای \"{{query}}\"",
       "results_plural": "{{count}} نتیجه برای \"{{query}}\""
-    }
-  },
-  "podcasts": {
-    "podcasts": "پادکست‌ها",
-    "browse_description": "به پادکست‌های این سازمان گوش دهید",
-    "new_podcast": "پادکست جدید",
-    "search_placeholder": "جستجوی پادکست‌ها...",
-    "no_podcasts": "هنوز پادکستی وجود ندارد",
-    "no_podcasts_description": "در حال حاضر هیچ پادکستی در دسترس نیست",
-    "create_podcasts_placeholder": "برای به اشتراک گذاشتن محتوای صوتی با مخاطبان خود، پادکست ایجاد کنید",
-    "no_search_results": "هیچ پادکستی یافت نشد",
-    "try_different_search": "عبارت جستجوی دیگری را امتحان کنید",
-    "search_results": "{{count}} پادکست برای \"{{query}}\" یافت شد",
-    "podcast_name": "نام پادکست",
-    "podcast_name_required": "نام پادکست الزامی است",
-    "podcast_thumbnail": "تصویر بند انگشتی پادکست",
-    "podcast_tags": "برچسب‌ها",
-    "podcast_visibility": "قابلیت مشاهده",
-    "create_podcast": "ایجاد پادکست",
-    "create_new_podcast": "ایجاد یک پادکست جدید برای سازمان شما",
-    "create_podcast_btn": "ایجاد پادکست",
-    "creating_podcast": "در حال ایجاد پادکست...",
-    "podcast_created_success": "پادکست با موفقیت ایجاد شد",
-    "failed_to_create_podcast": "ایجاد پادکست ناموفق بود",
-    "episodes": "قسمت‌ها",
-    "no_episodes": "هنوز قسمتی وجود ندارد",
-    "hosted_by": "مجری",
-    "tags": "برچسب‌ها",
-    "manage_podcast": "مدیریت پادکست",
-    "published": "منتشر شده",
-    "unpublished": "منتشر نشده",
-    "public": "عمومی",
-    "private": "خصوصی",
-    "listen_now": "اکنون گوش دهید",
-    "delete_podcast": "حذف پادکست",
-    "delete_podcast_title": "حذف پادکست؟",
-    "delete_podcast_confirm": "آیا مطمئن هستید که می‌خواهید این پادکست را حذف کنید؟ این عمل قابل بازگشت نیست و تمام قسمت‌ها حذف خواهند شد.",
-    "deleting_podcast": "در حال حذف پادکست...",
-    "podcast_deleted_success": "پادکست با موفقیت حذف شد",
-    "podcast_deleted_error": "حذف پادکست ناموفق بود",
-    "edit_content": "ویرایش محتوا",
-    "form": {
-      "name_required": "نام پادکست الزامی است",
-      "name_min_length": "نام باید حداقل ۳ کاراکتر باشد",
-      "name_max_length": "نام باید حداکثر ۱۰۰ کاراکتر باشد",
-      "description_max_length": "توضیحات باید حداکثر ۵۰۰ کاراکتر باشد"
-    },
-    "modals": {
-      "create": {
-        "title": "ایجاد پادکست جدید",
-        "description": "جزئیات را برای ایجاد یک پادکست جدید تکمیل کنید",
-        "form": {
-          "name_label": "نام پادکست",
-          "name_placeholder": "نام پادکست را وارد کنید",
-          "description_label": "توضیحات",
-          "description_placeholder": "توضیحات پادکست را وارد کنید",
-          "public_label": "عمومی کردن این پادکست"
-        },
-        "cancel": "لغو",
-        "submit": "ایجاد پادکست"
-      }
-    },
-    "dashboard": {
-      "tabs": {
-        "general": "عمومی",
-        "episodes": "قسمت‌ها"
-      },
-      "view_podcast": "مشاهده پادکست",
-      "saving": "در حال ذخیره...",
-      "saved": "تغییرات ذخیره شد",
-      "save_error": "ذخیره تغییرات ناموفق بود",
-      "save_changes": "ذخیره تغییرات",
-      "form": {
-        "thumbnail": "تصویر بند انگشتی",
-        "upload_thumbnail": "آپلود تصویر بند انگشتی",
-        "thumbnail_hint": "اندازه توصیه شده: ۱۴۰۰x۱۴۰۰ پیکسل. JPG یا PNG.",
-        "about": "درباره",
-        "about_placeholder": "به شنوندگان درباره این پادکست بیشتر بگویید...",
-        "about_max_length": "درباره باید حداکثر ۲۰۰۰ کاراکتر باشد",
-        "tags_placeholder": "موسیقی، آموزش، فناوری",
-        "tags_hint": "برچسب‌ها را با کاما جدا کنید",
-        "visibility": "تنظیمات قابلیت مشاهده",
-        "public_hint": "هر کسی می‌تواند این پادکست را پیدا کرده و به آن گوش دهد",
-        "published_hint": "این پادکست را در صفحه سازمان خود قابل مشاهده کنید"
-      },
-      "episodes": {
-        "new_episode": "قسمت جدید",
-        "new_episode_description": "افزودن یک قسمت جدید به این پادکست",
-        "no_episodes_description": "با افزودن اولین قسمت خود شروع کنید",
-        "create_first": "ایجاد اولین قسمت",
-        "creating": "در حال ایجاد قسمت...",
-        "created": "قسمت ایجاد شد",
-        "create_error": "ایجاد قسمت ناموفق بود",
-        "create": "ایجاد قسمت",
-        "deleting": "در حال حذف قسمت...",
-        "deleted": "قسمت حذف شد",
-        "delete_error": "حذف قسمت ناموفق بود",
-        "delete": "حذف",
-        "delete_title": "حذف قسمت؟",
-        "delete_confirm": "آیا مطمئن هستید که می‌خواهید این قسمت را حذف کنید؟ این عمل قابل بازگشت نیست.",
-        "updating": "در حال به‌روزرسانی قسمت...",
-        "updated": "قسمت به‌روزرسانی شد",
-        "update_error": "به‌روزرسانی قسمت ناموفق بود",
-        "edit": "ویرایش",
-        "edit_episode": "ویرایش قسمت",
-        "edit_episode_description": "به‌روزرسانی جزئیات قسمت",
-        "save": "ذخیره تغییرات",
-        "publish": "انتشار",
-        "unpublish": "لغو انتشار",
-        "no_audio": "هیچ فایل صوتی وجود ندارد",
-        "title_label": "عنوان",
-        "title_placeholder": "عنوان قسمت را وارد کنید",
-        "description_label": "توضیحات",
-        "description_placeholder": "توضیحات قسمت را وارد کنید",
-        "audio_label": "فایل صوتی",
-        "upload_audio": "آپلود فایل صوتی",
-        "replace_audio": "جایگزینی فایل صوتی",
-        "audio_hint": "فرمت‌های MP3، WAV یا M4A پشتیبانی می‌شوند"
-      }
     }
   },
   "collections": {
@@ -1381,8 +1256,7 @@
       "users": "اعضا",
       "communities": "انجمن‌ها",
       "discussions": "گفتگوها",
-      "playgrounds": "Playgrounds",
-      "podcasts": "پادکست‌ها"
+      "playgrounds": "Playgrounds"
     },
     "course": "دوره",
     "user": "عضو"
@@ -1733,13 +1607,11 @@
       "settings": "تنظیمات",
       "courses": "دوره‌ها",
       "communities": "انجمن‌ها",
-      "podcasts": "پادکست‌ها",
       "boards": "تخته‌ها",
       "published": "منتشر شده",
       "draft": "پیش‌نویس",
       "total_users": "کل کاربران",
       "public": "عمومی",
-      "episodes": "قسمت‌ها",
       "participants": "شرکت‌کنندگان",
       "loading": "در حال بارگذاری...",
       "enable_analytics_description": "تحلیل‌ها را فعال کنید تا کاربران آنلاین، ثبت‌نام‌ها و موارد بیشتر را مشاهده کنید.",
@@ -2846,10 +2718,6 @@
           "collections": {
             "title": "مجموعه‌ها",
             "description": "اجازه سازماندهی دوره‌ها در مجموعه‌ها"
-          },
-          "podcasts": {
-            "title": "پادکست‌ها",
-            "description": "فعال‌سازی ایجاد پادکست و محتوای صوتی برای سازمان شما"
           },
           "boards": {
             "title": "تخته‌ها",
@@ -4212,8 +4080,7 @@
         "users": "کاربران",
         "communities": "انجمن‌ها",
         "discussions": "گفتگوها",
-        "playgrounds": "Playgrounds",
-        "podcasts": "پادکست‌ها"
+        "playgrounds": "Playgrounds"
       },
       "entries": {
         "home": {
@@ -4231,10 +4098,6 @@
         "communities": {
           "description": "مدیریت انجمن‌ها",
           "keywords": "انجمن‌ها, گفتگوها, اعضا, پست‌ها"
-        },
-        "podcasts": {
-          "description": "مدیریت پادکست‌ها",
-          "keywords": "صوتی, قسمت‌ها, نمایش‌ها"
         },
         "boards": {
           "description": "مدیریت تخته‌ها",
@@ -5182,8 +5045,6 @@
         "assess_desc": "تکالیف ایجاد کنید و ارسال‌های زبان‌آموزان را پیگیری کنید",
         "collaborate": "به صورت بصری همکاری کنید",
         "collaborate_desc": "تخته‌های مشترک به زبان‌آموزان بدهید تا طوفان فکری کنند و با هم کار کنند",
-        "voice": "صدای خود را به اشتراک بگذارید",
-        "voice_desc": "پادکست راه‌اندازی کنید و قسمت‌های صوتی را برای زبان‌آموزان توزیع کنید",
         "certify": "گواهی دهید",
         "certify_desc": "زمانی که زبان‌آموزان دوره‌های شما را تکمیل می‌کنند، گواهینامه صادر کنید",
         "impact": "تأثیر خود را درک کنید",
@@ -5223,8 +5084,6 @@
           "payments_desc": "دوره‌ها را بفروشید و اشتراک ارائه دهید تا درآمد ایجاد کنید.",
           "communities": "گفتگوهای انجمن",
           "communities_desc": "به زبان‌آموزان اجازه دهید ارتباط برقرار کنند، سوال بپرسند و ایده‌ها را به اشتراک بگذارند.",
-          "podcasts": "ایجاد پادکست",
-          "podcasts_desc": "محتوای صوتی ارائه دهید و در حرکت به زبان‌آموزان برسید.",
           "playgrounds": "Playgrounds تعاملی",
           "playgrounds_desc": "به زبان‌آموزان اجازه دهید با تمرین‌های تعاملی عملی آزمایش کنند و تمرین نمایند.",
           "ai": "۱٬۰۰۰ اعتبار هوش مصنوعی",
@@ -5597,7 +5456,6 @@
     "new_folder": "پوشه جدید",
     "tabs": {
       "courses": "دوره‌ها",
-      "podcasts": "پادکست‌ها",
       "communities": "انجمن‌ها",
       "boards": "تخته‌ها",
       "playgrounds": "Playgrounds",

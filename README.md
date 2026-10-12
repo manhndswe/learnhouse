@@ -22,7 +22,6 @@
 📦 <b>Collections</b>: Organize courses into curated bundles<br>
 📝 <b>Assignments</b>: Create tasks and track student submissions<br>
 💬 <b>Discussions</b>: Community forums for your learners<br>
-🎙️ <b>Podcasts</b>: Audio content for on-the-go learning<br>
 📊 <b>Analytics</b>: Track engagement and course performance<br>
 🧊 <b>Playgrounds</b>: AI-generated interactive elements, simulations & diagrams<br>
 💻 <b>Code</b>: Real code execution with auto-grading in 30+ languages<br>

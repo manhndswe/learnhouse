@@ -54,7 +54,6 @@ import {
   ThumbsUp,
   Kanban,
   ChalkboardSimple,
-  Microphone,
   MagnifyingGlass,
   Certificate,
   Briefcase,
@@ -126,9 +125,6 @@ const iconMap = {
 
   // Platform > Boards
   '/platform/boards': ChalkboardSimple,
-
-  // Platform > Podcasts
-  '/platform/podcasts': Microphone,
 
   // Platform > Certifications
   '/platform/certifications': Certificate,

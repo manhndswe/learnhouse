@@ -105,10 +105,6 @@
           "description": "カスタムドメインはStandardプラン以上の組織のみ利用可能なプレミアム機能です。ブランド体験のために独自ドメインを使用するにはアップグレードしてください。",
           "title": "Standardプラン機能"
         },
-        "podcasts": {
-          "description": "ポッドキャストはStandardプラン以上の組織のみ利用可能なプレミアム機能です。メンバーとポッドキャストを作成・共有するにはアップグレードしてください。",
-          "title": "Standardプラン機能"
-        },
         "seo": {
           "description": "SEO最適化ツールはStandardプラン以上の組織のみ利用可能です。コースの検索エンジン表示、ソーシャル共有プレビュー、構造化データをカスタマイズするにはアップグレードしてください。",
           "title": "Standardプラン機能"
@@ -148,7 +144,6 @@
         "names": {
           "courses": "コース",
           "communities": "コミュニティ",
-          "podcasts": "ポッドキャスト",
           "payments": "支払い",
           "trail": "進捗追跡",
           "boards": "ボード",
@@ -816,125 +811,6 @@
       "start_first": "最初のディスカッションを始める"
     }
   },
-  "podcasts": {
-    "podcasts": "ポッドキャスト",
-    "browse_description": "この組織のポッドキャストを聴く",
-    "new_podcast": "新しいポッドキャスト",
-    "search_placeholder": "ポッドキャストを検索...",
-    "no_podcasts": "ポッドキャストがありません",
-    "no_podcasts_description": "現在利用可能なポッドキャストはありません",
-    "no_search_results": "ポッドキャストが見つかりません",
-    "try_different_search": "別の検索語をお試しください",
-    "episodes": "エピソード",
-    "no_episodes": "エピソードがありません",
-    "hosted_by": "ホスト",
-    "tags": "タグ",
-    "manage_podcast": "ポッドキャストを管理",
-    "published": "公開中",
-    "unpublished": "未公開",
-    "public": "公開",
-    "private": "非公開",
-    "listen_now": "今すぐ聴く",
-    "delete_podcast": "ポッドキャストを削除",
-    "delete_podcast_title": "ポッドキャストを削除しますか？",
-    "delete_podcast_confirm": "このポッドキャストを削除してもよろしいですか？この操作は取り消せず、すべてのエピソードが削除されます。",
-    "deleting_podcast": "ポッドキャストを削除中...",
-    "podcast_deleted_success": "ポッドキャストが正常に削除されました",
-    "podcast_deleted_error": "ポッドキャストの削除に失敗しました",
-    "edit_content": "コンテンツを編集",
-    "create_new_podcast": "組織の新しいポッドキャストを作成",
-    "create_podcast": "ポッドキャストを作成",
-    "create_podcast_btn": "ポッドキャストを作成",
-    "create_podcasts_placeholder": "オーディエンスとオーディオコンテンツを共有するためのポッドキャストを作成",
-    "creating_podcast": "ポッドキャストを作成中...",
-    "dashboard": {
-      "episodes": {
-        "audio_hint": "MP3、WAV、またはM4Aファイルに対応",
-        "audio_label": "オーディオファイル",
-        "create": "エピソードを作成",
-        "create_error": "エピソードの作成に失敗しました",
-        "create_first": "最初のエピソードを作成",
-        "created": "エピソードを作成しました",
-        "creating": "エピソードを作成中...",
-        "delete": "削除",
-        "delete_confirm": "このエピソードを削除してもよろしいですか？この操作は元に戻せません。",
-        "delete_error": "エピソードの削除に失敗しました",
-        "delete_title": "エピソードを削除しますか？",
-        "deleted": "エピソードを削除しました",
-        "deleting": "エピソードを削除中...",
-        "description_label": "説明",
-        "description_placeholder": "エピソードの説明を入力",
-        "edit": "編集",
-        "edit_episode": "エピソードを編集",
-        "edit_episode_description": "エピソードの詳細を更新",
-        "new_episode": "新しいエピソード",
-        "new_episode_description": "このポッドキャストに新しいエピソードを追加",
-        "no_audio": "オーディオファイルなし",
-        "no_episodes_description": "最初のエピソードを追加して始めましょう",
-        "publish": "公開",
-        "replace_audio": "オーディオファイルを差し替え",
-        "save": "変更を保存",
-        "title_label": "タイトル",
-        "title_placeholder": "エピソードタイトルを入力",
-        "unpublish": "非公開にする",
-        "update_error": "エピソードの更新に失敗しました",
-        "updated": "エピソードを更新しました",
-        "updating": "エピソードを更新中...",
-        "upload_audio": "オーディオファイルをアップロード"
-      },
-      "form": {
-        "about": "概要",
-        "about_max_length": "概要は最大2000文字です",
-        "about_placeholder": "このポッドキャストについてリスナーに詳しく伝えてください...",
-        "public_hint": "誰でもこのポッドキャストを見つけて聴くことができます",
-        "published_hint": "このポッドキャストを組織ページに表示する",
-        "tags_hint": "タグをカンマで区切ってください",
-        "tags_placeholder": "音楽, 教育, テック",
-        "thumbnail": "サムネイル",
-        "thumbnail_hint": "推奨サイズ：1400x1400px。JPGまたはPNG。",
-        "upload_thumbnail": "サムネイルをアップロード",
-        "visibility": "表示設定"
-      },
-      "save_changes": "変更を保存",
-      "save_error": "変更の保存に失敗しました",
-      "saved": "変更を保存しました",
-      "saving": "保存中...",
-      "tabs": {
-        "episodes": "エピソード",
-        "general": "一般"
-      },
-      "view_podcast": "ポッドキャストを表示"
-    },
-    "failed_to_create_podcast": "ポッドキャストの作成に失敗しました",
-    "form": {
-      "description_max_length": "説明は最大500文字です",
-      "name_max_length": "名前は最大100文字です",
-      "name_min_length": "名前は最低3文字です",
-      "name_required": "ポッドキャスト名は必須です"
-    },
-    "modals": {
-      "create": {
-        "cancel": "キャンセル",
-        "description": "新しいポッドキャストの詳細を入力してください",
-        "form": {
-          "description_label": "説明",
-          "description_placeholder": "ポッドキャストの説明を入力",
-          "name_label": "ポッドキャスト名",
-          "name_placeholder": "ポッドキャスト名を入力",
-          "public_label": "このポッドキャストを公開する"
-        },
-        "submit": "ポッドキャストを作成",
-        "title": "新しいポッドキャストを作成"
-      }
-    },
-    "podcast_created_success": "ポッドキャストを正常に作成しました",
-    "podcast_name": "ポッドキャスト名",
-    "podcast_name_required": "ポッドキャスト名は必須です",
-    "podcast_tags": "タグ",
-    "podcast_thumbnail": "ポッドキャストサムネイル",
-    "podcast_visibility": "表示設定",
-    "search_results": "\"{{query}}\"で{{count}}件のポッドキャストが見つかりました"
-  },
   "activities": {
     "video": "動画",
     "document": "ドキュメント",
@@ -1103,8 +979,7 @@
       "users": "メンバー",
       "communities": "コミュニティ",
       "discussions": "ディスカッション",
-      "playgrounds": "Playgrounds",
-      "podcasts": "ポッドキャスト"
+      "playgrounds": "Playgrounds"
     }
   },
   "ai": {
@@ -1453,13 +1328,11 @@
       "settings": "設定",
       "courses": "コース",
       "communities": "コミュニティ",
-      "podcasts": "ポッドキャスト",
       "boards": "ボード",
       "published": "公開済み",
       "draft": "下書き",
       "total_users": "ユーザー総数",
       "public": "公開",
-      "episodes": "エピソード",
       "participants": "参加者",
       "loading": "読み込み中...",
       "enable_analytics_description": "アナリティクスを有効にして、ライブユーザー、登録状況などを確認しましょう。",
@@ -2514,10 +2387,6 @@
           "courses": {
             "description": "組織のコースと進捗トラッキングを有効にする",
             "title": "コース"
-          },
-          "podcasts": {
-            "description": "組織のポッドキャスト作成とオーディオコンテンツを有効にする",
-            "title": "ポッドキャスト"
           },
           "boards": {
             "title": "Boards",
@@ -3925,8 +3794,7 @@
         "users": "ユーザー",
         "communities": "コミュニティ",
         "discussions": "ディスカッション",
-        "playgrounds": "Playgrounds",
-        "podcasts": "ポッドキャスト"
+        "playgrounds": "Playgrounds"
       },
       "entries": {
         "home": {
@@ -3944,10 +3812,6 @@
         "communities": {
           "description": "コミュニティを管理",
           "keywords": "フォーラム, ディスカッション, メンバー, 投稿"
-        },
-        "podcasts": {
-          "description": "ポッドキャストを管理",
-          "keywords": "オーディオ, エピソード, 番組"
         },
         "boards": {
           "description": "ボードを管理",
@@ -4879,7 +4743,6 @@
       "thick": "太い",
       "undo": "元に戻す",
       "redo": "やり直す",
-      "podcast": "ポッドキャスト",
       "todo": "ToDo"
     },
     "zoom": {
@@ -5115,8 +4978,6 @@
         "assess_desc": "課題を作成し、学習者の提出物を追跡",
         "collaborate": "ビジュアルにコラボ",
         "collaborate_desc": "学習者にブレインストーミングや共同作業のための共有ボードを提供",
-        "voice": "声を届けよう",
-        "voice_desc": "ポッドキャストを開始し、学習者にオーディオエピソードを配信",
         "certify": "学習者を認定",
         "certify_desc": "学習者がコースを修了したら証明書を発行",
         "impact": "影響を把握しよう",
@@ -5198,8 +5059,6 @@
           "payments_desc": "コースを販売し、サブスクリプションで収益を生み出しましょう。",
           "communities": "コミュニティディスカッション",
           "communities_desc": "学習者がつながり、質問し、アイデアを共有できます。",
-          "podcasts": "ポッドキャスト作成",
-          "podcasts_desc": "音声コンテンツを配信し、どこにいても学習者に届けましょう。",
           "ai": "1,000 AIクレジット",
           "ai_desc": "AIライティングツールでコンテンツ作成を加速。",
           "analytics": "学習者アナリティクス",
@@ -5306,7 +5165,6 @@
     "new_folder": "New Folder",
     "tabs": {
       "courses": "Courses",
-      "podcasts": "Podcasts",
       "communities": "Communities",
       "boards": "Boards",
       "playgrounds": "Playgrounds",
