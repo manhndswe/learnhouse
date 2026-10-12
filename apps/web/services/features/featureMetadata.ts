@@ -24,7 +24,6 @@ import {
   Lightning,
   ListChecks,
   LockKey,
-  Microphone,
   Path,
   Robot,
   ShieldCheck,
@@ -39,7 +38,6 @@ export type FeatureKey =
   | 'boards'
   | 'playgrounds'
   | 'communities'
-  | 'podcasts'
   | 'ai'
   | 'analytics'
   | 'course_analytics'
@@ -93,12 +91,6 @@ export const FEATURE_METADATA: Record<FeatureKey, FeatureMeta> = {
     titleKey: 'common.plans.feature_restricted.communities.title',
     descriptionKey: 'common.plans.feature_restricted.communities.description',
     Icon: ChatsCircle,
-    upsellPlan: 'standard',
-  },
-  podcasts: {
-    titleKey: 'common.plans.feature_restricted.podcasts.title',
-    descriptionKey: 'common.plans.feature_restricted.podcasts.description',
-    Icon: Microphone,
     upsellPlan: 'standard',
   },
   ai: {

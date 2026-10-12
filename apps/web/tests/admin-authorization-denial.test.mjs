@@ -28,7 +28,7 @@ describe("every dash section is gated", () => {
   const SECTIONS = [
     "analytics", "assignments", "boards", "communities", "courses",
     "developers", "library", "onboarding", "org", "payments",
-    "playgrounds", "podcasts", "users",
+    "playgrounds", "users",
   ];
 
   test("/dash itself is gated", () => {

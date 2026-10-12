@@ -7,7 +7,6 @@ import {
   BookOpen,
   Users,
   ChatCircle,
-  Microphone,
   Chalkboard,
 } from '@phosphor-icons/react'
 import { useTranslation } from 'react-i18next'
@@ -18,7 +17,6 @@ import { getAPIUrl } from '@services/config/config'
 import { getCommunities } from '@services/communities/communities'
 import { getBoards } from '@services/boards/boards'
 import { getOrgCourses } from '@services/courses/courses'
-import { getOrgPodcasts } from '@services/podcasts/podcasts'
 
 export default function ContentOverview() {
   const { t } = useTranslation()
@@ -60,15 +58,6 @@ export default function ContentOverview() {
     staleTime: 60_000,
   })
 
-  // Podcasts
-  const podcastsEnabled = isEnabled('podcasts', true)
-  const { data: podcastsData } = useQuery({
-    queryKey: [...queryKeys.podcasts.list(orgslug), 'overview'],
-    queryFn: () => getOrgPodcasts(orgslug, null, token, true),
-    enabled: !!podcastsEnabled && !!token && !!orgslug,
-    staleTime: 60_000,
-  })
-
   // Boards
   const boardsEnabled = isEnabled('boards', true)
   const { data: boardsData } = useQuery({
@@ -81,7 +70,6 @@ export default function ContentOverview() {
   const courses: any[] = coursesData ?? []
   const totalMembers = membersData?.total ?? 0
   const communities: any[] = communitiesData ?? []
-  const podcasts: any[] = podcastsData ?? []
   const boards: any[] = boardsData ?? []
 
   const publishedCourses = courses.filter((c: any) => c.published).length
@@ -117,16 +105,6 @@ export default function ContentOverview() {
       iconBg: 'bg-violet-50',
       href: '/dash/communities',
       show: communitiesEnabled,
-    },
-    {
-      label: t('dashboard.home.podcasts'),
-      value: podcasts.length,
-      sub: `${podcasts.reduce((sum: number, p: any) => sum + (p.episode_count || 0), 0)} ${t('dashboard.home.episodes')}`,
-      icon: Microphone,
-      iconColor: 'text-amber-500',
-      iconBg: 'bg-amber-50',
-      href: '/dash/podcasts',
-      show: podcastsEnabled,
     },
     {
       label: t('dashboard.home.boards'),

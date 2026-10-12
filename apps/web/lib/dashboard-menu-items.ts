@@ -9,7 +9,6 @@ import {
   ChalkboardSimple,
   Cube,
   FolderSimple,
-  Headphones,
   ChartBar,
   Code,
 } from '@phosphor-icons/react'
@@ -57,13 +56,6 @@ export const DASHBOARD_MENU_ITEMS: DashboardMenuItem[] = [
     icon: ChatsCircle,
     labelKey: 'communities.title',
     featureKey: 'communities',
-  },
-  {
-    id: 'podcasts',
-    href: '/dash/podcasts',
-    icon: Headphones,
-    labelKey: 'podcasts.podcasts',
-    featureKey: 'podcasts',
   },
   {
     id: 'boards',

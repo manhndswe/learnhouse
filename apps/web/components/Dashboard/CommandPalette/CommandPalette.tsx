@@ -10,7 +10,6 @@ import {
   ChatsCircle,
   ChatCircle,
   Cube,
-  Microphone,
 } from '@phosphor-icons/react'
 
 import { useCommandPalette } from './CommandPaletteContext'
@@ -32,7 +31,6 @@ const CONTENT_TYPE_ICON: Record<ContentResultType, SearchMeta['icon']> = {
   community: ChatsCircle,
   discussion: ChatCircle,
   playground: Cube,
-  podcast: Microphone,
 }
 
 const CONTENT_TYPE_GROUP_KEY: Record<ContentResultType, string> = {
@@ -41,7 +39,6 @@ const CONTENT_TYPE_GROUP_KEY: Record<ContentResultType, string> = {
   community: 'dashboard.search.groups.communities',
   discussion: 'dashboard.search.groups.discussions',
   playground: 'dashboard.search.groups.playgrounds',
-  podcast: 'dashboard.search.groups.podcasts',
 }
 
 const CONTENT_TYPE_ORDER: ContentResultType[] = [
@@ -50,7 +47,6 @@ const CONTENT_TYPE_ORDER: ContentResultType[] = [
   'community',
   'discussion',
   'playground',
-  'podcast',
 ]
 
 function usePagesFiltered(): SearchMeta[] {
@@ -75,7 +71,6 @@ function groupContentResults(results: ContentResult[]): Record<ContentResultType
     community: [],
     discussion: [],
     playground: [],
-    podcast: [],
   }
   for (const r of results) groups[r.type].push(r)
   return groups

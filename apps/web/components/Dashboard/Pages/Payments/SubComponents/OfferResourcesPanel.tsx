@@ -5,7 +5,7 @@ import { useLHSession } from '@components/Contexts/LHSessionContext';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { queryKeys } from '@/lib/query/keys';
 import toast from 'react-hot-toast';
-import { BookOpen, Mic, Puzzle, X, Plus, Loader2 } from 'lucide-react';
+import { BookOpen, Puzzle, X, Plus, Loader2 } from 'lucide-react';
 import { getOrgCourses } from '@services/courses/courses';
 import { getOfferResources, addOfferResource, removeOfferResource } from '@services/payments/groups';
 
@@ -14,9 +14,10 @@ interface OfferResourcesPanelProps {
   offerName: string;
 }
 
+const RESOURCE_PREFIXES = ['course_', 'media_', 'community_', 'board_', 'playground_'];
+
 function resourceIcon(uuid: string) {
   if (uuid.startsWith('course_')) return <BookOpen size={14} className="text-indigo-500" />;
-  if (uuid.startsWith('podcast_')) return <Mic size={14} className="text-pink-400" />;
   return <Puzzle size={14} className="text-gray-400" />;
 }
 
@@ -52,7 +53,8 @@ function OfferResourcesPanel({ offerId, offerName }: OfferResourcesPanelProps) {
   if (error) return <div className="text-sm text-red-500">Failed to load resources</div>;
   if (!resources) return <div className="text-sm text-gray-400">Loading resources…</div>;
 
-  const list: string[] = Array.isArray(resources?.data) ? resources.data : Array.isArray(resources) ? resources : [];
+  const resourceUuids: string[] = Array.isArray(resources?.data) ? resources.data : Array.isArray(resources) ? resources : [];
+  const list = resourceUuids.filter((uuid) => typeof uuid === 'string' && RESOURCE_PREFIXES.some((prefix) => uuid.startsWith(prefix)));
   const courses: any[] = coursesData ?? [];
   const linkedUuids = new Set(list);
   const availableCourses = courses.filter(

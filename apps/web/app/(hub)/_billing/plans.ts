@@ -137,7 +137,6 @@ export const GENERAL_PLANS: Plan[] = [
       { label: "Payments", badge: "0% fees" },
       { label: "Code" },
       { label: "Communities" },
-      { label: "Podcasts" },
       { label: "Analytics" },
       { label: "SEO" },
     ],
