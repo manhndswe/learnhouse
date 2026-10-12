@@ -216,10 +216,10 @@ export const slashCommands: SlashCommandItem[] = [
   {
     id: 'audio',
     title: 'Audio',
-    description: 'Upload audio or embed a podcast',
+    description: 'Upload or embed audio',
     icon: <Headphones size={18} />,
     category: 'media',
-    keywords: ['audio', 'music', 'sound', 'podcast', 'mp3', 'episode'],
+    keywords: ['audio', 'music', 'sound', 'mp3'],
     command: (editor) => {
       editor.chain().focus().insertContent({ type: 'blockAudio' }).run()
     },

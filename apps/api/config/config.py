@@ -71,7 +71,7 @@ class AIConfig(BaseModel):
     # LEARNHOUSE_AI_IMAGE_MODEL; defaults to the GA `gemini-2.5-flash-image`
     # (Nano Banana). Set a newer/preview model here once it is allowlisted.
     image_model: str | None = None
-    # Text-to-speech / podcast model (Google Gemini TTS). Like image generation
+    # Text-to-speech model (Google Gemini TTS). Like image generation
     # this is a Google-only path resolving its key from `api_key` (when provider
     # is Google) or `gemini_api_key`. Override the exact model id with
     # LEARNHOUSE_AI_TTS_MODEL; defaults to `gemini-2.5-flash-preview-tts`. All
