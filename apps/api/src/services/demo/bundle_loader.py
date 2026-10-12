@@ -227,29 +227,6 @@ class PlaygroundSpec(BaseModel):
     _validate_slug = field_validator("slug")(_validate_key)
 
 
-class PodcastEpisodeSpec(BaseModel):
-    slug: str
-    title: str
-    description: str = ""
-    audio: str  # filename inside bundle/media/podcasts/
-    duration_seconds: int = 0
-    days_ago: float = 7
-
-    _validate_slug = field_validator("slug")(_validate_key)
-
-
-class PodcastSpec(BaseModel):
-    slug: str
-    name: str
-    description: str = ""
-    about: str = ""
-    tags: str = ""
-    cover: str  # filename inside bundle/media/podcasts/
-    episodes: list[PodcastEpisodeSpec] = Field(default_factory=list)
-
-    _validate_slug = field_validator("slug")(_validate_key)
-
-
 class Engagement(BaseModel):
     """Boards, playgrounds and the community.
 
@@ -261,7 +238,6 @@ class Engagement(BaseModel):
     community: Optional[CommunitySpec] = None
     boards: list[BoardSpec] = Field(default_factory=list)
     playgrounds: list[PlaygroundSpec] = Field(default_factory=list)
-    podcasts: list[PodcastSpec] = Field(default_factory=list)
 
 
 class StoreGroupSpec(BaseModel):
@@ -516,26 +492,6 @@ def _validate(bundle: Bundle) -> None:
                 f"playground {playground.slug!r} links unknown course "
                 f"{playground.course!r}"
             )
-
-    # Podcast media must exist: a missing audio file is a player that spins,
-    # and a missing cover is a blank tile in the catalogue.
-    seen_episodes: set[str] = set()
-    for podcast in engagement.podcasts:
-        if not os.path.exists(bundle.media_path("podcasts", podcast.cover)):
-            raise BundleError(
-                f"podcast {podcast.slug!r} references missing cover {podcast.cover!r}"
-            )
-        if not podcast.episodes:
-            raise BundleError(f"podcast {podcast.slug!r} has no episodes")
-        for episode in podcast.episodes:
-            if episode.slug in seen_episodes:
-                raise BundleError(f"duplicate episode slug {episode.slug!r}")
-            seen_episodes.add(episode.slug)
-            if not os.path.exists(bundle.media_path("podcasts", episode.audio)):
-                raise BundleError(
-                    f"episode {episode.slug!r} references missing audio "
-                    f"{episode.audio!r}"
-                )
 
     # Store references must resolve, or the storefront renders offers that sell
     # nothing and enrolments attached to nobody.

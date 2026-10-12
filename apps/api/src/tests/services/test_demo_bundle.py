@@ -644,7 +644,7 @@ def test_the_same_block_compiles_identically_every_time():
 
 
 # ---------------------------------------------------------------------------
-# engagement, podcasts and the storefront
+# engagement and the storefront
 # ---------------------------------------------------------------------------
 
 def _with_engagement(bundle, **updates):
@@ -693,40 +693,6 @@ def test_a_playground_linking_an_unknown_course_is_rejected(bundle):
         bundle, playgrounds=[playground, *bundle.engagement.playgrounds[1:]]
     )
     with pytest.raises(BundleError, match="links unknown course"):
-        _validated(broken)
-
-
-def test_a_podcast_with_a_missing_cover_is_rejected(bundle):
-    """A missing cover is a blank tile in the catalogue."""
-    podcast = bundle.engagement.podcasts[0].model_copy(update={"cover": "gone.webp"})
-    broken = _with_engagement(
-        bundle, podcasts=[podcast, *bundle.engagement.podcasts[1:]]
-    )
-    with pytest.raises(BundleError, match="missing cover"):
-        _validated(broken)
-
-
-def test_a_podcast_with_no_episodes_is_rejected(bundle):
-    podcast = bundle.engagement.podcasts[0].model_copy(update={"episodes": []})
-    broken = _with_engagement(
-        bundle, podcasts=[podcast, *bundle.engagement.podcasts[1:]]
-    )
-    with pytest.raises(BundleError, match="no episodes"):
-        _validated(broken)
-
-
-def test_an_episode_with_missing_audio_is_rejected(bundle):
-    """A missing audio file is a player that spins forever."""
-    podcast = bundle.engagement.podcasts[0]
-    episode = podcast.episodes[0].model_copy(update={"audio": "silence.mp3"})
-    broken = _with_engagement(
-        bundle,
-        podcasts=[
-            podcast.model_copy(update={"episodes": [episode, *podcast.episodes[1:]]}),
-            *bundle.engagement.podcasts[1:],
-        ],
-    )
-    with pytest.raises(BundleError, match="missing audio"):
         _validated(broken)
 
 
@@ -797,7 +763,7 @@ def test_broken_engagement_and_store_files_are_named(tmp_path):
 
     shutil.copytree(BUNDLE_ROOT, tmp_path / "bundle")
     root = tmp_path / "bundle"
-    (root / "engagement.json").write_text(json.dumps({"podcasts": "not a list"}))
+    (root / "engagement.json").write_text(json.dumps({"boards": "not a list"}))
 
     with pytest.raises(BundleError, match="engagement.json is invalid"):
         load_bundle(str(root))
@@ -974,21 +940,6 @@ def test_a_task_with_a_missing_or_duplicated_key_is_rejected(bundle):
     keyless["tasks"][0].pop("slug", None)
     with pytest.raises(BundleError, match="duplicate or missing task key"):
         _validated(bundle.model_copy(update={"assignments": {course_key: keyless}}))
-
-
-def test_a_duplicate_episode_slug_is_rejected(bundle):
-    podcast = bundle.engagement.podcasts[0]
-    broken = _with_engagement(
-        bundle,
-        podcasts=[
-            podcast.model_copy(
-                update={"episodes": [podcast.episodes[0], podcast.episodes[0]]}
-            ),
-            *bundle.engagement.podcasts[1:],
-        ],
-    )
-    with pytest.raises(BundleError, match="duplicate episode slug"):
-        _validated(broken)
 
 
 def test_an_offer_selling_an_unknown_course_or_group_is_rejected(bundle):

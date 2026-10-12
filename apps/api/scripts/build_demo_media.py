@@ -202,57 +202,6 @@ def build_org_thumbnail(path: str) -> None:
     image.save(path, "WEBP", quality=82, method=6)
 
 
-def build_podcast_cover(index: int, path: str) -> None:
-    """Square cover art. Podcast players crop to a square, so it is drawn as one."""
-    deep, mid, light = PALETTES[(index + 2) % len(PALETTES)]
-    size = (600, 600)
-    image = _vertical_gradient(size, deep, mid)
-    layer = _overlay(size)
-    MOTIFS[(index + 3) % len(MOTIFS)](ImageDraw.Draw(layer), size, light)
-    image = Image.alpha_composite(image.convert("RGBA"), layer).convert("RGB")
-    image.save(path, "WEBP", quality=82, method=6)
-
-
-# Spoken intros for the demo episodes.
-#
-# Generated with macOS `say` piped through ffmpeg, so the clips are real speech
-# with a real waveform; a podcast player showing a flat line for a silent
-# placeholder looks broken. The text is ours, the voice is the operating
-# system's, and the output is committed, so this generator only needs to run on
-# a Mac when the scripts change.
-#
-#   say -v Daniel -o clip.aiff "…" && ffmpeg -i clip.aiff -b:a 24k -ac 1 clip.mp3
-PODCAST_VOICE = "Daniel"
-PODCAST_BITRATE = "24k"
-
-
-def build_episode_audio(text: str, path: str) -> None:
-    import shutil
-    import subprocess
-    import tempfile
-
-    if not shutil.which("say") or not shutil.which("ffmpeg"):
-        print(f"  skipping {os.path.basename(path)}: needs macOS `say` and ffmpeg")
-        return
-
-    with tempfile.TemporaryDirectory() as tmp:
-        aiff = os.path.join(tmp, "clip.aiff")
-        subprocess.run(
-            ["say", "-v", PODCAST_VOICE, "-o", aiff, text],
-            check=True,
-            capture_output=True,
-        )
-        subprocess.run(
-            [
-                "ffmpeg", "-y", "-i", aiff,
-                "-ac", "1", "-ar", "22050", "-b:a", PODCAST_BITRATE,
-                path,
-            ],
-            check=True,
-            capture_output=True,
-        )
-
-
 COURSE_THUMBNAILS = [
     "onboarding-essentials.webp",
     "communication-at-work.webp",
@@ -263,36 +212,6 @@ COURSE_THUMBNAILS = [
 ]
 
 AVATAR_COUNT = 24
-
-# Keep in step with the `podcasts` block in bundle/engagement.json.
-PODCASTS = [
-    (
-        "riverbend-briefing",
-        [
-            ("ep-briefing-1", "This week: the escalation thresholds have changed, and we walk through what that means on a live account."),
-            ("ep-briefing-2", "Why the returns figure fell last quarter, and why most of that fall is a processing backlog rather than good news."),
-            ("ep-briefing-3", "Two people promised the same last unit. Here is how committed stock actually works."),
-            ("ep-briefing-4", "What the spring intake told us about their first fortnight, and the four things we changed as a result."),
-        ],
-    ),
-    (
-        "support-notes",
-        [
-            ("ep-support-1", "The first reply. Acknowledge, restate, commit, and why a time attached is the whole job."),
-            ("ep-support-2", "Saying no well. A clear refusal beats a soft maybe, every time."),
-            ("ep-support-3", "When it was our mistake: owning it plainly, and fixing the thing before discussing compensation."),
-        ],
-    ),
-    (
-        "numbers-plainly",
-        [
-            ("ep-numbers-1", "An average hides the shape. What the median tells you that the mean will not."),
-            ("ep-numbers-2", "Before you believe a number: what is counted, over what period, and did the definition move?"),
-            ("ep-numbers-3", "Two things moved together. Here is how to work out whether one caused the other."),
-        ],
-    ),
-]
-
 
 def main() -> None:
     courses_dir = os.path.join(OUT_ROOT, "courses")
@@ -309,13 +228,6 @@ def main() -> None:
 
     build_logo(os.path.join(org_dir, "logo.webp"))
     build_org_thumbnail(os.path.join(org_dir, "thumbnail.webp"))
-
-    podcasts_dir = os.path.join(OUT_ROOT, "podcasts")
-    os.makedirs(podcasts_dir, exist_ok=True)
-    for index, (show, episodes) in enumerate(PODCASTS):
-        build_podcast_cover(index, os.path.join(podcasts_dir, f"{show}.webp"))
-        for slug, line in episodes:
-            build_episode_audio(line, os.path.join(podcasts_dir, f"{slug}.mp3"))
 
     total = 0
     for dirpath, _dirs, files in os.walk(OUT_ROOT):
