@@ -1,7 +1,7 @@
 """Unit tests for src/services/ai/audio/generator.py (Gemini TTS).
 
 The Google GenAI SDK is fully mocked; no network calls. Covers the pure helpers
-and the generate_speech orchestration (single/multi-speaker, retries, failures).
+and the generate_speech orchestration (single-speaker, retries, failures).
 """
 
 import io
@@ -57,21 +57,14 @@ def test_pcm_to_wav_roundtrip():
 
 
 def test_build_prompt_tts_plain():
-    assert gen._build_prompt("Hello", style=None, language=None, podcast=False) == "Hello"
+    assert gen._build_prompt("Hello", style=None, language=None) == "Hello"
 
 
 def test_build_prompt_tts_with_style_and_language():
-    p = gen._build_prompt("Hello", style="calm", language="Spanish", podcast=False)
+    p = gen._build_prompt("Hello", style="calm", language="Spanish")
     assert "calm" in p.lower()
     assert "spanish" in p.lower()
     assert p.strip().endswith("Hello")
-
-
-def test_build_prompt_podcast_defaults_to_podcast_tone():
-    p = gen._build_prompt("Host: hi", style=None, language=None, podcast=True)
-    assert "podcast" in p.lower()
-    assert "conversation" in p.lower()
-    assert "Host: hi" in p
 
 
 def test_extract_pcm():
@@ -120,15 +113,9 @@ async def test_generate_speech_single_voice():
         out = await gen.generate_speech("Hello world", voice="Puck")
     assert out[:4] == b"RIFF" and out[8:12] == b"WAVE"
     assert client.aio.models.generate_content.await_count == 1
-
-
-async def test_generate_speech_multi_speaker():
-    client = _fake_client(_fake_response())
-    speakers = [gen.Speaker(name="Host", voice="Kore"), gen.Speaker(name="Guest", voice="Puck")]
-    with patch.object(gen, "get_learnhouse_config", return_value=_cfg()), \
-         patch("google.genai.Client", return_value=client):
-        out = await gen.generate_speech("Host: hi\nGuest: hey", speakers=speakers, style="upbeat", language="English")
-    assert out[8:12] == b"WAVE"
+    speech_config = client.aio.models.generate_content.await_args.kwargs["config"].speech_config
+    assert speech_config.voice_config.prebuilt_voice_config.voice_name == "Puck"
+    assert speech_config.multi_speaker_voice_config is None
 
 
 async def test_generate_speech_empty_text_raises():
@@ -172,31 +159,21 @@ async def test_generate_speech_nonretryable_raises_runtime():
 
 # --- generate_spoken_script ----------------------------------------------
 
-async def test_generate_spoken_script_podcast_happy():
-    gm = AsyncMock(return_value="Host: Hi\nGuest: Hey")
-    with patch("src.services.ai.llm.generate", new=gm), \
-         patch("src.services.ai.llm.model_for_tier", return_value="m"):
-        out = await gen.generate_spoken_script(
-            "about cats", kind="podcast", speaker_names=["Host", "Guest"], language="English", style="fun"
-        )
-    assert out.startswith("Host:")
-    # Podcast system prompt enforces speaker-labelled dialogue.
-    assert "speaker name" in gm.await_args.kwargs["system_prompt"].lower()
-
-
 async def test_generate_spoken_script_monologue_uses_prose_prompt():
     gm = AsyncMock(return_value="Photosynthesis is how plants make food...")
     with patch("src.services.ai.llm.generate", new=gm), \
          patch("src.services.ai.llm.model_for_tier", return_value="m"):
-        out = await gen.generate_spoken_script("photosynthesis", kind="monologue")
+        out = await gen.generate_spoken_script("photosynthesis", language="English", style="calm")
     assert out.startswith("Photosynthesis")
     system = gm.await_args.kwargs["system_prompt"].lower()
     assert "single speaker" in system
     assert "no speaker labels" in system
+    assert "speak in english" in system
+    assert "tone / style: calm" in system
 
 
 async def test_generate_spoken_script_minutes_drives_target_and_clamps():
-    gm = AsyncMock(return_value="Host: hi")
+    gm = AsyncMock(return_value="A spoken explanation.")
     with patch("src.services.ai.llm.generate", new=gm), \
          patch("src.services.ai.llm.model_for_tier", return_value="m"):
         # Over the max clamps to MAX_SPOKEN_MINUTES.
@@ -207,7 +184,7 @@ async def test_generate_spoken_script_minutes_drives_target_and_clamps():
 
 
 async def test_generate_spoken_script_minutes_below_min_clamps():
-    gm = AsyncMock(return_value="Host: hi")
+    gm = AsyncMock(return_value="A spoken explanation.")
     with patch("src.services.ai.llm.generate", new=gm), \
          patch("src.services.ai.llm.model_for_tier", return_value="m"):
         await gen.generate_spoken_script("t", minutes=1)
@@ -218,7 +195,7 @@ async def test_generate_spoken_script_budget_has_thinking_headroom():
     # The standard tier is a Gemini-3 thinking model whose max_output_tokens is
     # shared between reasoning and the answer. The budget must leave ample room
     # beyond the visible output, or scripts get cut off mid-sentence. Guards the fix.
-    gm = AsyncMock(return_value="Host: hi")
+    gm = AsyncMock(return_value="A spoken explanation.")
     with patch("src.services.ai.llm.generate", new=gm), \
          patch("src.services.ai.llm.model_for_tier", return_value="m"):
         await gen.generate_spoken_script("topic", minutes=gen.MIN_SPOKEN_MINUTES)
@@ -244,7 +221,7 @@ async def test_generate_spoken_script_empty_output_raises_runtime():
 
 
 async def test_generate_spoken_script_truncates_to_tts_budget():
-    long_script = "Host: " + ("x" * (gen.MAX_TEXT_CHARS + 500))
+    long_script = "Explanation: " + ("x" * (gen.MAX_TEXT_CHARS + 500))
     with patch("src.services.ai.llm.generate", new=AsyncMock(return_value=long_script)), \
          patch("src.services.ai.llm.model_for_tier", return_value="m"):
         out = await gen.generate_spoken_script("topic")

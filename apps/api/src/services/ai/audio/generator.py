@@ -1,4 +1,4 @@
-"""AI speech / podcast generation (Google Gemini TTS).
+"""AI speech generation (Google Gemini TTS).
 
 Like image generation, TTS is a **Google-only** path: the provider-agnostic text
 layer in ``src/services/ai/llm`` returns text/embeddings only, so speech goes
@@ -7,10 +7,8 @@ text layer: ``ai_config.api_key`` when the configured provider is Google,
 otherwise the legacy ``ai_config.gemini_api_key``, so no separate key is needed
 when the deployment already runs on Gemini.
 
-Two modes share one call:
-- ``tts``:     single voice reads the given text.
-- ``podcast``: up to two named speakers (Gemini caps multi-speaker at 2) read a
-  dialogue script, with tone/pacing steered by a natural-language style prefix.
+One voice reads the given text, with tone/pacing steered by a natural-language
+style prefix.
 
 Gemini returns headerless 24 kHz / 16-bit / mono PCM; we wrap it in a WAV
 container (stdlib ``wave``) so it can be stored and streamed like any uploaded
@@ -24,7 +22,6 @@ import asyncio
 import io
 import logging
 import wave
-from dataclasses import dataclass
 from typing import Optional
 
 from config.config import get_learnhouse_config
@@ -33,7 +30,7 @@ from src.services.ai.llm.provider import _GOOGLE_ALIASES
 
 logger = logging.getLogger(__name__)
 
-# Cheapest Gemini TTS model with a free tier; supports single AND multi-speaker.
+# Cheapest Gemini TTS model with a free tier.
 # Override with LEARNHOUSE_AI_TTS_MODEL (e.g. gemini-2.5-pro-preview-tts for higher
 # quality, or a newer preview once it is allowlisted for your key).
 DEFAULT_TTS_MODEL = "gemini-2.5-flash-preview-tts"
@@ -54,13 +51,10 @@ MAX_TEXT_CHARS = 11000
 MAX_SCRIPT_BRIEF_CHARS = 8000
 
 # Script length targeting. Natural spoken pace is ~140 words/min; the requested
-# duration drives the target word count for generated podcast/monologue scripts.
+# duration drives the target word count for generated monologue scripts.
 WORDS_PER_MINUTE = 140
 MIN_SPOKEN_MINUTES = 2
 MAX_SPOKEN_MINUTES = 10
-
-# Gemini caps multi-speaker synthesis at 2 voices.
-MAX_SPEAKERS = 2
 
 # Prebuilt voice names (voiceName → characteristic). Used to validate/normalise
 # requested voices; unknown names fall back to DEFAULT_VOICE rather than erroring.
@@ -82,13 +76,6 @@ DEFAULT_VOICE = "Kore"
 _MAX_ATTEMPTS = 3
 _RETRY_BACKOFF_SECONDS = 1.5
 _RETRYABLE_STATUS = {429, 500, 502, 503, 504}
-
-
-@dataclass
-class Speaker:
-    """A named speaker bound to a prebuilt voice (podcast mode)."""
-    name: str
-    voice: str
 
 
 def normalise_voice(voice: Optional[str]) -> str:
@@ -128,7 +115,7 @@ def _resolve_tts_config() -> tuple[str, str]:
     return api_key, model
 
 
-def _build_prompt(text: str, *, style: Optional[str], language: Optional[str], podcast: bool) -> str:
+def _build_prompt(text: str, *, style: Optional[str], language: Optional[str]) -> str:
     """Prefix the script with natural-language directives.
 
     Gemini TTS has no separate style/language parameter: tone, pacing and target
@@ -139,8 +126,6 @@ def _build_prompt(text: str, *, style: Optional[str], language: Optional[str], p
     directives: list[str] = []
     if style and style.strip():
         directives.append(style.strip().rstrip("."))
-    elif podcast:
-        directives.append("Read aloud in a warm, upbeat, natural podcast tone")
     if language and language.strip():
         directives.append(f"speak in {language.strip()}")
 
@@ -148,23 +133,8 @@ def _build_prompt(text: str, *, style: Optional[str], language: Optional[str], p
     if not directives:
         return text
     lead = ", ".join(directives).capitalize() + ":"
-    if podcast:
-        return f"{lead}\nTTS the following conversation:\n{text}"
     return f"{lead}\n{text}"
 
-
-_PODCAST_SCRIPT_SYSTEM = (
-    "You are a professional podcast script writer. Turn the user's topic or source "
-    "material into a natural, engaging spoken conversation between the given speakers.\n"
-    "Rules:\n"
-    "- Output ONLY the dialogue. Every line MUST start with a speaker name followed by a "
-    "colon, e.g. 'Host:'. Use ONLY these exact speaker names: {names}.\n"
-    "- Alternate turns naturally with a clear intro and wrap-up.\n"
-    "{length_line}"
-    "- Make it sound spoken: contractions, natural reactions.\n"
-    "- Do NOT include stage directions, sound effects, markdown, headings, or narration.\n"
-    "{lang_line}{tone_line}"
-)
 
 _MONOLOGUE_SCRIPT_SYSTEM = (
     "You are an expert educator and speaker. Turn the user's subject into a detailed, "
@@ -183,17 +153,14 @@ _MONOLOGUE_SCRIPT_SYSTEM = (
 async def generate_spoken_script(
     brief: str,
     *,
-    kind: str = "podcast",
-    speaker_names: Optional[list[str]] = None,
     language: Optional[str] = None,
     style: Optional[str] = None,
     minutes: int = MIN_SPOKEN_MINUTES,
 ) -> str:
     """Write a spoken script from a topic/brief using the text LLM.
 
-    ``kind='podcast'`` produces a two-speaker dialogue (each line prefixed with a
-    speaker name); ``kind='monologue'`` produces a single-speaker explanation as
-    flowing prose. ``minutes`` targets the spoken length. Raises
+    Produces a single-speaker explanation as flowing prose. ``minutes`` targets
+    the spoken length. Raises
     ``AINotConfiguredError`` when the AI provider is unconfigured, ``ValueError`` on
     empty input, or ``RuntimeError`` on an empty/failed generation.
     """
@@ -215,15 +182,9 @@ async def generate_spoken_script(
     lang_line = f"- Speak in {language.strip()}.\n" if language and language.strip() else ""
     tone_line = f"- Tone / style: {style.strip()}.\n" if style and style.strip() else ""
 
-    if kind == "monologue":
-        system = _MONOLOGUE_SCRIPT_SYSTEM.format(
-            length_line=length_line, lang_line=lang_line, tone_line=tone_line
-        )
-    else:
-        names = ", ".join([n for n in (speaker_names or []) if n and n.strip()]) or "Host, Guest"
-        system = _PODCAST_SCRIPT_SYSTEM.format(
-            names=names, length_line=length_line, lang_line=lang_line, tone_line=tone_line
-        )
+    system = _MONOLOGUE_SCRIPT_SYSTEM.format(
+        length_line=length_line, lang_line=lang_line, tone_line=tone_line
+    )
 
     # Token budget. The standard tier is a Gemini 3 "thinking" model, where
     # max_output_tokens is SHARED between reasoning tokens and the visible answer:
@@ -289,14 +250,12 @@ async def generate_speech(
     text: str,
     *,
     voice: Optional[str] = None,
-    speakers: Optional[list[Speaker]] = None,
     style: Optional[str] = None,
     language: Optional[str] = None,
 ) -> bytes:
     """Synthesize speech with Gemini TTS. Returns WAV bytes.
 
-    Single-speaker when ``speakers`` is empty (uses ``voice``); otherwise
-    multi-speaker "podcast" mode binding each speaker name to a prebuilt voice.
+    Uses the requested prebuilt ``voice`` or the default voice.
 
     Raises ``AINotConfiguredError`` when no Google key is configured, or a plain
     ``RuntimeError`` when the model returns no audio (e.g. a safety refusal).
@@ -314,34 +273,14 @@ async def generate_speech(
         )
 
     api_key, model = _resolve_tts_config()
-    podcast = bool(speakers)
-    prompt = _build_prompt(text, style=style, language=language, podcast=podcast)
-
-    if podcast:
-        speaker_configs = [
-            types.SpeakerVoiceConfig(
-                speaker=s.name,
-                voice_config=types.VoiceConfig(
-                    prebuilt_voice_config=types.PrebuiltVoiceConfig(
-                        voice_name=normalise_voice(s.voice)
-                    )
-                ),
-            )
-            for s in speakers[:MAX_SPEAKERS]
-        ]
-        speech_config = types.SpeechConfig(
-            multi_speaker_voice_config=types.MultiSpeakerVoiceConfig(
-                speaker_voice_configs=speaker_configs
+    prompt = _build_prompt(text, style=style, language=language)
+    speech_config = types.SpeechConfig(
+        voice_config=types.VoiceConfig(
+            prebuilt_voice_config=types.PrebuiltVoiceConfig(
+                voice_name=normalise_voice(voice)
             )
         )
-    else:
-        speech_config = types.SpeechConfig(
-            voice_config=types.VoiceConfig(
-                prebuilt_voice_config=types.PrebuiltVoiceConfig(
-                    voice_name=normalise_voice(voice)
-                )
-            )
-        )
+    )
 
     config = types.GenerateContentConfig(
         response_modalities=["AUDIO"],
