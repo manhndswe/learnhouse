@@ -36,7 +36,7 @@ async def _validate_resource_exists_and_belongs_to_org(
     Validate that a resource exists and belongs to the specified organization.
 
     Args:
-        resource_uuid: UUID of the resource (course_xxx, podcast_xxx, community_xxx)
+        resource_uuid: UUID of the resource (course_xxx, community_xxx)
         org_id: Organization ID the resource should belong to
         db_session: Database session
 
@@ -59,10 +59,6 @@ async def _validate_resource_exists_and_belongs_to_org(
     if config.resource_type == "courses":
         from src.db.courses.courses import Course
         statement = select(Course).where(Course.course_uuid == resource_uuid)
-        resource = (await db_session.execute(statement)).scalars().first()
-    elif config.resource_type == "podcasts":
-        from src.db.podcasts.podcasts import Podcast
-        statement = select(Podcast).where(Podcast.podcast_uuid == resource_uuid)
         resource = (await db_session.execute(statement)).scalars().first()
     elif config.resource_type == "communities":
         from src.db.communities.communities import Community
@@ -93,7 +89,7 @@ async def _validate_resource_exists_and_belongs_to_org(
         )
 
     # Verify resource belongs to the same organization
-    # All supported resource types (courses, podcasts, communities, folders, media) have org_id
+    # All supported resource types (courses, communities, folders, media) have org_id
     if not hasattr(resource, 'org_id'):
         raise HTTPException(
             status_code=500,

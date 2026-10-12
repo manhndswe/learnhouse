@@ -24,7 +24,6 @@ FEATURE_PLAN_REQUIREMENTS: dict[str, PlanLevel] = {
     "collaboration": "standard",
     "communities": "standard",
     "payments": "standard",
-    "podcasts": "standard",
     "seo": "standard",
     "usergroups": "standard",
     "api_tokens": "pro",
@@ -63,7 +62,6 @@ PLAN_FEATURE_CONFIGS: dict[str, dict] = {
             "payments": {"enabled": False},
 
             "usergroups": {"enabled": False, "limit": 0},
-            "podcasts": {"enabled": False, "limit": 0},
             "boards": {"enabled": False, "limit": 0},
             "folders": {"enabled": True},
             "communities": {"enabled": False},
@@ -91,7 +89,6 @@ PLAN_FEATURE_CONFIGS: dict[str, dict] = {
             "payments": {"enabled": False},
 
             "usergroups": {"enabled": False, "limit": 0},
-            "podcasts": {"enabled": False, "limit": 0},
             "boards": {"enabled": True, "limit": 0},
             "folders": {"enabled": True},
             "communities": {"enabled": False},
@@ -119,7 +116,6 @@ PLAN_FEATURE_CONFIGS: dict[str, dict] = {
             "payments": {"enabled": False},
 
             "usergroups": {"enabled": False, "limit": 0},
-            "podcasts": {"enabled": False, "limit": 0},
             "boards": {"enabled": True, "limit": 0},
             "folders": {"enabled": True},
             "communities": {"enabled": False},
@@ -147,7 +143,6 @@ PLAN_FEATURE_CONFIGS: dict[str, dict] = {
             "payments": {"enabled": True},
 
             "usergroups": {"enabled": True, "limit": 0},
-            "podcasts": {"enabled": True, "limit": 0},
             "boards": {"enabled": False, "limit": 0},
             "folders": {"enabled": True},
             "communities": {"enabled": True},
@@ -175,7 +170,6 @@ PLAN_FEATURE_CONFIGS: dict[str, dict] = {
             "payments": {"enabled": True},
 
             "usergroups": {"enabled": True, "limit": 0},
-            "podcasts": {"enabled": True, "limit": 0},
             "boards": {"enabled": True, "limit": 0},
             "folders": {"enabled": True},
             "communities": {"enabled": True},
@@ -203,7 +197,6 @@ PLAN_FEATURE_CONFIGS: dict[str, dict] = {
             "payments": {"enabled": True},
 
             "usergroups": {"enabled": True, "limit": 0},
-            "podcasts": {"enabled": True, "limit": 0},
             "boards": {"enabled": True, "limit": 0},
             "folders": {"enabled": True},
             "communities": {"enabled": True},
@@ -234,7 +227,7 @@ PLAN_LIMITS: dict[str, dict[str, int]] = {
 # AI credit allocation per plan
 # 0 = no access, -1 = unlimited
 # Free orgs get a starter allowance of AI credits so new teachers can try the AI
-# features (incl. AI podcast/audio generation) before upgrading. When these run
+# features before upgrading. When these run
 # out, the AI endpoints return 402/403 which the UI surfaces as an upgrade prompt.
 AI_CREDIT_LIMITS: dict[str, int] = {
     "free": 20,

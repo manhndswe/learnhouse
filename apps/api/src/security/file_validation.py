@@ -22,26 +22,26 @@ def validate_image_content(content: bytes) -> bool:
     """Validate image content using magic bytes (no deprecated modules)."""
     if len(content) < 12:
         return False
-    
+
     # Check common image format magic bytes
     magic_bytes = content[:12]
-    
+
     # JPEG: FF D8 FF
     if magic_bytes.startswith(b'\xff\xd8\xff'):
         return True
-    
+
     # PNG: 89 50 4E 47 0D 0A 1A 0A
     if magic_bytes.startswith(b'\x89PNG\r\n\x1a\n'):
         return True
-    
+
     # GIF: GIF87a or GIF89a
     if magic_bytes.startswith(b'GIF87a') or magic_bytes.startswith(b'GIF89a'):
         return True
-    
+
     # WebP: RIFF....WEBP
     if magic_bytes.startswith(b'RIFF') and b'WEBP' in content[:16]:
         return True
-    
+
     return False
 
 
@@ -182,7 +182,7 @@ def validate_ole_content(content: bytes) -> bool:
 # could OOM the worker for every tenant on the pod.
 #
 # Caps are sized to the flows that actually reach this validator: media
-# library, activity/assignment attachments, org branding, podcasts. The course
+# library, activity/assignment attachments, org branding. The course
 # migration dropzone's 5 GB-per-file ceiling does NOT come through here; that
 # path streams to a temp file in migration_service with its own limits.
 _GB = 1024 * 1024 * 1024
@@ -318,15 +318,15 @@ def validate_upload(
 ) -> Tuple[str, bytes]:
     """
     Validate uploaded file for security and type compliance.
-    
+
     Args:
         file: The uploaded file
         allowed_types: List of allowed file types ('image', 'video', 'document')
         max_size: Maximum file size in bytes (auto-determined if None)
-        
+
     Returns:
         Tuple of (mime_type, file_content)
-        
+
     Raises:
         HTTPException: If validation fails
     """

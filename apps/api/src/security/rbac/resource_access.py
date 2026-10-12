@@ -1,9 +1,8 @@
 """
 Unified Resource Access Checker
 
-This module provides a single, unified access checker for courses, podcasts, and communities.
-It replaces the duplicated logic in courses_security.py, podcasts_security.py, and
-communities_security.py (~1,200 lines) with a single configurable implementation (~300 lines).
+This module provides a single, unified access checker for courses and communities.
+It provides a single configurable implementation for resource access.
 
 Access Rules:
 - Dashboard View: Admins/Authors always see all resources
@@ -38,7 +37,7 @@ logger = logging.getLogger(__name__)
 
 class ResourceAccessChecker:
     """
-    Unified access checker for courses, podcasts, and communities.
+    Unified access checker for courses and communities.
 
     Usage:
         checker = ResourceAccessChecker(request, db_session, current_user)
@@ -141,7 +140,7 @@ class ResourceAccessChecker:
             )
 
         # For child resources, delegate access check to the parent resource
-        # This handles chapters -> courses, episodes -> podcasts, etc.
+        # This handles chapters -> courses and discussions -> communities.
         if config.parent_resource_type:
             parent_uuid = await self._resolve_parent_resource_uuid(resource_uuid, config)
             if not parent_uuid:
@@ -415,7 +414,7 @@ class ResourceAccessChecker:
                 action=action.value,
             )
 
-        # Special handling for NEW resource creation (e.g., "course_x", "podcast_x")
+        # Special handling for NEW resource creation (e.g., "course_x", "community_x")
         # These are top-level resource creations that only need role permissions
         if action == AccessAction.CREATE and resource_uuid.endswith("_x"):
             return await self._check_create_permission(resource_uuid, config)
@@ -660,7 +659,6 @@ class ResourceAccessChecker:
         For example:
         - chapter_xxx -> course_yyy
         - activity_xxx -> chapter_yyy -> course_zzz
-        - episode_xxx -> podcast_yyy
 
         Args:
             resource_uuid: UUID of the child resource
@@ -710,11 +708,6 @@ class ResourceAccessChecker:
             parent = (await self.db_session.execute(statement)).scalars().first()
             return parent.course_uuid if parent else None
 
-        elif parent_config.resource_type == "podcasts":
-            from src.db.podcasts.podcasts import Podcast
-            statement = select(Podcast).where(Podcast.id == parent_id)
-            parent = (await self.db_session.execute(statement)).scalars().first()
-            return parent.podcast_uuid if parent else None
 
         elif parent_config.resource_type == "communities":
             from src.db.communities.communities import Community
@@ -940,10 +933,6 @@ class ResourceAccessChecker:
             statement = select(Course).where(Course.course_uuid == resource_uuid)
             resource = (await self.db_session.execute(statement)).scalars().first()
 
-        elif config.resource_type == "podcasts":
-            from src.db.podcasts.podcasts import Podcast
-            statement = select(Podcast).where(Podcast.podcast_uuid == resource_uuid)
-            resource = (await self.db_session.execute(statement)).scalars().first()
 
         elif config.resource_type == "communities":
             from src.db.communities.communities import Community
@@ -981,10 +970,6 @@ class ResourceAccessChecker:
             statement = select(Activity).where(Activity.activity_uuid == resource_uuid)
             resource = (await self.db_session.execute(statement)).scalars().first()
 
-        elif config.resource_type == "episodes":
-            from src.db.podcasts.episodes import PodcastEpisode
-            statement = select(PodcastEpisode).where(PodcastEpisode.episode_uuid == resource_uuid)
-            resource = (await self.db_session.execute(statement)).scalars().first()
 
         elif config.resource_type == "discussions":
             from src.db.communities.discussions import Discussion

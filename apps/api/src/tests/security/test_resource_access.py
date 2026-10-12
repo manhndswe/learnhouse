@@ -36,12 +36,6 @@ class TestResourceConfig:
         assert config.supports_usergroups is True
         assert config.supports_authorship is True
 
-    def test_get_resource_config_for_podcast(self):
-        """Test getting config for podcast UUID."""
-        config = get_resource_config("podcast_abc123")
-        assert config is not None
-        assert config.resource_type == "podcasts"
-        assert config.has_published_field is True
 
     def test_get_resource_config_for_community(self):
         """Test getting config for community UUID."""
@@ -67,12 +61,6 @@ class TestResourceConfig:
         assert config.parent_resource_type == "coursechapters"
         assert config.parent_id_field == "chapter_id"
 
-    def test_get_resource_config_for_episode(self):
-        """Test getting config for episode UUID."""
-        config = get_resource_config("episode_abc123")
-        assert config is not None
-        assert config.resource_type == "episodes"
-        assert config.parent_resource_type == "podcasts"
 
     def test_get_resource_config_for_discussion(self):
         """Test getting config for discussion UUID."""
@@ -94,7 +82,6 @@ class TestResourceConfig:
     def test_get_resource_type(self):
         """Test getting resource type from UUID."""
         assert get_resource_type("course_123") == "courses"
-        assert get_resource_type("podcast_123") == "podcasts"
         assert get_resource_type("community_123") == "communities"
         assert get_resource_type("unknown_123") is None
 
@@ -393,11 +380,6 @@ class TestParentResourceResolution:
         assert config.parent_resource_type == "coursechapters"
         assert config.parent_id_field == "chapter_id"
 
-    def test_episode_has_podcast_parent(self):
-        """Test that episode config points to podcast as parent."""
-        config = get_resource_config("episode_123")
-        assert config.parent_resource_type == "podcasts"
-        assert config.parent_id_field == "podcast_id"
 
     def test_discussion_has_community_parent(self):
         """Test that discussion config points to community as parent."""
@@ -407,7 +389,7 @@ class TestParentResourceResolution:
 
     def test_primary_resources_have_no_parent(self):
         """Test that primary resources don't have parent configuration."""
-        primary_resources = ["course_123", "podcast_123", "community_123", "folder_123"]
+        primary_resources = ["course_123", "community_123", "folder_123"]
 
         for resource_uuid in primary_resources:
             config = get_resource_config(resource_uuid)

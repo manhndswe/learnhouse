@@ -162,13 +162,11 @@ async def _revoke_org_grants(
     from src.db.courses.courses import Course
     from src.db.folders.folders import Folder
     from src.db.media.media import Media
-    from src.db.podcasts.podcasts import Podcast
     from src.db.resource_authors import ResourceAuthor, ResourceAuthorshipStatusEnum
 
     now = str(datetime.now())
     org_resource_uuids = union_all(
         select(Course.course_uuid).where(Course.org_id == org.id),
-        select(Podcast.podcast_uuid).where(Podcast.org_id == org.id),
         select(Board.board_uuid).where(Board.org_id == org.id),
         select(Folder.folder_uuid).where(Folder.org_id == org.id),
         select(Media.media_uuid).where(Media.org_id == org.id),

@@ -109,7 +109,6 @@ class TestTokenHelpersAndValidation:
             dashboard={"action_access": False},
             communities=_p,
             discussions=_po,
-            podcasts=_po,
         )
         # The Rights object is converted to dict at line 472; the subsequent key
         # validation may raise 400 (Rights lacks api-token-specific keys), but
@@ -500,7 +499,7 @@ class TestUpdateApiTokenRightsObject:
             folders=_full_p(), media=_full_p(), organizations=_full_p(), coursechapters=_full_p(),
             activities=_full_p(), roles=_full_p(),
             dashboard=DashboardPermission(action_access=True),
-            communities=_full_p(), discussions=_full_po(), podcasts=_full_po(),
+            communities=_full_p(), discussions=_full_po(),
             boards=_full_po(), playgrounds=_full_po(),
         )
 

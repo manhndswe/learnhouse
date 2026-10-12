@@ -169,7 +169,7 @@ def _role_priority(role_id: int) -> int:
 
 
 # Role buckets an API token's rights can speak for. Participation buckets
-# (communities, discussions, podcasts, boards, playgrounds) and dashboard
+# (communities, discussions, boards, playgrounds) and dashboard
 # access sit outside the token rights model and are not compared.
 _TOKEN_COMPARED_BUCKETS = frozenset({
     "courses", "activities", "assignments", "coursechapters", "folders",

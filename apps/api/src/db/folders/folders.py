@@ -57,7 +57,7 @@ class FolderBreadcrumb(SQLModel):
 class FolderContentItem(SQLModel):
     """A resolved leaf item inside a folder (any resource type)."""
     resource_uuid: str
-    resource_type: str  # courses | podcasts | communities | boards | playgrounds | media
+    resource_type: str  # courses | communities | boards | playgrounds | media
     position: int = 0
     resource: dict
 

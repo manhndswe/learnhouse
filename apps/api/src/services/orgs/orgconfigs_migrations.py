@@ -25,7 +25,7 @@ logger = logging.getLogger(__name__)
 # (storage, usergroups, assignments, courses are always-on, no toggle)
 ALL_FEATURES = [
     "ai", "analytics", "api", "boards", "collaboration",
-    "folders", "communities", "members", "payments", "playgrounds", "podcasts",
+    "folders", "communities", "members", "payments", "playgrounds",
 ]
 
 

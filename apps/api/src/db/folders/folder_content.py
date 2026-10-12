@@ -7,7 +7,7 @@ class FolderContent(SQLModel, table=True):
     """
     Polymorphic junction linking a folder to any resource by its UUID.
 
-    `resource_uuid` holds a prefixed UUID (course_/podcast_/community_/board_/
+    `resource_uuid` holds a prefixed UUID (course_/community_/board_/
     playground_/media_); the resource type is inferred from the prefix, mirroring
     the existing UserGroupResource / ResourceAuthor convention. Sub-folders are NOT
     stored here; they live in Folder.parent_folder_id.

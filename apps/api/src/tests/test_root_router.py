@@ -64,7 +64,6 @@ def _install_stub_modules(monkeypatch: pytest.MonkeyPatch) -> None:
     install_package("src.routers.media")
     install_package("src.routers.courses.activities")
     install_package("src.routers.communities")
-    install_package("src.routers.podcasts")
     install_package("src.routers.playgrounds")
     install_package("src.routers.integrations")
     install_package("src.services")
@@ -76,11 +75,15 @@ def _install_stub_modules(monkeypatch: pytest.MonkeyPatch) -> None:
     for name in [
         "admin",
         "analytics",
+        "audit",
         "code_execution",
         "code_submissions",
         "health",
+        "demo",
         "instance",
         "monitoring",
+        "mfa",
+        "nudges",
         "plans",
         "usergroups",
         "dev",
@@ -95,6 +98,12 @@ def _install_stub_modules(monkeypatch: pytest.MonkeyPatch) -> None:
         "webhooks",
     ]:
         install_router_module(f"src.routers.{name}", f"src.routers.{name}")
+    sys.modules["src.routers.nudges"].public_router = _named_router(
+        "src.routers.nudges.public_router"
+    )
+    sys.modules["src.routers.nudges"].internal_router = _named_router(
+        "src.routers.nudges.internal_router"
+    )
 
     install_router_module("src.routers.utils", "src.routers.utils")
 
@@ -117,6 +126,7 @@ def _install_stub_modules(monkeypatch: pytest.MonkeyPatch) -> None:
         "src.routers.ai.assignment_gen", "src.routers.ai.assignment_gen"
     )
     install_router_module("src.routers.ai.scenario", "src.routers.ai.scenario")
+    install_router_module("src.routers.ai.audio", "src.routers.ai.audio")
     sys.modules["src.routers.ai"].ai = sys.modules["src.routers.ai.ai"]
     sys.modules["src.routers.ai"].magicblocks = sys.modules[
         "src.routers.ai.magicblocks"
@@ -131,6 +141,7 @@ def _install_stub_modules(monkeypatch: pytest.MonkeyPatch) -> None:
         "src.routers.ai.assignment_gen"
     ]
     sys.modules["src.routers.ai"].scenario = sys.modules["src.routers.ai.scenario"]
+    sys.modules["src.routers.ai"].audio = sys.modules["src.routers.ai.audio"]
 
     install_router_module("src.routers.boards.boards", "src.routers.boards.boards")
     install_router_module(
@@ -233,14 +244,6 @@ def _install_stub_modules(monkeypatch: pytest.MonkeyPatch) -> None:
         "src.routers.communities.discussions"
     ]
 
-    install_router_module("src.routers.podcasts.podcasts", "src.routers.podcasts.podcasts")
-    install_router_module("src.routers.podcasts.episodes", "src.routers.podcasts.episodes")
-    sys.modules["src.routers.podcasts"].podcasts = sys.modules[
-        "src.routers.podcasts.podcasts"
-    ]
-    sys.modules["src.routers.podcasts"].episodes = sys.modules[
-        "src.routers.podcasts.episodes"
-    ]
 
     install_router_module(
         "src.routers.playgrounds.playgrounds", "src.routers.playgrounds.playgrounds"
@@ -260,6 +263,7 @@ def _install_stub_modules(monkeypatch: pytest.MonkeyPatch) -> None:
         "src.core.ee_hooks",
         register_ee_routers=lambda _router: None,
     )
+    install("src.core.deployment_mode", get_deployment_mode=lambda: "oss")
     install(
         "src.services.dev.dev",
         isDevModeEnabledOrRaise=_dependency("isDevModeEnabledOrRaise"),

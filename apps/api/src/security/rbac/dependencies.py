@@ -103,10 +103,10 @@ def require_read_access(
         context: Access context (public_view or dashboard)
 
     Usage:
-        @router.get("/{podcast_uuid}")
-        async def get_podcast(
-            podcast_uuid: str,
-            access: AccessDecision = Depends(require_read_access("podcast_uuid")),
+        @router.get("/{community_uuid}")
+        async def get_community(
+            community_uuid: str,
+            access: AccessDecision = Depends(require_read_access("community_uuid")),
         ):
             pass
     """
@@ -155,7 +155,7 @@ def require_create_access(
     Dependency for create access.
 
     Args:
-        resource_type: The type of resource being created (courses, podcasts, communities)
+        resource_type: The type of resource being created (courses, communities)
 
     Usage:
         @router.post("/")
@@ -241,30 +241,6 @@ class CourseAccess:
     @staticmethod
     def dashboard():
         return require_dashboard_access("course_uuid")
-
-
-class PodcastAccess:
-    """Pre-configured dependencies for podcast access."""
-
-    @staticmethod
-    def read(context: AccessContext = AccessContext.PUBLIC_VIEW):
-        return require_read_access("podcast_uuid", context)
-
-    @staticmethod
-    def create():
-        return require_create_access("podcasts")
-
-    @staticmethod
-    def update():
-        return require_write_access(AccessAction.UPDATE, "podcast_uuid")
-
-    @staticmethod
-    def delete():
-        return require_write_access(AccessAction.DELETE, "podcast_uuid")
-
-    @staticmethod
-    def dashboard():
-        return require_dashboard_access("podcast_uuid")
 
 
 class CommunityAccess:

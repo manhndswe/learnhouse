@@ -641,12 +641,10 @@ class TestResourceAccessRuntime:
         ("resource_type", "uuid_field", "uuid_value"),
         [
             ("courses", "course_uuid", "course_1"),
-            ("podcasts", "podcast_uuid", "podcast_1"),
             ("communities", "community_uuid", "community_1"),
             ("folders", "folder_uuid", "folder_1"),
             ("coursechapters", "chapter_uuid", "chapter_1"),
             ("activities", "activity_uuid", "activity_1"),
-            ("episodes", "episode_uuid", "episode_1"),
             ("discussions", "discussion_uuid", "discussion_1"),
         ],
     )
@@ -671,7 +669,6 @@ class TestResourceAccessRuntime:
         ("resource_type", "expected_attr"),
         [
             ("courses", "course_uuid"),
-            ("podcasts", "podcast_uuid"),
             ("communities", "community_uuid"),
             ("coursechapters", "chapter_uuid"),
         ],
