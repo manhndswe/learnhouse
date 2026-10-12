@@ -83,7 +83,6 @@ Riverbend Academy, on the **pro** plan so every feature is visible:
 - A community with 5 discussions, comments and votes
 - 3 boards with members, 2 working interactive playgrounds
 
-- 3 podcasts, 10 episodes with real audio
 - A store: 5 offers (a subscription, two single courses, a bundle, one
   pay-what-you-want) and 18 enrolments
 

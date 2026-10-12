@@ -105,10 +105,6 @@
           "description": "Les domaines personnalisés sont une fonctionnalité premium disponible uniquement pour les organisations avec un plan Standard ou supérieur. Passez à un plan supérieur pour utiliser votre propre domaine.",
           "title": "Fonctionnalité Standard"
         },
-        "podcasts": {
-          "description": "Les podcasts sont une fonctionnalité premium disponible uniquement pour les organisations avec un plan Standard ou supérieur. Passez à un plan supérieur pour créer et partager des podcasts avec vos membres.",
-          "title": "Fonctionnalité Standard"
-        },
         "seo": {
           "description": "Les outils d'optimisation SEO sont disponibles uniquement pour les organisations avec un plan Standard ou supérieur. Passez à un plan supérieur pour personnaliser l'apparence dans les moteurs de recherche, les aperçus de partage social et les données structurées de vos cours.",
           "title": "Fonctionnalité Standard"
@@ -148,7 +144,6 @@
         "names": {
           "courses": "Cours",
           "communities": "Communautés",
-          "podcasts": "Podcasts",
           "payments": "Paiements",
           "trail": "Suivi de progression",
           "boards": "Tableaux",
@@ -806,125 +801,6 @@
       "start_first": "Lancez la première discussion"
     }
   },
-  "podcasts": {
-    "podcasts": "Podcasts",
-    "browse_description": "Écoutez les podcasts de cette organisation",
-    "new_podcast": "Nouveau Podcast",
-    "search_placeholder": "Rechercher des podcasts...",
-    "no_podcasts": "Pas encore de podcasts",
-    "no_podcasts_description": "Il n'y a pas de podcasts disponibles pour le moment",
-    "no_search_results": "Aucun podcast trouvé",
-    "try_different_search": "Essayez un autre terme de recherche",
-    "episodes": "Épisodes",
-    "no_episodes": "Pas encore d'épisodes",
-    "hosted_by": "Animé par",
-    "tags": "Tags",
-    "manage_podcast": "Gérer le Podcast",
-    "published": "Publié",
-    "unpublished": "Non publié",
-    "public": "Public",
-    "private": "Privé",
-    "listen_now": "Écouter maintenant",
-    "delete_podcast": "Supprimer le Podcast",
-    "delete_podcast_title": "Supprimer le Podcast ?",
-    "delete_podcast_confirm": "Êtes-vous sûr de vouloir supprimer ce podcast ? Cette action est irréversible et tous les épisodes seront supprimés.",
-    "deleting_podcast": "Suppression du podcast...",
-    "podcast_deleted_success": "Podcast supprimé avec succès",
-    "podcast_deleted_error": "Échec de la suppression du podcast",
-    "edit_content": "Modifier le Contenu",
-    "create_new_podcast": "Créer un nouveau podcast pour votre organisation",
-    "create_podcast": "Créer un podcast",
-    "create_podcast_btn": "Créer un podcast",
-    "create_podcasts_placeholder": "Créez des podcasts pour partager du contenu audio avec votre audience",
-    "creating_podcast": "Création du podcast...",
-    "dashboard": {
-      "episodes": {
-        "audio_hint": "Fichiers MP3, WAV ou M4A supportés",
-        "audio_label": "Fichier audio",
-        "create": "Créer un épisode",
-        "create_error": "Échec de la création de l'épisode",
-        "create_first": "Créer le premier épisode",
-        "created": "Épisode créé",
-        "creating": "Création de l'épisode...",
-        "delete": "Supprimer",
-        "delete_confirm": "Êtes-vous sûr de vouloir supprimer cet épisode ? Cette action est irréversible.",
-        "delete_error": "Échec de la suppression de l'épisode",
-        "delete_title": "Supprimer l'épisode ?",
-        "deleted": "Épisode supprimé",
-        "deleting": "Suppression de l'épisode...",
-        "description_label": "Description",
-        "description_placeholder": "Entrez la description de l'épisode",
-        "edit": "Modifier",
-        "edit_episode": "Modifier l'épisode",
-        "edit_episode_description": "Mettre à jour les détails de l'épisode",
-        "new_episode": "Nouvel épisode",
-        "new_episode_description": "Ajouter un nouvel épisode à ce podcast",
-        "no_audio": "Aucun fichier audio",
-        "no_episodes_description": "Commencez par ajouter votre premier épisode",
-        "publish": "Publier",
-        "replace_audio": "Remplacer le fichier audio",
-        "save": "Enregistrer les modifications",
-        "title_label": "Titre",
-        "title_placeholder": "Entrez le titre de l'épisode",
-        "unpublish": "Dépublier",
-        "update_error": "Échec de la mise à jour de l'épisode",
-        "updated": "Épisode mis à jour",
-        "updating": "Mise à jour de l'épisode...",
-        "upload_audio": "Télécharger le fichier audio"
-      },
-      "form": {
-        "about": "À propos",
-        "about_max_length": "Le champ À propos doit comporter au maximum 2000 caractères",
-        "about_placeholder": "Dites-en plus aux auditeurs sur ce podcast...",
-        "public_hint": "Tout le monde peut trouver et écouter ce podcast",
-        "published_hint": "Rendre ce podcast visible sur la page de votre organisation",
-        "tags_hint": "Séparez les tags par des virgules",
-        "tags_placeholder": "musique, éducation, tech",
-        "thumbnail": "Miniature",
-        "thumbnail_hint": "Taille recommandée : 1400x1400px. JPG ou PNG.",
-        "upload_thumbnail": "Télécharger la miniature",
-        "visibility": "Paramètres de visibilité"
-      },
-      "save_changes": "Enregistrer les modifications",
-      "save_error": "Échec de l'enregistrement des modifications",
-      "saved": "Modifications enregistrées",
-      "saving": "Enregistrement...",
-      "tabs": {
-        "episodes": "Épisodes",
-        "general": "Général"
-      },
-      "view_podcast": "Voir le podcast"
-    },
-    "failed_to_create_podcast": "Échec de la création du podcast",
-    "form": {
-      "description_max_length": "La description doit comporter au maximum 500 caractères",
-      "name_max_length": "Le nom doit comporter au maximum 100 caractères",
-      "name_min_length": "Le nom doit comporter au minimum 3 caractères",
-      "name_required": "Le nom du podcast est requis"
-    },
-    "modals": {
-      "create": {
-        "cancel": "Annuler",
-        "description": "Remplissez les détails pour créer un nouveau podcast",
-        "form": {
-          "description_label": "Description",
-          "description_placeholder": "Entrez la description du podcast",
-          "name_label": "Nom du podcast",
-          "name_placeholder": "Entrez le nom du podcast",
-          "public_label": "Rendre ce podcast public"
-        },
-        "submit": "Créer le podcast",
-        "title": "Créer un nouveau podcast"
-      }
-    },
-    "podcast_created_success": "Podcast créé avec succès",
-    "podcast_name": "Nom du podcast",
-    "podcast_name_required": "Le nom du podcast est requis",
-    "podcast_tags": "Tags",
-    "podcast_thumbnail": "Miniature du podcast",
-    "podcast_visibility": "Visibilité",
-    "search_results": "{{count}} podcast(s) trouvé(s) pour \"{{query}}\""
-  },
   "activities": {
     "video": "Vidéo",
     "document": "Document",
@@ -1104,8 +980,7 @@
       "users": "Membres",
       "communities": "Communautés",
       "discussions": "Discussions",
-      "playgrounds": "Playgrounds",
-      "podcasts": "Podcasts"
+      "playgrounds": "Playgrounds"
     }
   },
   "ai": {
@@ -1461,7 +1336,6 @@
       "enable": "Activer",
       "enable_analytics_description": "Activez les analytiques pour voir les utilisateurs en direct, les inscriptions et plus encore.",
       "enrollments_30d": "Enrôlements (30 j)",
-      "episodes": "épisodes",
       "features": "Fonctionnalités",
       "full_analytics": "Analytiques complètes",
       "includes_purchased": "Inclut {{count}} achetés",
@@ -1476,7 +1350,6 @@
       "participants": "participants",
       "plan": "forfait",
       "plan_and_usage": "Forfait et utilisation",
-      "podcasts": "Podcasts",
       "public": "public",
       "published": "publié",
       "quick_stats": "Statistiques rapides",
@@ -2515,10 +2388,6 @@
           "courses": {
             "description": "Activer les cours et le suivi de la progression pour votre organisation",
             "title": "Cours"
-          },
-          "podcasts": {
-            "description": "Activer la création de podcasts et le contenu audio pour votre organisation",
-            "title": "Podcasts"
           },
           "boards": {
             "title": "Tableaux",
@@ -3948,8 +3817,7 @@
         "users": "Utilisateurs",
         "communities": "Communautés",
         "discussions": "Discussions",
-        "playgrounds": "Playgrounds",
-        "podcasts": "Podcasts"
+        "playgrounds": "Playgrounds"
       },
       "entries": {
         "home": {
@@ -3967,10 +3835,6 @@
         "communities": {
           "description": "Gérer les communautés",
           "keywords": "forums, discussions, membres, publications"
-        },
-        "podcasts": {
-          "description": "Gérer les podcasts",
-          "keywords": "audio, épisodes, émissions"
         },
         "boards": {
           "description": "Gérer les tableaux",
@@ -4902,7 +4766,6 @@
       "thick": "Épais",
       "undo": "Annuler",
       "redo": "Rétablir",
-      "podcast": "Podcast",
       "todo": "À faire"
     },
     "zoom": {
@@ -5138,8 +5001,6 @@
         "assess_desc": "Créez des devoirs et suivez les soumissions des apprenants",
         "collaborate": "Collaborez visuellement",
         "collaborate_desc": "Offrez aux apprenants des tableaux partagés pour réfléchir et travailler ensemble",
-        "voice": "Partagez votre voix",
-        "voice_desc": "Lancez des podcasts et diffusez des épisodes audio aux apprenants",
         "certify": "Certifiez les apprenants",
         "certify_desc": "Délivrez des certificats lorsque les apprenants terminent vos cours",
         "impact": "Comprenez votre impact",
@@ -5221,8 +5082,6 @@
           "payments_desc": "Vendez des cours et proposez des abonnements.",
           "communities": "Discussions communautaires",
           "communities_desc": "Laissez les apprenants échanger, poser des questions et partager des idées.",
-          "podcasts": "Créer des podcasts",
-          "podcasts_desc": "Diffusez du contenu audio et touchez les apprenants en déplacement.",
           "ai": "1 000 crédits IA",
           "ai_desc": "Accélérez la création de contenu avec des outils d'écriture IA.",
           "analytics": "Analyses des apprenants",
@@ -5329,7 +5188,6 @@
     "new_folder": "New Folder",
     "tabs": {
       "courses": "Courses",
-      "podcasts": "Podcasts",
       "communities": "Communities",
       "boards": "Boards",
       "playgrounds": "Playgrounds",

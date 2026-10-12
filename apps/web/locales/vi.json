@@ -103,10 +103,6 @@
           "description": "Tên miền tùy chỉnh là tính năng cao cấp chỉ dành cho các tổ chức sử dụng gói Standard trở lên. Nâng cấp để sử dụng tên miền riêng cho trải nghiệm mang thương hiệu của bạn.",
           "title": "Tính năng Standard"
         },
-        "podcasts": {
-          "description": "Podcast là tính năng cao cấp chỉ dành cho các tổ chức sử dụng gói Standard trở lên. Nâng cấp để tạo và chia sẻ podcast với các thành viên của bạn.",
-          "title": "Tính năng Standard"
-        },
         "seo": {
           "description": "Công cụ tối ưu hóa SEO chỉ dành cho các tổ chức sử dụng gói Standard trở lên. Nâng cấp để tùy chỉnh hiển thị trên công cụ tìm kiếm, bản xem trước chia sẻ mạng xã hội và dữ liệu có cấu trúc cho khóa học của bạn.",
           "title": "Tính năng Standard"
@@ -146,7 +142,6 @@
         "names": {
           "courses": "Khóa học",
           "communities": "Cộng đồng",
-          "podcasts": "Podcast",
           "payments": "Thanh toán",
           "trail": "Theo dõi tiến độ",
           "boards": "Bảng",
@@ -828,125 +823,6 @@
       "start_first": "Bắt đầu thảo luận đầu tiên"
     }
   },
-  "podcasts": {
-    "podcasts": "Podcast",
-    "browse_description": "Nghe podcast từ tổ chức này",
-    "new_podcast": "Podcast Mới",
-    "search_placeholder": "Tìm kiếm podcast...",
-    "no_podcasts": "Chưa có podcast nào",
-    "no_podcasts_description": "Hiện không có podcast nào",
-    "no_search_results": "Không tìm thấy podcast",
-    "try_different_search": "Thử từ khóa tìm kiếm khác",
-    "episodes": "Tập",
-    "no_episodes": "Chưa có tập nào",
-    "hosted_by": "Dẫn chương trình",
-    "tags": "Thẻ",
-    "manage_podcast": "Quản lý Podcast",
-    "published": "Đã xuất bản",
-    "unpublished": "Chưa xuất bản",
-    "public": "Công khai",
-    "private": "Riêng tư",
-    "listen_now": "Nghe ngay",
-    "delete_podcast": "Xóa Podcast",
-    "delete_podcast_title": "Xóa Podcast?",
-    "delete_podcast_confirm": "Bạn có chắc chắn muốn xóa podcast này? Hành động này không thể hoàn tác và tất cả các tập sẽ bị xóa.",
-    "deleting_podcast": "Đang xóa podcast...",
-    "podcast_deleted_success": "Xóa podcast thành công",
-    "podcast_deleted_error": "Xóa podcast thất bại",
-    "edit_content": "Chỉnh sửa Nội dung",
-    "create_new_podcast": "Tạo một podcast mới cho tổ chức của bạn",
-    "create_podcast": "Tạo Podcast",
-    "create_podcast_btn": "Tạo Podcast",
-    "create_podcasts_placeholder": "Tạo podcast để chia sẻ nội dung âm thanh với khán giả của bạn",
-    "creating_podcast": "Đang tạo podcast...",
-    "dashboard": {
-      "episodes": {
-        "audio_hint": "Hỗ trợ tệp MP3, WAV hoặc M4A",
-        "audio_label": "Tệp âm thanh",
-        "create": "Tạo tập",
-        "create_error": "Không thể tạo tập",
-        "create_first": "Tạo tập đầu tiên",
-        "created": "Đã tạo tập",
-        "creating": "Đang tạo tập...",
-        "delete": "Xóa",
-        "delete_confirm": "Bạn có chắc chắn muốn xóa tập này không? Hành động này không thể hoàn tác.",
-        "delete_error": "Không thể xóa tập",
-        "delete_title": "Xóa tập?",
-        "deleted": "Đã xóa tập",
-        "deleting": "Đang xóa tập...",
-        "description_label": "Mô tả",
-        "description_placeholder": "Nhập mô tả tập",
-        "edit": "Chỉnh sửa",
-        "edit_episode": "Chỉnh sửa tập",
-        "edit_episode_description": "Cập nhật chi tiết tập",
-        "new_episode": "Tập mới",
-        "new_episode_description": "Thêm một tập mới vào podcast này",
-        "no_audio": "Không có tệp âm thanh",
-        "no_episodes_description": "Bắt đầu bằng cách thêm tập đầu tiên của bạn",
-        "publish": "Xuất bản",
-        "replace_audio": "Thay thế tệp âm thanh",
-        "save": "Lưu thay đổi",
-        "title_label": "Tiêu đề",
-        "title_placeholder": "Nhập tiêu đề tập",
-        "unpublish": "Hủy xuất bản",
-        "update_error": "Không thể cập nhật tập",
-        "updated": "Đã cập nhật tập",
-        "updating": "Đang cập nhật tập...",
-        "upload_audio": "Tải lên tệp âm thanh"
-      },
-      "form": {
-        "about": "Giới thiệu",
-        "about_max_length": "Phần giới thiệu phải có tối đa 2000 ký tự",
-        "about_placeholder": "Cho người nghe biết thêm về podcast này...",
-        "public_hint": "Bất kỳ ai cũng có thể tìm và nghe podcast này",
-        "published_hint": "Hiển thị podcast này trên trang tổ chức của bạn",
-        "tags_hint": "Phân tách các thẻ bằng dấu phẩy",
-        "tags_placeholder": "âm nhạc, giáo dục, công nghệ",
-        "thumbnail": "Hình thu nhỏ",
-        "thumbnail_hint": "Kích thước khuyến nghị: 1400x1400px. JPG hoặc PNG.",
-        "upload_thumbnail": "Tải lên hình thu nhỏ",
-        "visibility": "Cài đặt hiển thị"
-      },
-      "save_changes": "Lưu thay đổi",
-      "save_error": "Không thể lưu thay đổi",
-      "saved": "Đã lưu thay đổi",
-      "saving": "Đang lưu...",
-      "tabs": {
-        "episodes": "Các tập",
-        "general": "Chung"
-      },
-      "view_podcast": "Xem Podcast"
-    },
-    "failed_to_create_podcast": "Tạo podcast thất bại",
-    "form": {
-      "description_max_length": "Mô tả phải có tối đa 500 ký tự",
-      "name_max_length": "Tên phải có tối đa 100 ký tự",
-      "name_min_length": "Tên phải có ít nhất 3 ký tự",
-      "name_required": "Tên podcast là bắt buộc"
-    },
-    "modals": {
-      "create": {
-        "cancel": "Hủy",
-        "description": "Điền thông tin chi tiết để tạo một podcast mới",
-        "form": {
-          "description_label": "Mô tả",
-          "description_placeholder": "Nhập mô tả podcast",
-          "name_label": "Tên Podcast",
-          "name_placeholder": "Nhập tên podcast",
-          "public_label": "Đặt podcast này ở chế độ công khai"
-        },
-        "submit": "Tạo Podcast",
-        "title": "Tạo Podcast mới"
-      }
-    },
-    "podcast_created_success": "Tạo podcast thành công",
-    "podcast_name": "Tên Podcast",
-    "podcast_name_required": "Tên podcast là bắt buộc",
-    "podcast_tags": "Thẻ",
-    "podcast_thumbnail": "Hình thu nhỏ Podcast",
-    "podcast_visibility": "Hiển thị",
-    "search_results": "Tìm thấy {{count}} podcast cho \"{{query}}\""
-  },
   "activities": {
     "video": "Video",
     "document": "Tài liệu",
@@ -1115,8 +991,7 @@
       "users": "Thành viên",
       "communities": "Cộng đồng",
       "discussions": "Thảo luận",
-      "playgrounds": "Playgrounds",
-      "podcasts": "Podcast"
+      "playgrounds": "Playgrounds"
     }
   },
   "ai": {
@@ -1465,13 +1340,11 @@
       "settings": "Cài đặt",
       "courses": "Khóa học",
       "communities": "Cộng đồng",
-      "podcasts": "Podcast",
       "boards": "Bảng",
       "published": "đã xuất bản",
       "draft": "bản nháp",
       "total_users": "Tổng người dùng",
       "public": "công khai",
-      "episodes": "tập",
       "participants": "người tham gia",
       "loading": "Đang tải...",
       "enable_analytics_description": "Bật phân tích để xem người dùng trực tuyến, đăng ký và nhiều hơn nữa.",
@@ -2505,10 +2378,6 @@
           "courses": {
             "description": "Bật khóa học và theo dõi tiến độ cho tổ chức của bạn",
             "title": "Khóa học"
-          },
-          "podcasts": {
-            "description": "Bật tạo podcast và nội dung âm thanh cho tổ chức của bạn",
-            "title": "Podcast"
           },
           "boards": {
             "title": "Boards",
@@ -3939,8 +3808,7 @@
         "users": "Người dùng",
         "communities": "Cộng đồng",
         "discussions": "Thảo luận",
-        "playgrounds": "Playgrounds",
-        "podcasts": "Podcast"
+        "playgrounds": "Playgrounds"
       },
       "entries": {
         "home": {
@@ -3958,10 +3826,6 @@
         "communities": {
           "description": "Quản lý cộng đồng",
           "keywords": "diễn đàn, thảo luận, thành viên, bài đăng"
-        },
-        "podcasts": {
-          "description": "Quản lý podcast",
-          "keywords": "âm thanh, tập, chương trình"
         },
         "boards": {
           "description": "Quản lý bảng",
@@ -4873,8 +4737,6 @@
         "assess_desc": "Tạo bài tập và theo dõi bài nộp của học viên",
         "collaborate": "Cộng tác trực quan",
         "collaborate_desc": "Cung cấp cho học viên bảng chia sẻ để động não và làm việc cùng nhau",
-        "voice": "Chia sẻ giọng nói của bạn",
-        "voice_desc": "Phát hành podcast và phân phối các tập âm thanh đến học viên",
         "certify": "Cấp chứng chỉ cho học viên",
         "certify_desc": "Cấp chứng chỉ khi học viên hoàn thành khóa học của bạn",
         "impact": "Hiểu tác động của bạn",
@@ -5120,7 +4982,6 @@
       "medium": "Trung bình",
       "note": "Ghi chú",
       "pan": "Di chuyển",
-      "podcast": "Podcast",
       "redo": "Làm lại",
       "select": "Chọn",
       "sticker": "Nhãn dán",
@@ -5212,8 +5073,6 @@
           "payments_desc": "Bán khóa học và cung cấp đăng ký để tạo doanh thu.",
           "communities": "Thảo luận cộng đồng",
           "communities_desc": "Cho phép người học kết nối, đặt câu hỏi và chia sẻ ý tưởng.",
-          "podcasts": "Tạo podcast",
-          "podcasts_desc": "Cung cấp nội dung âm thanh và tiếp cận người học mọi nơi.",
           "ai": "1.000 tín dụng AI",
           "ai_desc": "Tăng tốc tạo nội dung với công cụ viết hỗ trợ AI.",
           "analytics": "Phân tích người học",
@@ -5320,7 +5179,6 @@
     "new_folder": "New Folder",
     "tabs": {
       "courses": "Courses",
-      "podcasts": "Podcasts",
       "communities": "Communities",
       "boards": "Boards",
       "playgrounds": "Playgrounds",

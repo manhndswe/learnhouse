@@ -103,10 +103,6 @@
           "description": "Пользовательские домены: премиум-функция, доступная для планов Standard и выше. Обновите для использования собственного домена.",
           "title": "Функция Standard"
         },
-        "podcasts": {
-          "description": "Подкасты: премиум-функция, доступная для планов Standard и выше. Обновите для создания и распространения подкастов.",
-          "title": "Функция Standard"
-        },
         "seo": {
           "description": "Инструменты SEO-оптимизации доступны только для планов Standard и выше. Обновите для настройки отображения в поисковых системах.",
           "title": "Функция Standard"
@@ -146,7 +142,6 @@
         "names": {
           "courses": "Курсы",
           "communities": "Сообщества",
-          "podcasts": "Подкасты",
           "payments": "Платежи",
           "trail": "Отслеживание прогресса",
           "boards": "Доски",
@@ -828,125 +823,6 @@
       "start_first": "Начните первое обсуждение"
     }
   },
-  "podcasts": {
-    "podcasts": "Подкасты",
-    "browse_description": "Слушайте подкасты этой организации",
-    "new_podcast": "Новый подкаст",
-    "search_placeholder": "Поиск подкастов...",
-    "no_podcasts": "Подкастов пока нет",
-    "no_podcasts_description": "В настоящее время нет доступных подкастов",
-    "no_search_results": "Подкасты не найдены",
-    "try_different_search": "Попробуйте другой поисковый запрос",
-    "episodes": "Эпизоды",
-    "no_episodes": "Эпизодов пока нет",
-    "hosted_by": "Ведущий",
-    "tags": "Теги",
-    "manage_podcast": "Управление подкастом",
-    "published": "Опубликовано",
-    "unpublished": "Не опубликовано",
-    "public": "Публичный",
-    "private": "Приватный",
-    "listen_now": "Слушать сейчас",
-    "delete_podcast": "Удалить подкаст",
-    "delete_podcast_title": "Удалить подкаст?",
-    "delete_podcast_confirm": "Вы уверены, что хотите удалить этот подкаст? Это действие нельзя отменить, и все эпизоды будут удалены.",
-    "deleting_podcast": "Удаление подкаста...",
-    "podcast_deleted_success": "Подкаст успешно удалён",
-    "podcast_deleted_error": "Не удалось удалить подкаст",
-    "edit_content": "Редактировать контент",
-    "create_new_podcast": "Создать новый подкаст для организации",
-    "create_podcast": "Создать подкаст",
-    "create_podcast_btn": "Создать подкаст",
-    "create_podcasts_placeholder": "Создайте подкасты для распространения аудиоконтента",
-    "creating_podcast": "Создание подкаста...",
-    "dashboard": {
-      "episodes": {
-        "audio_hint": "Поддерживаются файлы MP3, WAV или M4A",
-        "audio_label": "Аудиофайл",
-        "create": "Создать эпизод",
-        "create_error": "Не удалось создать эпизод",
-        "create_first": "Создать первый эпизод",
-        "created": "Эпизод создан",
-        "creating": "Создание эпизода...",
-        "delete": "Удалить",
-        "delete_confirm": "Удалить этот эпизод? Это действие необратимо.",
-        "delete_error": "Не удалось удалить эпизод",
-        "delete_title": "Удалить эпизод?",
-        "deleted": "Эпизод удалён",
-        "deleting": "Удаление эпизода...",
-        "description_label": "Описание",
-        "description_placeholder": "Введите описание эпизода",
-        "edit": "Редактировать",
-        "edit_episode": "Редактировать эпизод",
-        "edit_episode_description": "Обновить детали эпизода",
-        "new_episode": "Новый эпизод",
-        "new_episode_description": "Добавить новый эпизод к подкасту",
-        "no_audio": "Нет аудиофайла",
-        "no_episodes_description": "Начните с добавления первого эпизода",
-        "publish": "Опубликовать",
-        "replace_audio": "Заменить аудиофайл",
-        "save": "Сохранить изменения",
-        "title_label": "Название",
-        "title_placeholder": "Введите название эпизода",
-        "unpublish": "Снять с публикации",
-        "update_error": "Не удалось обновить эпизод",
-        "updated": "Эпизод обновлён",
-        "updating": "Обновление эпизода...",
-        "upload_audio": "Загрузить аудиофайл"
-      },
-      "form": {
-        "about": "О подкасте",
-        "about_max_length": "Описание не более 2000 символов",
-        "about_placeholder": "Расскажите слушателям о подкасте...",
-        "public_hint": "Любой может найти и прослушать этот подкаст",
-        "published_hint": "Показать подкаст на странице организации",
-        "tags_hint": "Разделяйте теги запятыми",
-        "tags_placeholder": "музыка, образование, технологии",
-        "thumbnail": "Миниатюра",
-        "thumbnail_hint": "Рекомендуемый размер: 1400x1400px. JPG или PNG.",
-        "upload_thumbnail": "Загрузить миниатюру",
-        "visibility": "Настройки видимости"
-      },
-      "save_changes": "Сохранить изменения",
-      "save_error": "Не удалось сохранить",
-      "saved": "Изменения сохранены",
-      "saving": "Сохранение...",
-      "tabs": {
-        "episodes": "Эпизоды",
-        "general": "Общие"
-      },
-      "view_podcast": "Просмотреть подкаст"
-    },
-    "failed_to_create_podcast": "Не удалось создать подкаст",
-    "form": {
-      "description_max_length": "Описание не более 500 символов",
-      "name_max_length": "Название не более 100 символов",
-      "name_min_length": "Название минимум 3 символа",
-      "name_required": "Название подкаста обязательно"
-    },
-    "modals": {
-      "create": {
-        "cancel": "Отмена",
-        "description": "Заполните детали для создания нового подкаста",
-        "form": {
-          "description_label": "Описание",
-          "description_placeholder": "Введите описание подкаста",
-          "name_label": "Название подкаста",
-          "name_placeholder": "Введите название подкаста",
-          "public_label": "Сделать подкаст публичным"
-        },
-        "submit": "Создать подкаст",
-        "title": "Создать новый подкаст"
-      }
-    },
-    "podcast_created_success": "Подкаст успешно создан",
-    "podcast_name": "Название подкаста",
-    "podcast_name_required": "Название подкаста обязательно",
-    "podcast_tags": "Теги",
-    "podcast_thumbnail": "Миниатюра подкаста",
-    "podcast_visibility": "Видимость",
-    "search_results": "Найдено {{count}} подкастов для \"{{query}}\""
-  },
   "activities": {
     "video": "Видео",
     "document": "Документ",
@@ -1115,8 +991,7 @@
       "users": "Участники",
       "communities": "Сообщества",
       "discussions": "Обсуждения",
-      "playgrounds": "Playgrounds",
-      "podcasts": "Подкасты"
+      "playgrounds": "Playgrounds"
     }
   },
   "ai": {
@@ -1465,13 +1340,11 @@
       "settings": "Настройки",
       "courses": "Курсы",
       "communities": "Сообщества",
-      "podcasts": "Подкасты",
       "boards": "Доски",
       "published": "опубликован",
       "draft": "черновик",
       "total_users": "Всего пользователей",
       "public": "публичный",
-      "episodes": "эпизоды",
       "participants": "участники",
       "loading": "Загрузка...",
       "enable_analytics_description": "Включите аналитику, чтобы видеть пользователей онлайн, регистрации и многое другое.",
@@ -2505,10 +2378,6 @@
           "courses": {
             "description": "Включить курсы и отслеживание прогресса",
             "title": "Курсы"
-          },
-          "podcasts": {
-            "description": "Включить создание подкастов и аудио контента",
-            "title": "Подкасты"
           },
           "boards": {
             "title": "Boards",
@@ -3939,8 +3808,7 @@
         "users": "Пользователи",
         "communities": "Сообщества",
         "discussions": "Обсуждения",
-        "playgrounds": "Playgrounds",
-        "podcasts": "Подкасты"
+        "playgrounds": "Playgrounds"
       },
       "entries": {
         "home": {
@@ -3958,10 +3826,6 @@
         "communities": {
           "description": "Управление сообществами",
           "keywords": "форумы, обсуждения, участники, посты"
-        },
-        "podcasts": {
-          "description": "Управление подкастами",
-          "keywords": "аудио, эпизоды, передачи"
         },
         "boards": {
           "description": "Управление досками",
@@ -4873,8 +4737,6 @@
         "assess_desc": "Создавайте задания и отслеживайте работы учеников",
         "collaborate": "Сотрудничайте визуально",
         "collaborate_desc": "Дайте ученикам общие доски для мозгового штурма и совместной работы",
-        "voice": "Поделитесь голосом",
-        "voice_desc": "Запускайте подкасты и распространяйте аудиоэпизоды среди учеников",
         "certify": "Сертифицируйте учеников",
         "certify_desc": "Выдавайте сертификаты, когда ученики завершат ваши курсы",
         "impact": "Поймите свое влияние",
@@ -5120,7 +4982,6 @@
       "medium": "Средний",
       "note": "Заметка",
       "pan": "Перемещение",
-      "podcast": "Подкаст",
       "redo": "Повторить",
       "select": "Выбрать",
       "sticker": "Стикер",
@@ -5212,8 +5073,6 @@
           "payments_desc": "Продавайте курсы и предлагайте подписки для получения дохода.",
           "communities": "Обсуждения в сообществе",
           "communities_desc": "Позвольте учащимся общаться, задавать вопросы и делиться идеями.",
-          "podcasts": "Создание подкастов",
-          "podcasts_desc": "Предлагайте аудиоконтент и охватывайте учащихся где угодно.",
           "ai": "1 000 кредитов ИИ",
           "ai_desc": "Ускорьте создание контента с помощью инструментов написания на базе ИИ.",
           "analytics": "Аналитика учащихся",
@@ -5320,7 +5179,6 @@
     "new_folder": "New Folder",
     "tabs": {
       "courses": "Courses",
-      "podcasts": "Podcasts",
       "communities": "Communities",
       "boards": "Boards",
       "playgrounds": "Playgrounds",

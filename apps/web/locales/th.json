@@ -103,10 +103,6 @@
           "description": "โดเมนที่กำหนดเองเป็นฟีเจอร์พรีเมียมที่มีให้บริการเฉพาะองค์กรที่ใช้แผน Standard หรือสูงกว่า อัปเกรดเพื่อใช้โดเมนของคุณเองและสร้างประสบการณ์เฉพาะแบรนด์",
           "title": "ฟีเจอร์ Standard"
         },
-        "podcasts": {
-          "description": "พอดแคสต์เป็นฟีเจอร์พรีเมียมที่มีให้บริการเฉพาะองค์กรที่ใช้แผน Standard หรือสูงกว่า อัปเกรดเพื่อสร้างและแชร์พอดแคสต์ให้กับสมาชิกของคุณ",
-          "title": "ฟีเจอร์ Standard"
-        },
         "seo": {
           "description": "เครื่องมือเพิ่มประสิทธิภาพ SEO มีให้บริการเฉพาะองค์กรที่ใช้แผน Standard หรือสูงกว่า อัปเกรดเพื่อปรับแต่งการแสดงผลในเครื่องมือค้นหา ตัวอย่างการแชร์บนโซเชียล และข้อมูลแบบมีโครงสร้างสำหรับคอร์สของคุณ",
           "title": "ฟีเจอร์ Standard"
@@ -146,7 +142,6 @@
         "names": {
           "courses": "คอร์ส",
           "communities": "ชุมชน",
-          "podcasts": "พอดแคสต์",
           "payments": "การชำระเงิน",
           "trail": "การติดตามความคืบหน้า",
           "boards": "บอร์ด",
@@ -828,125 +823,6 @@
       "start_first": "เริ่มการสนทนาแรก"
     }
   },
-  "podcasts": {
-    "podcasts": "พอดแคสต์",
-    "browse_description": "ฟังพอดแคสต์จากองค์กรนี้",
-    "new_podcast": "พอดแคสต์ใหม่",
-    "search_placeholder": "ค้นหาพอดแคสต์...",
-    "no_podcasts": "ยังไม่มีพอดแคสต์",
-    "no_podcasts_description": "ขณะนี้ยังไม่มีพอดแคสต์",
-    "no_search_results": "ไม่พบพอดแคสต์",
-    "try_different_search": "ลองใช้คำค้นหาอื่น",
-    "episodes": "ตอน",
-    "no_episodes": "ยังไม่มีตอน",
-    "hosted_by": "ดำเนินรายการโดย",
-    "tags": "แท็ก",
-    "manage_podcast": "จัดการพอดแคสต์",
-    "published": "เผยแพร่แล้ว",
-    "unpublished": "ยังไม่เผยแพร่",
-    "public": "สาธารณะ",
-    "private": "ส่วนตัว",
-    "listen_now": "ฟังเลย",
-    "delete_podcast": "ลบพอดแคสต์",
-    "delete_podcast_title": "ลบพอดแคสต์?",
-    "delete_podcast_confirm": "คุณแน่ใจหรือไม่ว่าต้องการลบพอดแคสต์นี้? การดำเนินการนี้ไม่สามารถยกเลิกได้และตอนทั้งหมดจะถูกลบ",
-    "deleting_podcast": "กำลังลบพอดแคสต์...",
-    "podcast_deleted_success": "ลบพอดแคสต์สำเร็จ",
-    "podcast_deleted_error": "ลบพอดแคสต์ไม่สำเร็จ",
-    "edit_content": "แก้ไขเนื้อหา",
-    "create_new_podcast": "สร้างพอดแคสต์ใหม่สำหรับองค์กรของคุณ",
-    "create_podcast": "สร้างพอดแคสต์",
-    "create_podcast_btn": "สร้างพอดแคสต์",
-    "create_podcasts_placeholder": "สร้างพอดแคสต์เพื่อแชร์เนื้อหาเสียงกับผู้ฟังของคุณ",
-    "creating_podcast": "กำลังสร้างพอดแคสต์...",
-    "dashboard": {
-      "episodes": {
-        "audio_hint": "รองรับไฟล์ MP3, WAV หรือ M4A",
-        "audio_label": "ไฟล์เสียง",
-        "create": "สร้างตอน",
-        "create_error": "สร้างตอนไม่สำเร็จ",
-        "create_first": "สร้างตอนแรก",
-        "created": "สร้างตอนแล้ว",
-        "creating": "กำลังสร้างตอน...",
-        "delete": "ลบ",
-        "delete_confirm": "คุณแน่ใจหรือไม่ว่าต้องการลบตอนนี้? การกระทำนี้ไม่สามารถยกเลิกได้",
-        "delete_error": "ลบตอนไม่สำเร็จ",
-        "delete_title": "ลบตอน?",
-        "deleted": "ลบตอนแล้ว",
-        "deleting": "กำลังลบตอน...",
-        "description_label": "คำอธิบาย",
-        "description_placeholder": "ใส่คำอธิบายของตอน",
-        "edit": "แก้ไข",
-        "edit_episode": "แก้ไขตอน",
-        "edit_episode_description": "อัปเดตรายละเอียดของตอน",
-        "new_episode": "ตอนใหม่",
-        "new_episode_description": "เพิ่มตอนใหม่ให้กับพอดแคสต์นี้",
-        "no_audio": "ไม่มีไฟล์เสียง",
-        "no_episodes_description": "เริ่มต้นด้วยการเพิ่มตอนแรกของคุณ",
-        "publish": "เผยแพร่",
-        "replace_audio": "แทนที่ไฟล์เสียง",
-        "save": "บันทึกการเปลี่ยนแปลง",
-        "title_label": "หัวข้อ",
-        "title_placeholder": "ใส่ชื่อตอน",
-        "unpublish": "ยกเลิกเผยแพร่",
-        "update_error": "อัปเดตตอนไม่สำเร็จ",
-        "updated": "อัปเดตตอนแล้ว",
-        "updating": "กำลังอัปเดตตอน...",
-        "upload_audio": "อัปโหลดไฟล์เสียง"
-      },
-      "form": {
-        "about": "เกี่ยวกับ",
-        "about_max_length": "เกี่ยวกับต้องไม่เกิน 2000 ตัวอักษร",
-        "about_placeholder": "บอกเล่าเกี่ยวกับพอดแคสต์นี้ให้ผู้ฟังฟัง...",
-        "public_hint": "ทุกคนสามารถค้นหาและฟังพอดแคสต์นี้ได้",
-        "published_hint": "ทำให้พอดแคสต์นี้แสดงในหน้าองค์กรของคุณ",
-        "tags_hint": "คั่นแท็กด้วยเครื่องหมายจุลภาค",
-        "tags_placeholder": "ดนตรี, การศึกษา, เทคโนโลยี",
-        "thumbnail": "ภาพย่อ",
-        "thumbnail_hint": "ขนาดที่แนะนำ: 1400x1400 พิกเซล รองรับ JPG หรือ PNG",
-        "upload_thumbnail": "อัปโหลดภาพย่อ",
-        "visibility": "ตั้งค่าการมองเห็น"
-      },
-      "save_changes": "บันทึกการเปลี่ยนแปลง",
-      "save_error": "บันทึกการเปลี่ยนแปลงไม่สำเร็จ",
-      "saved": "บันทึกการเปลี่ยนแปลงแล้ว",
-      "saving": "กำลังบันทึก...",
-      "tabs": {
-        "episodes": "ตอน",
-        "general": "ทั่วไป"
-      },
-      "view_podcast": "ดูพอดแคสต์"
-    },
-    "failed_to_create_podcast": "สร้างพอดแคสต์ไม่สำเร็จ",
-    "form": {
-      "description_max_length": "คำอธิบายต้องไม่เกิน 500 ตัวอักษร",
-      "name_max_length": "ชื่อต้องไม่เกิน 100 ตัวอักษร",
-      "name_min_length": "ชื่อต้องมีอย่างน้อย 3 ตัวอักษร",
-      "name_required": "ต้องระบุชื่อพอดแคสต์"
-    },
-    "modals": {
-      "create": {
-        "cancel": "ยกเลิก",
-        "description": "กรอกรายละเอียดเพื่อสร้างพอดแคสต์ใหม่",
-        "form": {
-          "description_label": "คำอธิบาย",
-          "description_placeholder": "ใส่คำอธิบายพอดแคสต์",
-          "name_label": "ชื่อพอดแคสต์",
-          "name_placeholder": "ใส่ชื่อพอดแคสต์",
-          "public_label": "ทำให้พอดแคสต์นี้เป็นสาธารณะ"
-        },
-        "submit": "สร้างพอดแคสต์",
-        "title": "สร้างพอดแคสต์ใหม่"
-      }
-    },
-    "podcast_created_success": "สร้างพอดแคสต์สำเร็จ",
-    "podcast_name": "ชื่อพอดแคสต์",
-    "podcast_name_required": "ต้องระบุชื่อพอดแคสต์",
-    "podcast_tags": "แท็ก",
-    "podcast_thumbnail": "ภาพย่อพอดแคสต์",
-    "podcast_visibility": "การมองเห็น",
-    "search_results": "พบ {{count}} พอดแคสต์สำหรับ \"{{query}}\""
-  },
   "activities": {
     "video": "วิดีโอ",
     "document": "เอกสาร",
@@ -1115,8 +991,7 @@
       "users": "สมาชิก",
       "communities": "ชุมชน",
       "discussions": "การสนทนา",
-      "playgrounds": "Playgrounds",
-      "podcasts": "พอดแคสต์"
+      "playgrounds": "Playgrounds"
     }
   },
   "ai": {
@@ -1465,13 +1340,11 @@
       "settings": "ตั้งค่า",
       "courses": "คอร์สเรียน",
       "communities": "ชุมชน",
-      "podcasts": "พอดแคสต์",
       "boards": "บอร์ด",
       "published": "เผยแพร่แล้ว",
       "draft": "ฉบับร่าง",
       "total_users": "ผู้ใช้ทั้งหมด",
       "public": "สาธารณะ",
-      "episodes": "ตอน",
       "participants": "ผู้เข้าร่วม",
       "loading": "กำลังโหลด...",
       "enable_analytics_description": "เปิดใช้งานการวิเคราะห์เพื่อดูผู้ใช้แบบเรียลไทม์ การสมัครสมาชิก และอื่นๆ",
@@ -2505,10 +2378,6 @@
           "courses": {
             "description": "เปิดใช้งานคอร์สและการติดตามความก้าวหน้าสำหรับองค์กรของคุณ",
             "title": "หลักสูตร"
-          },
-          "podcasts": {
-            "description": "เปิดใช้งานการสร้างพอดแคสต์และเนื้อหาเสียงสำหรับองค์กรของคุณ",
-            "title": "พอดแคสต์"
           },
           "boards": {
             "title": "Boards",
@@ -3939,8 +3808,7 @@
         "users": "ผู้ใช้",
         "communities": "ชุมชน",
         "discussions": "การสนทนา",
-        "playgrounds": "Playgrounds",
-        "podcasts": "พอดแคสต์"
+        "playgrounds": "Playgrounds"
       },
       "entries": {
         "home": {
@@ -3958,10 +3826,6 @@
         "communities": {
           "description": "จัดการชุมชน",
           "keywords": "ฟอรัม, การสนทนา, สมาชิก, โพสต์"
-        },
-        "podcasts": {
-          "description": "จัดการพอดแคสต์",
-          "keywords": "เสียง, ตอน, รายการ"
         },
         "boards": {
           "description": "จัดการบอร์ด",
@@ -4873,8 +4737,6 @@
         "assess_desc": "สร้างงานมอบหมายและติดตามการส่งงานของผู้เรียน",
         "collaborate": "ทำงานร่วมกันแบบภาพ",
         "collaborate_desc": "ให้ผู้เรียนมีบอร์ดร่วมสำหรับระดมความคิดและทำงานด้วยกัน",
-        "voice": "แบ่งปันเสียงของคุณ",
-        "voice_desc": "เปิดตัวพอดแคสต์และส่งตอนเสียงให้ผู้เรียน",
         "certify": "มอบใบรับรองผู้เรียน",
         "certify_desc": "ออกใบรับรองเมื่อผู้เรียนเรียนจบคอร์สของคุณ",
         "impact": "เข้าใจผลกระทบของคุณ",
@@ -5120,7 +4982,6 @@
       "medium": "กลาง",
       "note": "บันทึก",
       "pan": "เลื่อน",
-      "podcast": "พอดแคสต์",
       "redo": "ทำซ้ำ",
       "select": "เลือก",
       "sticker": "สติกเกอร์",
@@ -5212,8 +5073,6 @@
           "payments_desc": "ขายคอร์สและเสนอการสมัครสมาชิกเพื่อสร้างรายได้",
           "communities": "การสนทนาในชุมชน",
           "communities_desc": "ให้ผู้เรียนเชื่อมต่อ ถามคำถาม และแชร์ไอเดีย",
-          "podcasts": "สร้างพอดแคสต์",
-          "podcasts_desc": "นำเสนอเนื้อหาเสียงและเข้าถึงผู้เรียนได้ทุกที่",
           "ai": "1,000 เครดิต AI",
           "ai_desc": "เร่งการสร้างเนื้อหาด้วยเครื่องมือเขียน AI",
           "analytics": "การวิเคราะห์ผู้เรียน",
@@ -5320,7 +5179,6 @@
     "new_folder": "New Folder",
     "tabs": {
       "courses": "Courses",
-      "podcasts": "Podcasts",
       "communities": "Communities",
       "boards": "Boards",
       "playgrounds": "Playgrounds",

@@ -113,10 +113,6 @@
           "description": "النطاقات المخصصة هي ميزة مميزة متاحة فقط للمنظمات ذات الخطة القياسية أو أعلى. قم بالترقية لاستخدام نطاقك الخاص لتجربة ذات علامة تجارية.",
           "title": "ميزة قياسية"
         },
-        "podcasts": {
-          "description": "البودكاست هي ميزة مميزة متاحة فقط للمنظمات ذات الخطة القياسية أو أعلى. قم بالترقية لإنشاء ومشاركة البودكاست مع أعضائك.",
-          "title": "ميزة قياسية"
-        },
         "boards": {
           "title": "ميزة خطة Standard",
           "description": "اللوحات ميزة متقدمة متاحة فقط للمؤسسات المشتركة في خطة Standard أو أعلى. قم بالترقية لفتح اللوحات التعاونية للعصف الذهني والتخطيط الآني."
@@ -148,7 +144,6 @@
         "names": {
           "courses": "الدورات",
           "communities": "المجتمعات",
-          "podcasts": "البودكاست",
           "payments": "المدفوعات",
           "trail": "تتبع التقدم",
           "boards": "اللوحات",
@@ -856,125 +851,6 @@
       "start_first": "ابدأ أول نقاش"
     }
   },
-  "podcasts": {
-    "podcasts": "البودكاست",
-    "browse_description": "استمع إلى البودكاست من هذه المنظمة",
-    "new_podcast": "بودكاست جديد",
-    "search_placeholder": "البحث عن البودكاست...",
-    "no_podcasts": "لا يوجد بودكاست بعد",
-    "no_podcasts_description": "لا يوجد بودكاست متاح حالياً",
-    "no_search_results": "لم يتم العثور على بودكاست",
-    "try_different_search": "جرب مصطلح بحث مختلف",
-    "episodes": "الحلقات",
-    "no_episodes": "لا يوجد حلقات بعد",
-    "hosted_by": "يقدمه",
-    "tags": "الوسوم",
-    "manage_podcast": "إدارة البودكاست",
-    "published": "منشور",
-    "unpublished": "غير منشور",
-    "public": "عام",
-    "private": "خاص",
-    "listen_now": "استمع الآن",
-    "delete_podcast": "حذف البودكاست",
-    "delete_podcast_title": "حذف البودكاست؟",
-    "delete_podcast_confirm": "هل أنت متأكد من حذف هذا البودكاست؟ هذا الإجراء لا يمكن التراجع عنه وسيتم حذف جميع الحلقات.",
-    "deleting_podcast": "جاري حذف البودكاست...",
-    "podcast_deleted_success": "تم حذف البودكاست بنجاح",
-    "podcast_deleted_error": "فشل في حذف البودكاست",
-    "edit_content": "تعديل المحتوى",
-    "create_new_podcast": "إنشاء بودكاست جديد لمؤسستك",
-    "create_podcast": "إنشاء بودكاست",
-    "create_podcast_btn": "إنشاء بودكاست",
-    "create_podcasts_placeholder": "أنشئ بودكاست لمشاركة المحتوى الصوتي مع جمهورك",
-    "creating_podcast": "جاري إنشاء البودكاست...",
-    "dashboard": {
-      "episodes": {
-        "audio_hint": "ملفات MP3, WAV, أو M4A مدعومة",
-        "audio_label": "ملف الصوت",
-        "create": "إنشاء حلقة",
-        "create_error": "فشل إنشاء الحلقة",
-        "create_first": "إنشاء أول حلقة",
-        "created": "تم إنشاء الحلقة",
-        "creating": "جاري إنشاء الحلقة...",
-        "delete": "حذف",
-        "delete_confirm": "هل أنت متأكد من رغبتك في حذف هذه الحلقة؟ لا يمكن التراجع عن هذا الإجراء.",
-        "delete_error": "فشل حذف الحلقة",
-        "delete_title": "حذف الحلقة؟",
-        "deleted": "تم حذف الحلقة",
-        "deleting": "جاري حذف الحلقة...",
-        "description_label": "الوصف",
-        "description_placeholder": "أدخل وصف الحلقة",
-        "edit": "تعديل",
-        "edit_episode": "تعديل الحلقة",
-        "edit_episode_description": "تحديث تفاصيل الحلقة",
-        "new_episode": "حلقة جديدة",
-        "new_episode_description": "إضافة حلقة جديدة لهذا البودكاست",
-        "no_audio": "لا يوجد ملف صوتي",
-        "no_episodes_description": "ابدأ بإضافة أول حلقة لك",
-        "publish": "نشر",
-        "replace_audio": "استبدال ملف الصوت",
-        "save": "حفظ التغييرات",
-        "title_label": "العنوان",
-        "title_placeholder": "أدخل عنوان الحلقة",
-        "unpublish": "إلغاء النشر",
-        "update_error": "فشل تحديث الحلقة",
-        "updated": "تم تحديث الحلقة",
-        "updating": "جاري تحديث الحلقة...",
-        "upload_audio": "رفع ملف صوتي"
-      },
-      "form": {
-        "about": "حول",
-        "about_max_length": "يجب أن يكون الوصف 2000 حرف أو أقل",
-        "about_placeholder": "أخبر المستمعين المزيد عن هذا البودكاست...",
-        "public_hint": "يمكن لأي شخص العثور على هذا البودكاست والاستماع إليه",
-        "published_hint": "اجعل هذا البودكاست مرئياً على صفحة مؤسستك",
-        "tags_hint": "افصل الوسوم بفواصل",
-        "tags_placeholder": "موسيقى، تعليم، تقنية",
-        "thumbnail": "الصورة المصغرة",
-        "thumbnail_hint": "الحجم الموصى به: 1400x1400 بكسل. JPG أو PNG.",
-        "upload_thumbnail": "رفع صورة مصغرة",
-        "visibility": "إعدادات الظهور"
-      },
-      "save_changes": "حفظ التغييرات",
-      "save_error": "فشل حفظ التغييرات",
-      "saved": "تم حفظ التغييرات",
-      "saving": "جاري الحفظ...",
-      "tabs": {
-        "episodes": "الحلقات",
-        "general": "عام"
-      },
-      "view_podcast": "عرض البودكاست"
-    },
-    "failed_to_create_podcast": "فشل إنشاء البودكاست",
-    "form": {
-      "description_max_length": "يجب أن يكون الوصف 500 حرف أو أقل",
-      "name_max_length": "يجب أن يكون الاسم 100 حرف أو أقل",
-      "name_min_length": "يجب أن يكون الاسم 3 أحرف على الأقل",
-      "name_required": "اسم البودكاست مطلوب"
-    },
-    "modals": {
-      "create": {
-        "cancel": "إلغاء",
-        "description": "املأ التفاصيل لإنشاء بودكاست جديد",
-        "form": {
-          "description_label": "الوصف",
-          "description_placeholder": "أدخل وصف البودكاست",
-          "name_label": "اسم البودكاست",
-          "name_placeholder": "أدخل اسم البودكاست",
-          "public_label": "اجعل هذا البودكاست عاماً"
-        },
-        "submit": "إنشاء بودكاست",
-        "title": "إنشاء بودكاست جديد"
-      }
-    },
-    "podcast_created_success": "تم إنشاء البودكاست بنجاح",
-    "podcast_name": "اسم البودكاست",
-    "podcast_name_required": "اسم البودكاست مطلوب",
-    "podcast_tags": "الوسوم",
-    "podcast_thumbnail": "صورة البودكاست المصغرة",
-    "podcast_visibility": "الظهور",
-    "search_results": "تم العثور على {{count}} بودكاست لـ \"{{query}}\""
-  },
   "activities": {
     "video": "فيديو",
     "document": "مستند",
@@ -1171,8 +1047,7 @@
       "users": "أعضاء",
       "communities": "مجتمعات",
       "discussions": "مناقشات",
-      "playgrounds": "ساحات التجربة",
-      "podcasts": "بودكاست"
+      "playgrounds": "ساحات التجربة"
     }
   },
   "ai": {
@@ -1599,13 +1474,11 @@
       "settings": "الإعدادات",
       "courses": "الدورات",
       "communities": "المجتمعات",
-      "podcasts": "البودكاست",
       "boards": "اللوحات",
       "published": "منشور",
       "draft": "مسودة",
       "total_users": "إجمالي المستخدمين",
       "public": "عام",
-      "episodes": "الحلقات",
       "participants": "المشاركون",
       "loading": "جارٍ التحميل...",
       "enable_analytics_description": "قم بتفعيل التحليلات لرؤية المستخدمين المباشرين والتسجيلات والمزيد.",
@@ -2770,10 +2643,6 @@
           "courses": {
             "description": "تمكين الدورات وتتبع التقدم لمؤسستك",
             "title": "الدورات"
-          },
-          "podcasts": {
-            "description": "تمكين إنشاء البودكاست والمحتوى الصوتي لمؤسستك",
-            "title": "البودكاست"
           },
           "boards": {
             "title": "اللوحات",
@@ -4784,8 +4653,7 @@
         "users": "المستخدمون",
         "communities": "المجتمعات",
         "discussions": "المناقشات",
-        "playgrounds": "ساحات التجربة",
-        "podcasts": "البودكاست"
+        "playgrounds": "ساحات التجربة"
       },
       "entries": {
         "home": {
@@ -4803,10 +4671,6 @@
         "communities": {
           "description": "إدارة المجتمعات",
           "keywords": "منتديات, مناقشات, أعضاء, منشورات"
-        },
-        "podcasts": {
-          "description": "إدارة البودكاست",
-          "keywords": "صوت, حلقات, برامج"
         },
         "boards": {
           "description": "إدارة اللوحات",
@@ -5797,7 +5661,6 @@
       "thick": "سميك",
       "undo": "تراجع",
       "redo": "إعادة",
-      "podcast": "بودكاست",
       "todo": "قائمة المهام"
     },
     "zoom": {
@@ -6033,8 +5896,6 @@
         "assess_desc": "أنشئ واجبات وتابع التقديمات من المتعلمين",
         "collaborate": "تعاون بصرياً",
         "collaborate_desc": "امنح المتعلمين لوحات مشتركة للعصف الذهني والعمل معاً",
-        "voice": "شارك صوتك",
-        "voice_desc": "أطلق بودكاست ووزّع حلقات صوتية على المتعلمين",
         "certify": "امنح الشهادات",
         "certify_desc": "أصدر شهادات عند إتمام المتعلمين لدوراتك",
         "impact": "افهم تأثيرك",
@@ -6110,8 +5971,6 @@
           "payments_desc": "بِع الدورات وقدم اشتراكات لتحقيق الإيرادات.",
           "communities": "مناقشات المجتمع",
           "communities_desc": "دع المتعلمين يتواصلون ويطرحون الأسئلة ويتشاركون الأفكار.",
-          "podcasts": "إنشاء البودكاست",
-          "podcasts_desc": "قدم محتوى صوتي وصل للمتعلمين أينما كانوا.",
           "ai": "1,000 رصيد ذكاء اصطناعي",
           "ai_desc": "سرّع إنشاء المحتوى بأدوات كتابة مدعومة بالذكاء الاصطناعي.",
           "analytics": "تحليلات المتعلمين",
@@ -6221,7 +6080,6 @@
     "new_folder": "مجلد جديد",
     "tabs": {
       "courses": "الدورات",
-      "podcasts": "البودكاست",
       "communities": "المجتمعات",
       "boards": "اللوحات",
       "playgrounds": "ساحات التجربة",

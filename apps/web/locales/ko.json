@@ -103,10 +103,6 @@
           "description": "커스텀 도메인은 Standard 플랜 이상의 조직에서만 사용할 수 있는 프리미엄 기능입니다. 브랜드 경험을 위해 자체 도메인을 사용하려면 업그레이드하세요.",
           "title": "Standard 기능"
         },
-        "podcasts": {
-          "description": "팟캐스트는 Standard 플랜 이상의 조직에서만 사용할 수 있는 프리미엄 기능입니다. 멤버와 팟캐스트를 만들고 공유하려면 업그레이드하세요.",
-          "title": "Standard 기능"
-        },
         "seo": {
           "description": "SEO 최적화 도구는 Standard 플랜 이상의 조직에서만 사용할 수 있습니다. 코스의 검색 엔진 표시, 소셜 공유 미리보기, 구조화된 데이터를 사용자 정의하려면 업그레이드하세요.",
           "title": "Standard 기능"
@@ -146,7 +142,6 @@
         "names": {
           "courses": "코스",
           "communities": "커뮤니티",
-          "podcasts": "팟캐스트",
           "payments": "결제",
           "trail": "진행 상황 추적",
           "boards": "보드",
@@ -816,125 +811,6 @@
       "start_first": "첫 번째 토론을 시작하세요"
     }
   },
-  "podcasts": {
-    "podcasts": "팟캐스트",
-    "browse_description": "이 조직의 팟캐스트를 들으세요",
-    "new_podcast": "새 팟캐스트",
-    "search_placeholder": "팟캐스트 검색...",
-    "no_podcasts": "팟캐스트가 없습니다",
-    "no_podcasts_description": "현재 이용 가능한 팟캐스트가 없습니다",
-    "no_search_results": "팟캐스트를 찾을 수 없습니다",
-    "try_different_search": "다른 검색어를 시도해보세요",
-    "episodes": "에피소드",
-    "no_episodes": "에피소드가 없습니다",
-    "hosted_by": "진행자",
-    "tags": "태그",
-    "manage_podcast": "팟캐스트 관리",
-    "published": "게시됨",
-    "unpublished": "미게시",
-    "public": "공개",
-    "private": "비공개",
-    "listen_now": "지금 듣기",
-    "delete_podcast": "팟캐스트 삭제",
-    "delete_podcast_title": "팟캐스트를 삭제하시겠습니까?",
-    "delete_podcast_confirm": "이 팟캐스트를 삭제하시겠습니까? 이 작업은 취소할 수 없으며 모든 에피소드가 삭제됩니다.",
-    "deleting_podcast": "팟캐스트 삭제 중...",
-    "podcast_deleted_success": "팟캐스트가 성공적으로 삭제되었습니다",
-    "podcast_deleted_error": "팟캐스트 삭제 실패",
-    "edit_content": "콘텐츠 편집",
-    "create_new_podcast": "조직의 새 팟캐스트 만들기",
-    "create_podcast": "팟캐스트 만들기",
-    "create_podcast_btn": "팟캐스트 만들기",
-    "create_podcasts_placeholder": "청중과 오디오 콘텐츠를 공유할 팟캐스트 만들기",
-    "creating_podcast": "팟캐스트 생성 중...",
-    "dashboard": {
-      "episodes": {
-        "audio_hint": "MP3, WAV 또는 M4A 파일 지원",
-        "audio_label": "오디오 파일",
-        "create": "에피소드 만들기",
-        "create_error": "에피소드 생성 실패",
-        "create_first": "첫 에피소드 만들기",
-        "created": "에피소드 생성됨",
-        "creating": "에피소드 생성 중...",
-        "delete": "삭제",
-        "delete_confirm": "이 에피소드를 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.",
-        "delete_error": "에피소드 삭제 실패",
-        "delete_title": "에피소드를 삭제하시겠습니까?",
-        "deleted": "에피소드 삭제됨",
-        "deleting": "에피소드 삭제 중...",
-        "description_label": "설명",
-        "description_placeholder": "에피소드 설명 입력",
-        "edit": "편집",
-        "edit_episode": "에피소드 편집",
-        "edit_episode_description": "에피소드 세부정보 업데이트",
-        "new_episode": "새 에피소드",
-        "new_episode_description": "이 팟캐스트에 새 에피소드 추가",
-        "no_audio": "오디오 파일 없음",
-        "no_episodes_description": "첫 에피소드를 추가하여 시작하세요",
-        "publish": "게시",
-        "replace_audio": "오디오 파일 교체",
-        "save": "변경사항 저장",
-        "title_label": "제목",
-        "title_placeholder": "에피소드 제목 입력",
-        "unpublish": "게시 취소",
-        "update_error": "에피소드 업데이트 실패",
-        "updated": "에피소드 업데이트됨",
-        "updating": "에피소드 업데이트 중...",
-        "upload_audio": "오디오 파일 업로드"
-      },
-      "form": {
-        "about": "소개",
-        "about_max_length": "소개는 최대 2000자입니다",
-        "about_placeholder": "이 팟캐스트에 대해 청취자에게 더 알려주세요...",
-        "public_hint": "누구나 이 팟캐스트를 찾아 들을 수 있습니다",
-        "published_hint": "이 팟캐스트를 조직 페이지에 표시",
-        "tags_hint": "태그를 쉼표로 구분하세요",
-        "tags_placeholder": "음악, 교육, 기술",
-        "thumbnail": "썸네일",
-        "thumbnail_hint": "권장 크기: 1400x1400px. JPG 또는 PNG.",
-        "upload_thumbnail": "썸네일 업로드",
-        "visibility": "공개 설정"
-      },
-      "save_changes": "변경사항 저장",
-      "save_error": "변경사항 저장 실패",
-      "saved": "변경사항 저장됨",
-      "saving": "저장 중...",
-      "tabs": {
-        "episodes": "에피소드",
-        "general": "일반"
-      },
-      "view_podcast": "팟캐스트 보기"
-    },
-    "failed_to_create_podcast": "팟캐스트 생성 실패",
-    "form": {
-      "description_max_length": "설명은 최대 500자입니다",
-      "name_max_length": "이름은 최대 100자입니다",
-      "name_min_length": "이름은 최소 3자입니다",
-      "name_required": "팟캐스트 이름은 필수입니다"
-    },
-    "modals": {
-      "create": {
-        "cancel": "취소",
-        "description": "새 팟캐스트를 만들기 위한 세부정보를 입력하세요",
-        "form": {
-          "description_label": "설명",
-          "description_placeholder": "팟캐스트 설명 입력",
-          "name_label": "팟캐스트 이름",
-          "name_placeholder": "팟캐스트 이름 입력",
-          "public_label": "이 팟캐스트를 공개로 설정"
-        },
-        "submit": "팟캐스트 만들기",
-        "title": "새 팟캐스트 만들기"
-      }
-    },
-    "podcast_created_success": "팟캐스트가 성공적으로 생성되었습니다",
-    "podcast_name": "팟캐스트 이름",
-    "podcast_name_required": "팟캐스트 이름은 필수입니다",
-    "podcast_tags": "태그",
-    "podcast_thumbnail": "팟캐스트 썸네일",
-    "podcast_visibility": "공개 설정",
-    "search_results": "\"{{query}}\"에 대해 {{count}}개의 팟캐스트를 찾았습니다"
-  },
   "activities": {
     "video": "동영상",
     "document": "문서",
@@ -1103,8 +979,7 @@
       "users": "멤버",
       "communities": "커뮤니티",
       "discussions": "토론",
-      "playgrounds": "Playgrounds",
-      "podcasts": "팟캐스트"
+      "playgrounds": "Playgrounds"
     }
   },
   "ai": {
@@ -1453,13 +1328,11 @@
       "settings": "설정",
       "courses": "강좌",
       "communities": "커뮤니티",
-      "podcasts": "팟캐스트",
       "boards": "게시판",
       "published": "게시됨",
       "draft": "초안",
       "total_users": "전체 사용자",
       "public": "공개",
-      "episodes": "에피소드",
       "participants": "참가자",
       "loading": "로딩 중...",
       "enable_analytics_description": "분석을 활성화하여 실시간 사용자, 가입 현황 등을 확인하세요.",
@@ -2516,10 +2389,6 @@
           "courses": {
             "description": "조직의 코스 및 진행 추적 활성화",
             "title": "코스"
-          },
-          "podcasts": {
-            "description": "조직의 팟캐스트 제작 및 오디오 콘텐츠 활성화",
-            "title": "팟캐스트"
           },
           "boards": {
             "title": "Boards",
@@ -3927,8 +3796,7 @@
         "users": "사용자",
         "communities": "커뮤니티",
         "discussions": "토론",
-        "playgrounds": "Playgrounds",
-        "podcasts": "팟캐스트"
+        "playgrounds": "Playgrounds"
       },
       "entries": {
         "home": {
@@ -3946,10 +3814,6 @@
         "communities": {
           "description": "커뮤니티 관리",
           "keywords": "포럼, 토론, 회원, 게시물"
-        },
-        "podcasts": {
-          "description": "팟캐스트 관리",
-          "keywords": "오디오, 에피소드, 프로그램"
         },
         "boards": {
           "description": "보드 관리",
@@ -4861,8 +4725,6 @@
         "assess_desc": "과제를 만들고 학습자의 제출물을 추적하세요",
         "collaborate": "시각적으로 협업하세요",
         "collaborate_desc": "학습자에게 브레인스토밍과 협업을 위한 공유 보드를 제공하세요",
-        "voice": "목소리를 공유하세요",
-        "voice_desc": "팟캐스트를 시작하고 학습자에게 오디오 에피소드를 배포하세요",
         "certify": "학습자를 인증하세요",
         "certify_desc": "학습자가 코스를 완료하면 인증서를 발급하세요",
         "impact": "영향력을 파악하세요",
@@ -5108,7 +4970,6 @@
       "medium": "중간",
       "note": "노트",
       "pan": "이동",
-      "podcast": "팟캐스트",
       "redo": "다시 실행",
       "select": "선택",
       "sticker": "스티커",
@@ -5200,8 +5061,6 @@
           "payments_desc": "코스를 판매하고 구독을 제공하여 수익을 창출하세요.",
           "communities": "커뮤니티 토론",
           "communities_desc": "학습자들이 소통하고 질문하고 아이디어를 공유할 수 있습니다.",
-          "podcasts": "팟캐스트 제작",
-          "podcasts_desc": "오디오 콘텐츠를 제공하고 어디서나 학습자에게 도달하세요.",
           "ai": "1,000 AI 크레딧",
           "ai_desc": "AI 글쓰기 도구로 콘텐츠 제작을 가속화하세요.",
           "analytics": "학습자 분석",
@@ -5308,7 +5167,6 @@
     "new_folder": "New Folder",
     "tabs": {
       "courses": "Courses",
-      "podcasts": "Podcasts",
       "communities": "Communities",
       "boards": "Boards",
       "playgrounds": "Playgrounds",

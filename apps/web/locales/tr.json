@@ -103,10 +103,6 @@
           "description": "Özel Alan Adları, yalnızca Standart plan ve üzeri organizasyonlar için kullanılabilen premium bir özelliktir. Markalı deneyim için kendi alan adınızı kullanmak üzere yükseltin.",
           "title": "Standart Özellik"
         },
-        "podcasts": {
-          "description": "Podcastler, yalnızca Standart plan ve üzeri organizasyonlar için kullanılabilen premium bir özelliktir. Üyelerinizle podcast oluşturmak ve paylaşmak için yükseltin.",
-          "title": "Standart Özellik"
-        },
         "seo": {
           "description": "SEO optimizasyon araçları yalnızca Standart plan ve üzeri organizasyonlar için kullanılabilir. Arama motoru görünümünü özelleştirmek için yükseltin.",
           "title": "Standart Özellik"
@@ -146,7 +142,6 @@
         "names": {
           "courses": "Kurslar",
           "communities": "Topluluklar",
-          "podcasts": "Podcastler",
           "payments": "Ödemeler",
           "trail": "İlerleme Takibi",
           "boards": "Panolar",
@@ -828,125 +823,6 @@
       "start_first": "İlk tartışmayı başlatın"
     }
   },
-  "podcasts": {
-    "podcasts": "Podcastler",
-    "browse_description": "Bu organizasyonun podcastlerini dinleyin",
-    "new_podcast": "Yeni Podcast",
-    "search_placeholder": "Podcast ara...",
-    "no_podcasts": "Henüz podcast yok",
-    "no_podcasts_description": "Şu anda mevcut podcast yok",
-    "no_search_results": "Podcast bulunamadı",
-    "try_different_search": "Farklı bir arama terimi deneyin",
-    "episodes": "Bölümler",
-    "no_episodes": "Henüz bölüm yok",
-    "hosted_by": "Sunan",
-    "tags": "Etiketler",
-    "manage_podcast": "Podcast'i Yönet",
-    "published": "Yayınlandı",
-    "unpublished": "Yayınlanmadı",
-    "public": "Herkese Açık",
-    "private": "Özel",
-    "listen_now": "Şimdi Dinle",
-    "delete_podcast": "Podcast'i Sil",
-    "delete_podcast_title": "Podcast silinsin mi?",
-    "delete_podcast_confirm": "Bu podcast'i silmek istediğinizden emin misiniz? Bu işlem geri alınamaz ve tüm bölümler silinecektir.",
-    "deleting_podcast": "Podcast siliniyor...",
-    "podcast_deleted_success": "Podcast başarıyla silindi",
-    "podcast_deleted_error": "Podcast silinemedi",
-    "edit_content": "İçeriği Düzenle",
-    "create_new_podcast": "Organizasyonunuz için yeni bir podcast oluşturun",
-    "create_podcast": "Podcast Oluştur",
-    "create_podcast_btn": "Podcast Oluştur",
-    "create_podcasts_placeholder": "Hedef kitlenizle ses içeriğini paylaşmak için podcastler oluşturun",
-    "creating_podcast": "Podcast oluşturuluyor...",
-    "dashboard": {
-      "episodes": {
-        "audio_hint": "MP3, WAV veya M4A dosyaları desteklenir",
-        "audio_label": "Ses Dosyası",
-        "create": "Bölüm Oluştur",
-        "create_error": "Bölüm oluşturulamadı",
-        "create_first": "İlk Bölümü Oluştur",
-        "created": "Bölüm oluşturuldu",
-        "creating": "Bölüm oluşturuluyor...",
-        "delete": "Sil",
-        "delete_confirm": "Bu bölümü silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.",
-        "delete_error": "Bölüm silinemedi",
-        "delete_title": "Bölüm Silinsin mi?",
-        "deleted": "Bölüm silindi",
-        "deleting": "Bölüm siliniyor...",
-        "description_label": "Açıklama",
-        "description_placeholder": "Bölüm açıklamasını girin",
-        "edit": "Düzenle",
-        "edit_episode": "Bölümü Düzenle",
-        "edit_episode_description": "Bölüm ayrıntılarını güncelleyin",
-        "new_episode": "Yeni Bölüm",
-        "new_episode_description": "Bu podcasta yeni bir bölüm ekleyin",
-        "no_audio": "Ses dosyası yok",
-        "no_episodes_description": "İlk bölümünüzü ekleyerek başlayın",
-        "publish": "Yayınla",
-        "replace_audio": "Ses Dosyasını Değiştir",
-        "save": "Değişiklikleri Kaydet",
-        "title_label": "Başlık",
-        "title_placeholder": "Bölüm başlığını girin",
-        "unpublish": "Yayından Kaldır",
-        "update_error": "Bölüm güncellenemedi",
-        "updated": "Bölüm güncellendi",
-        "updating": "Bölüm güncelleniyor...",
-        "upload_audio": "Ses Dosyası Yükle"
-      },
-      "form": {
-        "about": "Hakkında",
-        "about_max_length": "Hakkında en fazla 2000 karakter olmalıdır",
-        "about_placeholder": "Dinleyicilere bu podcast hakkında daha fazla bilgi verin...",
-        "public_hint": "Herkes bu podcasti bulabilir ve dinleyebilir",
-        "published_hint": "Bu podcasti organizasyon sayfanızda görünür yapın",
-        "tags_hint": "Etiketleri virgülle ayırın",
-        "tags_placeholder": "müzik, eğitim, teknoloji",
-        "thumbnail": "Küçük Resim",
-        "thumbnail_hint": "Önerilen boyut: 1400x1400px. JPG veya PNG.",
-        "upload_thumbnail": "Küçük Resim Yükle",
-        "visibility": "Görünürlük Ayarları"
-      },
-      "save_changes": "Değişiklikleri Kaydet",
-      "save_error": "Değişiklikler kaydedilemedi",
-      "saved": "Değişiklikler kaydedildi",
-      "saving": "Kaydediliyor...",
-      "tabs": {
-        "episodes": "Bölümler",
-        "general": "Genel"
-      },
-      "view_podcast": "Podcasti Gör"
-    },
-    "failed_to_create_podcast": "Podcast oluşturulamadı",
-    "form": {
-      "description_max_length": "Açıklama en fazla 500 karakter olmalıdır",
-      "name_max_length": "Ad en fazla 100 karakter olmalıdır",
-      "name_min_length": "Ad en az 3 karakter olmalıdır",
-      "name_required": "Podcast adı gereklidir"
-    },
-    "modals": {
-      "create": {
-        "cancel": "İptal",
-        "description": "Yeni bir podcast oluşturmak için ayrıntıları doldurun",
-        "form": {
-          "description_label": "Açıklama",
-          "description_placeholder": "Podcast açıklamasını girin",
-          "name_label": "Podcast Adı",
-          "name_placeholder": "Podcast adını girin",
-          "public_label": "Bu podcasti herkese açık yap"
-        },
-        "submit": "Podcast Oluştur",
-        "title": "Yeni Podcast Oluştur"
-      }
-    },
-    "podcast_created_success": "Podcast başarıyla oluşturuldu",
-    "podcast_name": "Podcast Adı",
-    "podcast_name_required": "Podcast adı gereklidir",
-    "podcast_tags": "Etiketler",
-    "podcast_thumbnail": "Podcast Küçük Resmi",
-    "podcast_visibility": "Görünürlük",
-    "search_results": "\"{{query}}\" için {{count}} podcast bulundu"
-  },
   "activities": {
     "video": "Video",
     "document": "Doküman",
@@ -1115,8 +991,7 @@
       "users": "Üyeler",
       "communities": "Topluluklar",
       "discussions": "Tartışmalar",
-      "playgrounds": "Playgrounds",
-      "podcasts": "Podcastler"
+      "playgrounds": "Playgrounds"
     }
   },
   "ai": {
@@ -1465,13 +1340,11 @@
       "settings": "Ayarlar",
       "courses": "Kurslar",
       "communities": "Topluluklar",
-      "podcasts": "Podcast'ler",
       "boards": "Panolar",
       "published": "yayınlandı",
       "draft": "taslak",
       "total_users": "Toplam kullanıcı",
       "public": "genel",
-      "episodes": "bölümler",
       "participants": "katılımcılar",
       "loading": "Yükleniyor...",
       "enable_analytics_description": "Canlı kullanıcıları, kayıtları ve daha fazlasını görmek için analitiği etkinleştirin.",
@@ -2505,10 +2378,6 @@
           "courses": {
             "description": "Organizasyonunuz için kursları ve ilerleme takibini etkinleştirin",
             "title": "Kurslar"
-          },
-          "podcasts": {
-            "description": "Organizasyonunuz için podcast oluşturma ve ses içeriğini etkinleştirin",
-            "title": "Podcastler"
           },
           "boards": {
             "title": "Boards",
@@ -3939,8 +3808,7 @@
         "users": "Kullanıcılar",
         "communities": "Topluluklar",
         "discussions": "Tartışmalar",
-        "playgrounds": "Playgrounds",
-        "podcasts": "Podcastler"
+        "playgrounds": "Playgrounds"
       },
       "entries": {
         "home": {
@@ -3958,10 +3826,6 @@
         "communities": {
           "description": "Toplulukları yönetin",
           "keywords": "forumlar, tartışmalar, üyeler, gönderiler"
-        },
-        "podcasts": {
-          "description": "Podcastleri yönetin",
-          "keywords": "ses, bölümler, programlar"
         },
         "boards": {
           "description": "Panoları yönetin",
@@ -4873,8 +4737,6 @@
         "assess_desc": "Ödevler oluşturun ve öğrencilerin gönderimlerini takip edin",
         "collaborate": "Görsel olarak işbirliği yapın",
         "collaborate_desc": "Öğrencilere beyin fırtınası ve birlikte çalışma için ortak panolar verin",
-        "voice": "Sesinizi paylaşın",
-        "voice_desc": "Podcast başlatın ve öğrencilere ses bölümleri dağıtın",
         "certify": "Öğrencileri sertifikalandırın",
         "certify_desc": "Öğrenciler kurslarınızı tamamladığında sertifika verin",
         "impact": "Etkinizi anlayın",
@@ -5120,7 +4982,6 @@
       "medium": "Orta",
       "note": "Not",
       "pan": "Kaydır",
-      "podcast": "Podcast",
       "redo": "Yinele",
       "select": "Seç",
       "sticker": "Çıkartma",
@@ -5212,8 +5073,6 @@
           "payments_desc": "Kurs satın ve gelir elde etmek için abonelikler sunun.",
           "communities": "Topluluk tartışmaları",
           "communities_desc": "Öğrencilerin bağlantı kurmasına, soru sormasına ve fikir paylaşmasına izin verin.",
-          "podcasts": "Podcast oluşturun",
-          "podcasts_desc": "Sesli içerik sunun ve öğrencilere her yerden ulaşın.",
           "ai": "1.000 AI kredisi",
           "ai_desc": "AI yazma araçlarıyla içerik oluşturmayı hızlandırın.",
           "analytics": "Öğrenci analitiği",
@@ -5320,7 +5179,6 @@
     "new_folder": "New Folder",
     "tabs": {
       "courses": "Courses",
-      "podcasts": "Podcasts",
       "communities": "Communities",
       "boards": "Boards",
       "playgrounds": "Playgrounds",
