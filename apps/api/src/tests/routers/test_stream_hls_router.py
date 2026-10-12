@@ -260,7 +260,7 @@ async def test_private_course_denies_anonymous(
 
 
 # --------------------------------------------------------------------------
-# Block + podcast GET handlers (cover the duplicated existence-check/redirect)
+# Block GET handlers (cover the duplicated existence-check/redirect)
 # --------------------------------------------------------------------------
 
 async def test_block_video_redirects_in_s3(
@@ -304,51 +304,6 @@ async def test_block_audio_redirects_in_s3(
         follow_redirects=False,
     )
     assert r.status_code == 302
-
-
-async def test_podcast_audio_redirects_in_s3(
-    client_factory, monkeypatch, org, anonymous_user
-):
-    # Focus on the redirect logic (the changed lines); podcast RBAC is exercised
-    # by its own dedicated tests, so stub the access check here.
-    async def _allow(*a, **k):
-        return None
-
-    monkeypatch.setattr(stream_mod, "_verify_podcast_episode_access", _allow)
-    monkeypatch.setattr(stream_mod, "is_s3_enabled", lambda: True)
-    monkeypatch.setattr(stream_mod, "get_file_info", lambda p: (1000, "audio/mpeg", True))
-    monkeypatch.setattr(stream_mod, "generate_presigned_get_url", lambda k: f"https://r2/{k}")
-    client = await client_factory(anonymous_user)
-    r = await client.get(
-        f"/audio/{org.org_uuid}/pod_test/ep_test/a.mp3", follow_redirects=False
-    )
-    assert r.status_code == 302
-
-
-async def test_podcast_audio_hides_unpublished_episode_and_checks_org(
-    db, org, anonymous_user, mock_request
-):
-    """/stream/audio applies the same episode gate as the /content files."""
-    from fastapi import HTTPException
-    from src.db.podcasts.episodes import PodcastEpisode
-    from src.db.podcasts.podcasts import Podcast
-
-    db.add(Podcast(
-        id=70, name="Pod", description="", public=True, published=True, org_id=org.id,
-        podcast_uuid="podcast_pub", creation_date="2024-01-01", update_date="2024-01-01",
-    ))
-    db.add(PodcastEpisode(
-        id=70, podcast_id=70, org_id=org.id, title="Next week", published=False,
-        episode_uuid="episode_draft", creation_date="2024-01-01", update_date="2024-01-01",
-    ))
-    await db.commit()
-
-    for org_uuid in (org.org_uuid, "org_someone_else"):
-        with pytest.raises(HTTPException) as exc:
-            await stream_mod._verify_podcast_episode_access(
-                mock_request, org_uuid, "podcast_pub", "episode_draft", anonymous_user, db
-            )
-        assert exc.value.status_code == 404
 
 
 def test_stream_responses_are_not_shared_cacheable():

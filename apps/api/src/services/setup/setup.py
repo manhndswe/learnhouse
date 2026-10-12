@@ -113,15 +113,6 @@ async def install_default_elements(db_session: AsyncSession):
                 action_delete=True,
                 action_delete_own=True,
             ),
-            podcasts=PermissionsWithOwn(
-                action_create=True,
-                action_read=True,
-                action_read_own=True,
-                action_update=True,
-                action_update_own=True,
-                action_delete=True,
-                action_delete_own=True,
-            ),
             boards=PermissionsWithOwn(
                 action_create=True,
                 action_read=True,
@@ -225,15 +216,6 @@ async def install_default_elements(db_session: AsyncSession):
                 action_delete=True,
             ),
             discussions=PermissionsWithOwn(
-                action_create=True,
-                action_read=True,
-                action_read_own=True,
-                action_update=True,
-                action_update_own=True,
-                action_delete=True,
-                action_delete_own=True,
-            ),
-            podcasts=PermissionsWithOwn(
                 action_create=True,
                 action_read=True,
                 action_read_own=True,
@@ -353,15 +335,6 @@ async def install_default_elements(db_session: AsyncSession):
                 action_delete=False,
                 action_delete_own=True,
             ),
-            podcasts=PermissionsWithOwn(
-                action_create=True,
-                action_read=True,
-                action_read_own=True,
-                action_update=False,
-                action_update_own=True,
-                action_delete=False,
-                action_delete_own=True,
-            ),
             boards=PermissionsWithOwn(
                 action_create=True,
                 action_read=True,
@@ -472,15 +445,6 @@ async def install_default_elements(db_session: AsyncSession):
                 action_update_own=True,
                 action_delete=False,
                 action_delete_own=True,
-            ),
-            podcasts=PermissionsWithOwn(
-                action_create=False,
-                action_read=True,
-                action_read_own=True,
-                action_update=False,
-                action_update_own=False,
-                action_delete=False,
-                action_delete_own=False,
             ),
             boards=PermissionsWithOwn(
                 action_create=False,
@@ -660,4 +624,3 @@ async def install_create_organization_user(
     user = UserRead.model_validate(user)
 
     return user
-

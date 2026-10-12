@@ -3,13 +3,12 @@ Local Content Files Router
 
 Serves static content files from the local filesystem with access control.
 Replaces the unauthenticated StaticFiles mount to enforce authorization
-on private course/podcast content while allowing public content through.
+on private course content while allowing public content through.
 
 SECURITY:
 - Activity content (videos, PDFs, blocks) for non-public courses requires auth
 - Course-level metadata (thumbnails) is always public (shown in listings)
 - Org-level content (logos, branding) is always public
-- Podcast episode content for non-public podcasts requires auth
 """
 
 import os
@@ -24,8 +23,6 @@ from sqlmodel.ext.asyncio.session import AsyncSession
 from src.core.events.database import get_db_session
 from src.db.courses.courses import Course
 from src.db.organizations import Organization
-from src.db.podcasts.episodes import PodcastEpisode
-from src.db.podcasts.podcasts import Podcast
 from src.db.users import AnonymousUser, PublicUser, APITokenUser
 from src.routers.content_files import content_cache_control
 from src.security.auth import get_current_user
@@ -75,58 +72,6 @@ async def _verify_course_in_org(
         raise HTTPException(status_code=404, detail="File not found")
 
 
-async def _verify_episode_access(
-    org_uuid: str,
-    podcast_uuid: str,
-    episode_uuid: str,
-    current_user: PublicUser | AnonymousUser | APITokenUser,
-    db_session: AsyncSession,
-    request: Request | None,
-) -> None:
-    """Gate a podcast episode file like the podcast read itself.
-
-    The podcast must belong to ``org_uuid`` and the episode to the podcast
-    (404 otherwise). The caller needs podcast READ (anonymous: public and
-    published), and an unpublished podcast or episode is only served to
-    someone who can edit the podcast.
-    """
-    row = (await db_session.execute(
-        select(Podcast, Organization.org_uuid)
-        .join(Organization, Organization.id == Podcast.org_id)  # type: ignore[arg-type]
-        .where(Podcast.podcast_uuid == podcast_uuid)
-    )).first()
-    if not row or row[1] != org_uuid:
-        raise HTTPException(status_code=404, detail="File not found")
-    podcast = row[0]
-    episode = (await db_session.execute(
-        select(PodcastEpisode).where(
-            PodcastEpisode.episode_uuid == episode_uuid,
-            PodcastEpisode.podcast_id == podcast.id,
-        )
-    )).scalars().first()
-    if not episode:
-        raise HTTPException(status_code=404, detail="File not found")
-
-    from src.security.rbac import check_resource_access, AccessAction
-
-    decision = await check_resource_access(
-        request, db_session, current_user, podcast.podcast_uuid,
-        AccessAction.READ, raise_on_deny=False,
-    )
-    if not decision.allowed:
-        if isinstance(current_user, AnonymousUser):
-            raise HTTPException(status_code=401, detail="Authentication required")
-        raise HTTPException(status_code=403, detail="Access denied")
-
-    if not (podcast.published and episode.published):
-        can_edit = (await check_resource_access(
-            request, db_session, current_user, podcast.podcast_uuid,
-            AccessAction.UPDATE, raise_on_deny=False,
-        )).allowed
-        if not can_edit:
-            raise HTTPException(status_code=404, detail="File not found")
-
-
 async def _check_content_access(
     file_path: str,
     current_user: PublicUser | AnonymousUser | APITokenUser,
@@ -143,8 +88,8 @@ async def _check_content_access(
     Path patterns:
     - orgs/{uuid}/courses/{uuid}/activities/{uuid}/... → check course access
     - orgs/{uuid}/courses/{uuid}/...                   → course metadata (public)
-    - orgs/{uuid}/podcasts/{uuid}/episodes/{uuid}/...  → check podcast access
-    - orgs/{uuid}/...                                  → org-level (public)
+    - orgs/{uuid}/{filename} or branding directories   → org metadata (public)
+    - orgs/{uuid}/{resource}/{uuid}/thumbnails/...      → resource metadata (public)
     """
     parts = file_path.split('/')
 
@@ -184,18 +129,6 @@ async def _check_content_access(
             await enforce_solution_file_access(parts, current_user, db_session, request)
         return False
 
-    # Podcast episode content: same gate as reading the podcast, plus the
-    # episode itself must be published unless the caller can edit the podcast.
-    if (
-        len(parts) >= 6
-        and parts[0] == 'orgs'
-        and parts[2] == 'podcasts'
-        and parts[4] == 'episodes'
-    ):
-        await _verify_episode_access(
-            parts[1], parts[3], parts[5], current_user, db_session, request
-        )
-        return False
 
     # Library media content: enforce the media's (folder-aware) access. Closes
     # the legacy hole where orgs/{}/media/... fell through to the public branch.
@@ -213,7 +146,21 @@ async def _check_content_access(
 
     # Course metadata (thumbnails, etc.) and org-level content: always public
     # These are displayed on listing pages to all users
-    if len(parts) >= 2 and parts[0] == 'orgs':
+    if len(parts) == 3 and parts[0] == 'orgs':
+        return True
+    if len(parts) >= 4 and parts[0] == 'orgs' and parts[2] in (
+        'logos', 'thumbnails', 'previews', 'landing', 'auth_backgrounds',
+        'favicons', 'og_images', 'branding',
+        'square_logos', 'ai_images',
+    ):
+        return True
+    if len(parts) >= 5 and parts[0] == 'orgs' and parts[2] == 'courses':
+        return True
+    if (
+        len(parts) >= 6 and parts[0] == 'orgs'
+        and parts[2] in ('communities', 'boards', 'playgrounds', 'folders')
+        and parts[4] == 'thumbnails'
+    ):
         return True
 
     # User content (avatars, profile images): always public
@@ -256,7 +203,7 @@ _MIME_TYPES = {
 @router.get(
     "/content/{file_path:path}",
     summary="Serve a local content file",
-    description="Streams a content file from the local filesystem with access control. Public course and podcast content is accessible anonymously; private content requires authentication and org membership.",
+    description="Streams a content file from the local filesystem with access control. Public course content is accessible anonymously; private content requires authentication and org membership.",
     responses={
         200: {"description": "File served successfully"},
         400: {"description": "Invalid or unsafe file path"},
@@ -275,7 +222,7 @@ async def serve_local_content(
     Serve content files from local filesystem with access control.
 
     SECURITY: Validates user access based on resource ownership.
-    Public courses/podcasts are accessible to anonymous users.
+    Public courses are accessible to anonymous users.
     Private content requires authentication.
     """
     rel_path = _normalize_content_relpath(file_path)

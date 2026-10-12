@@ -269,7 +269,7 @@ async def api_delete_folder(
     "/{folder_uuid}/content",
     response_model=FolderRead,
     summary="Add content to folder",
-    description="Place a resource (course/podcast/community/board/playground/media) into a folder.",
+    description="Place a resource (course/community/board/playground/media) into a folder.",
 )
 async def api_add_folder_content(
     request: Request,

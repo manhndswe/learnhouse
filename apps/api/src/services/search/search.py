@@ -12,7 +12,6 @@ from src.db.user_organizations import UserOrganization
 from src.db.communities.communities import Community, CommunityRead
 from src.db.communities.discussions import Discussion, DiscussionRead
 from src.db.playgrounds import Playground, PlaygroundRead, PlaygroundAccessType
-from src.db.podcasts.podcasts import Podcast, PodcastRead
 from src.services.courses.courses import search_courses
 from src.services.search.normalization import (
     LIKE_ESCAPE_CHAR,
@@ -21,12 +20,11 @@ from src.services.search.normalization import (
 )
 from src.security.api_token_utils import token_has_right
 from src.security.auth import resolve_acting_user_id
-from src.security.org_auth import is_org_admin, is_org_member
+from src.security.org_auth import is_org_member
 from src.services.communities.communities import (
     accessible_community_ids_select,
     can_read_all_communities,
 )
-from src.services.podcasts.podcasts import accessible_podcast_ids_query
 
 
 class SearchDiscussionRead(DiscussionRead):
@@ -55,7 +53,6 @@ class SearchResult(BaseModel):
     communities: List[CommunityRead]
     discussions: List[SearchDiscussionRead]
     playgrounds: List[PlaygroundRead]
-    podcasts: List[PodcastRead]
 
     total_courses: int = 0
     total_folders: int = 0
@@ -63,7 +60,6 @@ class SearchResult(BaseModel):
     total_communities: int = 0
     total_discussions: int = 0
     total_playgrounds: int = 0
-    total_podcasts: int = 0
 
 
 def _empty_result() -> SearchResult:
@@ -74,7 +70,6 @@ def _empty_result() -> SearchResult:
         communities=[],
         discussions=[],
         playgrounds=[],
-        podcasts=[],
     )
 
 
@@ -148,7 +143,7 @@ async def search_across_org(
     - Org members additionally see org-scoped non-public content where the
       resource itself doesn't restrict it further (e.g. unpublished items and
       usergroup-restricted playgrounds are always excluded from search).
-      Usergroup-restricted communities (and their discussions) and podcasts
+      Usergroup-restricted communities (and their discussions)
       only show up for members of a linked group, as in their listings.
     - User hits are serialized as ``UserReadPublic``, never ``UserRead``: search
       is open to every member, so it must not expose the PII the dedicated
@@ -301,25 +296,6 @@ async def search_across_org(
         db_session, playgrounds_q, page, limit
     )
 
-    # ── Podcasts ─────────────────────────────────────────────────────────────
-    podcasts_q = (
-        select(Podcast)
-        .where(Podcast.org_id == org.id)
-        .where(Podcast.published == sa_true())
-        .where(_ilike_any([Podcast.name, Podcast.description, Podcast.tags], pattern))
-    )
-    if only_public:
-        podcasts_q = podcasts_q.where(Podcast.public == sa_true())
-    elif not await is_org_admin(acting_user_id, org.id, db_session):
-        # Same visibility as the podcast listing: usergroup-restricted
-        # podcasts only for members of a linked group (or active authors).
-        podcasts_q = podcasts_q.where(
-            Podcast.id.in_(accessible_podcast_ids_query(acting_user_id))  # type: ignore[union-attr]
-        )
-    podcasts, total_podcasts = await _paginate_and_count(
-        db_session, podcasts_q, page, limit
-    )
-
     folder_reads = [FolderRead.model_validate(f) for f in folders]
 
     user_reads = [UserReadPublic.model_validate(u) for u in users]
@@ -339,7 +315,6 @@ async def search_across_org(
         read.org_slug = org.slug
         playground_reads.append(read)
 
-    podcast_reads = [PodcastRead(**p.model_dump(), authors=[]) for p in podcasts]
 
     return SearchResult(
         courses=courses,
@@ -348,12 +323,10 @@ async def search_across_org(
         communities=community_reads,
         discussions=discussion_reads,
         playgrounds=playground_reads,
-        podcasts=podcast_reads,
         total_courses=total_courses,
         total_folders=total_folders,
         total_users=total_users,
         total_communities=total_communities,
         total_discussions=total_discussions,
         total_playgrounds=total_playgrounds,
-        total_podcasts=total_podcasts,
     )

@@ -365,25 +365,6 @@ class TestListings:
         results = await search_courses(mock_request, regular_user, org.slug, "draft", db)
         assert results == []
 
-    async def test_podcast_listing_uses_podcasts_bucket_or_courses_read(
-        self, db, org, admin_user, mock_request
-    ):
-        from src.services.podcasts.podcasts import get_podcasts_count_orgslug
-
-        # A token holding the podcasts bucket is judged on it.
-        with pytest.raises(HTTPException):
-            await get_podcasts_count_orgslug(
-                mock_request,
-                _token(creator=admin_user.id, podcasts={"action_read": False}, courses={"action_read": True}),
-                org.slug,
-                db,
-            )
-        # Tokens minted before that bucket existed fall back to courses read.
-        assert await get_podcasts_count_orgslug(
-            mock_request, _token(creator=admin_user.id, courses={"action_read": True}), org.slug, db
-        ) == 0
-        with pytest.raises(HTTPException):
-            await get_podcasts_count_orgslug(mock_request, _token(creator=admin_user.id), org.slug, db)
 
     async def test_search_denies_token_without_rights(self, db, org, admin_user, mock_request):
         from src.services.search.search import search_across_org
@@ -578,44 +559,6 @@ class TestTokenListingEdges:
         reader = _token(creator=admin_user.id, courses={"action_read": True})
         assert [c.name for c in await search_courses(mock_request, reader, org.slug, "pub", db)] == ["pub"]
         assert await search_courses(mock_request, reader, org.slug, "draft", db) == []
-
-    async def _podcasts(self, db, org):
-        from src.db.podcasts.podcasts import Podcast
-
-        db.add(Podcast(name="live", public=False, published=True, org_id=org.id,
-                       podcast_uuid="podcast_live", creation_date=NOW, update_date=NOW))
-        db.add(Podcast(name="draft", public=False, published=False, org_id=org.id,
-                       podcast_uuid="podcast_draft", creation_date=NOW, update_date=NOW))
-        await db.commit()
-
-    async def test_podcast_listing_uses_token_rights(self, db, org, admin_user, mock_request):
-        from src.services.podcasts import podcasts as svc
-
-        await self._podcasts(db, org)
-        reader = _token(creator=admin_user.id, podcasts={"action_read": True})
-        with patch.object(svc, "_is_podcasts_feature_enabled", new_callable=AsyncMock, return_value=True):
-            listed = await svc.get_podcasts_orgslug(mock_request, reader, org.slug, db)
-            assert [p.name for p in listed] == ["live"]
-            listed = await svc.get_podcasts_orgslug(
-                mock_request, reader, org.slug, db, include_unpublished=True
-            )
-            assert {p.name for p in listed} == {"live", "draft"}
-
-            with pytest.raises(HTTPException) as exc:
-                await svc.get_podcasts_orgslug(
-                    mock_request, _token(creator=admin_user.id), org.slug, db
-                )
-            assert exc.value.status_code == 403
-            other = _token(org_id=org.id + 1, creator=admin_user.id, podcasts={"action_read": True})
-            with pytest.raises(HTTPException) as exc:
-                await svc.get_podcasts_orgslug(mock_request, other, org.slug, db)
-            assert exc.value.status_code == 403
-
-    async def test_podcast_count_for_unknown_org_is_zero(self, db, org, admin_user, mock_request):
-        from src.services.podcasts.podcasts import get_podcasts_count_orgslug
-
-        reader = _token(creator=admin_user.id, podcasts={"action_read": True})
-        assert await get_podcasts_count_orgslug(mock_request, reader, "no-such-org", db) == 0
 
 
 class TestRightsShapeEdges:

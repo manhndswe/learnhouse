@@ -9,8 +9,6 @@ from httpx import ASGITransport, AsyncClient
 from src.core.events.database import get_db_session
 from src.db.courses.courses import Course
 from src.tests.fixtures.rows import activity_row
-from src.db.podcasts.podcasts import Podcast
-from src.db.podcasts.episodes import PodcastEpisode
 from src.db.user_organizations import UserOrganization
 from src.db.users import APITokenUser, AnonymousUser
 from src.routers.local_content import router as local_content_router
@@ -193,22 +191,20 @@ class TestLocalContentRouter:
     async def test_api_token_scope_and_invalid_paths(
         self, client, db, org, other_org, app, tmp_path
     ):
-        podcast = Podcast(
+        course = Course(
             id=20,
-            name="Private Podcast",
+            name="Private Course",
             description="Desc",
             public=False,
             published=True,
             org_id=org.id,
-            podcast_uuid="podcast_private_local",
+            open_to_contributors=False,
+            course_uuid="course_private_local",
             creation_date="2024-01-01",
             update_date="2024-01-01",
         )
-        db.add(podcast)
-        db.add(PodcastEpisode(
-            id=20, podcast_id=20, org_id=org.id, title="Ep", published=True,
-            episode_uuid="episode_x", creation_date="2024-01-01", update_date="2024-01-01",
-        ))
+        db.add(course)
+        db.add(activity_row(20, org.id, 20, "activity_x"))
         await db.commit()
 
         content_root = tmp_path / "content"
@@ -216,10 +212,10 @@ class TestLocalContentRouter:
             content_root
             / "orgs"
             / org.org_uuid
-            / "podcasts"
-            / podcast.podcast_uuid
-            / "episodes"
-            / "episode_x"
+            / "courses"
+            / course.course_uuid
+            / "activities"
+            / "activity_x"
             / "audio.mp3"
         )
         file_path.parent.mkdir(parents=True)
@@ -233,16 +229,16 @@ class TestLocalContentRouter:
             wrong_token = APITokenUser(org_id=other_org.id, created_by_user_id=1)
             app.dependency_overrides[get_current_user] = lambda: wrong_token
             forbidden_response = await client.get(
-                f"/content/orgs/{org.org_uuid}/podcasts/{podcast.podcast_uuid}/episodes/episode_x/audio.mp3"
+                f"/content/orgs/{org.org_uuid}/courses/{course.course_uuid}/activities/activity_x/audio.mp3"
             )
 
             correct_token = APITokenUser(
                 org_id=org.id, created_by_user_id=1,
-                rights={"podcasts": {"action_read": True}},
+                rights={"courses": {"action_read": True}},
             )
             app.dependency_overrides[get_current_user] = lambda: correct_token
             ok_response = await client.get(
-                f"/content/orgs/{org.org_uuid}/podcasts/{podcast.podcast_uuid}/episodes/episode_x/audio.mp3"
+                f"/content/orgs/{org.org_uuid}/courses/{course.course_uuid}/activities/activity_x/audio.mp3"
             )
 
             app.dependency_overrides[get_current_user] = lambda: AnonymousUser()
@@ -291,49 +287,9 @@ class TestLocalContentRouter:
             db.add(activity_row(50, org.id, 50, "activity_private_router"))
             await db.commit()
 
-            public_podcast = Podcast(
-                id=52,
-                name="Public Podcast",
-                description="Desc",
-                public=True,
-                published=True,
-                org_id=org.id,
-                podcast_uuid="podcast_public_router",
-                creation_date="2024-01-01",
-                update_date="2024-01-01",
-            )
-            private_podcast = Podcast(
-                id=51,
-                name="Private Podcast",
-                description="Desc",
-                public=False,
-                published=True,
-                org_id=org.id,
-                podcast_uuid="podcast_private_router",
-                creation_date="2024-01-01",
-                update_date="2024-01-01",
-            )
-            db.add(public_podcast)
-            db.add(private_podcast)
-            for ep_id, podcast_id in ((52, 52), (51, 51)):
-                db.add(PodcastEpisode(
-                    id=ep_id, podcast_id=podcast_id, org_id=org.id, title="Ep",
-                    published=True, episode_uuid="episode_1",
-                    creation_date="2024-01-01", update_date="2024-01-01",
-                ))
-            await db.commit()
-
             assert (
                 await local_content._check_content_access(
                     "orgs/org_test/courses/course_test/activities/activity_test/file.txt",
-                    anonymous_user,
-                    db,
-                )
-                is False
-            )
-            assert (
-                await local_content._check_content_access(
-                    "orgs/org_test/podcasts/podcast_public_router/episodes/episode_1/file.txt",
                     anonymous_user,
                     db,
                 )
@@ -375,13 +331,6 @@ class TestLocalContentRouter:
                 )
             assert anon_course_exc.value.status_code == 401
 
-            with pytest.raises(HTTPException) as anon_podcast_exc:
-                await local_content._check_content_access(
-                    "orgs/org_test/podcasts/podcast_private_router/episodes/episode_1/file.txt",
-                    anonymous_user,
-                    db,
-                )
-            assert anon_podcast_exc.value.status_code == 401
 
             with pytest.raises(HTTPException) as unknown_exc:
                 await local_content._check_content_access("misc/file.txt", anonymous_user, db)
@@ -395,28 +344,13 @@ class TestLocalContentRouter:
                 )
             assert missing_course_exc.value.status_code == 404
 
-            with pytest.raises(HTTPException) as missing_podcast_exc:
-                await local_content._check_content_access(
-                    "orgs/org_test/podcasts/missing/episodes/episode_1/file.txt",
-                    regular_user,
-                    db,
-                )
-            assert missing_podcast_exc.value.status_code == 404
-
-            with pytest.raises(HTTPException) as podcast_member_exc:
-                await local_content._check_content_access(
-                    "orgs/org_test/podcasts/podcast_private_router/episodes/episode_1/file.txt",
-                    regular_user.model_copy(update={"id": 999}),
-                    db,
-                )
-            assert podcast_member_exc.value.status_code == 403
 
             missing_response = await client.get(
                 "/content/orgs/org_test/courses/course_private_router/activities/activity_private_router/missing.txt"
             )
             invalid_response = await client.get("/content/%2E%2E/escape.txt")
             head_missing_response = await client.head(
-                "/content/orgs/org_test/podcasts/podcast_private_router/episodes/episode_1/missing.txt"
+                "/content/orgs/org_test/courses/course_private_router/activities/activity_private_router/missing.txt"
             )
             head_invalid_response = await client.head("/content/%2E%2E/escape.txt")
 

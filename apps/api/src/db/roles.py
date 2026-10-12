@@ -67,7 +67,6 @@ class Rights(BaseModel):
     dashboard: DashboardPermission
     communities: Permission
     discussions: PermissionsWithOwn  # Own = author can edit/delete their own
-    podcasts: PermissionsWithOwn  # Own = author can edit/delete their own podcasts
     boards: PermissionsWithOwn = PermissionsWithOwn(
         action_create=False,
         action_read=True,

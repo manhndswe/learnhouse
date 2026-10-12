@@ -34,10 +34,6 @@ async def check_element_type(element_uuid):
         return "discussions"
     elif element_uuid.startswith("vote_"):
         return "votes"
-    elif element_uuid.startswith("podcast_"):
-        return "podcasts"
-    elif element_uuid.startswith("episode_"):
-        return "episodes"
     elif element_uuid.startswith("board_"):
         return "boards"
     elif element_uuid.startswith("playground_"):
@@ -186,18 +182,6 @@ async def get_element_organization_id(
             .where(DiscussionVote.vote_uuid == element_uuid)
         )).scalars().first()
 
-    elif element_type == "podcasts":
-        from src.db.podcasts.podcasts import Podcast
-        return (await db_session.execute(select(Podcast.org_id).where(Podcast.podcast_uuid == element_uuid))).scalars().first()
-
-    elif element_type == "episodes":
-        from src.db.podcasts.episodes import PodcastEpisode
-        from src.db.podcasts.podcasts import Podcast
-        return (await db_session.execute(
-            select(Podcast.org_id)
-            .join(PodcastEpisode, Podcast.id == PodcastEpisode.podcast_id)
-            .where(PodcastEpisode.episode_uuid == element_uuid)
-        )).scalars().first()
 
     elif element_type == "boards":
         from src.db.boards import Board
