@@ -21,7 +21,6 @@ from sqlmodel.ext.asyncio.session import AsyncSession
 from src.db.courses.courses import Course
 from src.db.demo_state import DEMO_STATE_ID, DemoState
 from src.db.organizations import Organization
-from src.db.podcasts.podcasts import Podcast
 from src.db.resource_authors import ResourceAuthor
 from src.db.user_organizations import UserOrganization
 from src.db.users import User
@@ -71,12 +70,6 @@ async def teardown_demo(db_session: AsyncSession) -> list[str]:
             (
                 await db_session.execute(
                     select(Course.course_uuid).where(Course.org_id == org.id)
-                )
-            ).scalars().all()
-        ) + list(
-            (
-                await db_session.execute(
-                    select(Podcast.podcast_uuid).where(Podcast.org_id == org.id)
                 )
             ).scalars().all()
         )

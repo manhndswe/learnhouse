@@ -247,7 +247,7 @@ async def test_every_showcase_feature_resolves_as_available(db, synced):
 
     # Everything the demo must show on any deployment.
     showcase = [
-        "boards", "playgrounds", "communities", "podcasts", "collaboration",
+        "boards", "playgrounds", "communities", "collaboration",
         "certifications", "roles", "versioning", "webhooks", "usergroups",
         "seo", "analytics", "api",
     ]
@@ -1040,8 +1040,6 @@ _TAMPERINGS = [
     ("community", "src.db.communities.communities", "Community", "name", "Renamed community"),
     ("discussion", "src.db.communities.discussions", "Discussion", "title", "Renamed discussion"),
     ("discussion_locked", "src.db.communities.discussions", "Discussion", "is_locked", True),
-    ("podcast", "src.db.podcasts.podcasts", "Podcast", "name", "Renamed podcast"),
-    ("episode", "src.db.podcasts.episodes", "PodcastEpisode", "title", "Renamed episode"),
     ("certification", "src.db.courses.certifications", "Certifications", "config", {"certification_name": "Tampered"}),
 ]
 
@@ -1170,8 +1168,6 @@ _RESTORABLE = [
     ("playground", "src.db.playgrounds", "Playground", "playground_uuid"),
     ("community", "src.db.communities.communities", "Community", "community_uuid"),
     ("discussion", "src.db.communities.discussions", "Discussion", "discussion_uuid"),
-    ("podcast", "src.db.podcasts.podcasts", "Podcast", "podcast_uuid"),
-    ("episode", "src.db.podcasts.episodes", "PodcastEpisode", "episode_uuid"),
     ("certification", "src.db.courses.certifications", "Certifications", "certification_uuid"),
 ]
 
